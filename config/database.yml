@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: psql
+  pool: 5
+
+production:
+  <<: *default
+  database: DCCarreteG6_production
+
+development:
+  <<: *default
+  database: DCCarreteG6_development
+
+test:
+  <<: *default
+  database: DCCarreteG6_test
