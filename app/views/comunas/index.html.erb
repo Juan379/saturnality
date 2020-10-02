@@ -1,0 +1,18 @@
+<h1>Available Comunas</h1>
+<table>
+    <tr>
+        <thead>
+            <th>Name</th>
+        </thead>
+    </tr>
+        <% @comunas.each do |comuna| %>
+    <tr>
+        <td><%= comuna.name %></td>
+        <td>
+            <%= link_to "Show", comuna%>
+            <%= link_to "Edit", edit_comuna_path(comuna) %>
+            <%= link_to "Delete", comuna, method: :delete, data: { confirm: "Do you really want to delete this Comuna?"} %>
+        </td>
+    </tr>
+        <% end %>
+</table>
