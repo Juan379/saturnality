@@ -29,7 +29,7 @@
 <%= fields_for(@contracts) do |c| %>
 <div>
     <%= c.label "Hired services" %><br />
-    <%= collection_select(:services, :id, Service.all, :id, :name, {}, {:multiple => true}) %>
+    <%= grouped_collection_select(:comunas, :id, Comuna.all, :services, :name, :id, :name, {}, {:multiple => true})  %>
 </div>
 <% end %>  
 <div>
