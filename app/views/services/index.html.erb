@@ -1,0 +1,19 @@
+<h1>Available Services</h1>
+<%= link_to "Create Service", new_service_url %>
+<table>
+    <tr>
+        <thead>
+            <th>Name</th>
+        </thead>
+    </tr>
+        <% @services.each do |service| %>
+    <tr>
+        <td><%= service.name %></td>
+        <td>
+            <%= link_to "Show", service %>
+            <%= link_to "Edit", edit_service_path(service) %>
+            <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+        </td>
+    </tr>
+        <% end %>
+</table>

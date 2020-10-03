@@ -1,0 +1,38 @@
+<h1>Edit Party</h1>
+<%= form_for @party do |f| %>
+<div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+</div>
+<div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+</div>
+<div>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+</div>
+<div>
+    <%= f.label :cost %>
+    <%= f.number_field :cost %>
+</div>
+<div>
+    <%= f.label :Active_participant_search? %>
+    <%= f.check_box :search %>
+</div>
+<%= fields_for(@all_comunas) do |c| %>
+<div>
+    <%= c.label "Comunas it belongs to" %><br />
+    <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => false}) %>
+</div>
+<% end %>
+<%= fields_for(@contracts) do |c| %>
+<div>
+    <%= c.label "Hired services" %><br />
+    <%= collection_select(:services, :id, Service.all, :id, :name, {}, {:multiple => true}) %>
+</div>
+<% end %>  
+<div>
+    <%= f.submit %>
+</div>
+<% end %>

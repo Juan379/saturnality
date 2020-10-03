@@ -1,0 +1,11 @@
+<h1>Service: <%= @service.name %></h1>
+
+<h2>Description: <%= @service.description %></h2>
+<h3>Capacity: <%= @service.capacity %></h3>
+<h3>Price: <%= @service.price %></h3>
+<h3>Rating: <%= @service.rating %></h3>
+<h3>Comunas where it's active:</h3>
+<% @service.comunas.each do |comuna| %>
+<h3>><%= comuna.name %></h3>
+<% end %>
+
