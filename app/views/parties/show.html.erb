@@ -9,5 +9,8 @@
 <% else %>
     <h3>Search state: Terminated</h3>
 <% end %>
-
+<h3>Hired services:</h3>
+<% @party.services.each do |service| %>
+<h3>><%= service.name %></h3>
+<% end %>
 
