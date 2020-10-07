@@ -1,7 +1,9 @@
-<h1>Hello World!!</h1>
-<%= image_tag("git.png") %>
-<p>Si, la playlist es real, la puedes encontrar <a href="https://open.spotify.com/playlist/0MJBni0UzdnML1amikx0Rc?si=I7WorRiwTMWyyr06zf91Gw">aquí</a>:</p>
-
+<% if current_user %>
+    <p>hola, <%= current_user.name %> </p>
+<% else %>
+    <p>No estas conectado</p>
+    <%= link_to 'Registrarse', new_user_registration_path %>
+<% end %>
 
 
 
