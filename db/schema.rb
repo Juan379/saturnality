@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_160418) do
+ActiveRecord::Schema.define(version: 2020_10_08_220105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,10 @@ ActiveRecord::Schema.define(version: 2020_10_07_160418) do
     t.boolean "search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "capacity"
     t.index ["comuna_id"], name: "index_parties_on_comuna_id"
+    t.index ["user_id"], name: "index_parties_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -56,9 +59,11 @@ ActiveRecord::Schema.define(version: 2020_10_07_160418) do
     t.text "description"
     t.integer "capacity"
     t.integer "price"
-    t.float "rating", default: 5.0
+    t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,4 +86,6 @@ ActiveRecord::Schema.define(version: 2020_10_07_160418) do
   add_foreign_key "coverages", "comunas"
   add_foreign_key "coverages", "services"
   add_foreign_key "parties", "comunas"
+  add_foreign_key "parties", "users"
+  add_foreign_key "services", "users"
 end

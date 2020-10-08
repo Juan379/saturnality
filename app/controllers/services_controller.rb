@@ -20,6 +20,10 @@ class ServicesController < ApplicationController
     def create
         @service = Service.create(service_params)
 
+        if current_user
+            @service.user_id = current_user.id
+        end
+
         params[:comunas][:id].each do |comuna|
             if !comuna.empty?
                 @service.coverages.build(:comuna_id => comuna)

@@ -23,6 +23,10 @@ class PartiesController < ApplicationController
         @party = Party.create(party_params)
 
         @party.comuna_id = @selected
+        
+        if current_user
+            @party.user_id = current_user.id
+        end
 
         # params[:services][:id].each do |service|
         #     if !service.empty?
@@ -59,6 +63,6 @@ class PartiesController < ApplicationController
     private
     
     def party_params
-        params.require(:party).permit(:title, :description, :address, :cost, :search)
+        params.require(:party).permit(:title, :description, :address, :cost, :search, :capacity)
     end
 end

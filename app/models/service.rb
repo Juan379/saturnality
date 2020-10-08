@@ -1,4 +1,5 @@
 class Service < ApplicationRecord
+  belongs_to :user
   has_many :contracts
   has_many :parties, through: :contracts, dependent: :delete_all
   has_many :coverages
