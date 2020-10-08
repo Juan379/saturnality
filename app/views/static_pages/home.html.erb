@@ -1,5 +1,6 @@
 <% if !current_user %>
     <h1>You're not currently logged in</h1>
+    <p>Nota al PO corrector: Debe estar logged in para poder crear, editar y eliminar entidades, de lo contrario, solo se muestran.</p>
     <%= link_to 'Sign up', new_user_registration_path %> <br/>
     <%= link_to 'Log in', new_user_session_path %> <br/><br/>
     <%= link_to 'Parties', parties_url %> <br/>
