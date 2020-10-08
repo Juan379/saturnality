@@ -1,10 +1,13 @@
-<h1>Party: <%= @party.title %></h1> <br/>
+<h1>Party: <%= @party.title %></h1>
+<h2>Created by: <%= @party.user.name %></h2>
+
 <%= link_to "Back", parties_url %> <br/><br/>
 
 
 <h2>Description: <%= @party.description %></h2>
 <h3>Address: <%= @party.address %></h3>
 <h3>Comuna: <%= @party.comuna.name %></h3>
+<h3>Capacity: <%= @party.capacity %></h3>
 <h3>Cost: <%= @party.cost %></h3>
 <% if @party.search %>
     <h3>Search state: On going</h3>

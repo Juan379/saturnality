@@ -1,6 +1,8 @@
 <h1>Available Services</h1>
 <%= link_to "Back", static_pages_home_url %> <br/><br/>
-<%= link_to "Create Service", new_service_url %><br/><br/>
+<% if current_user %>
+    <%= link_to "Create Service", new_service_url %><br/><br/>
+<% end %>
 <table>
     <tr>
         <thead>
@@ -12,8 +14,10 @@
         <td><%= service.name %></td>
         <td>
             <%= link_to "Show", service %>
-            <%= link_to "Edit", edit_service_path(service) %>
-            <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+            <% if current_user && current_user == service.user%>
+                <%= link_to "Edit", edit_service_path(service) %>
+                <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+            <% end %>
         </td>
     </tr>
         <% end %>

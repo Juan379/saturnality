@@ -1,44 +1,49 @@
 <h1>New Party</h1> <br/>
 <%= link_to "Back", parties_url %> <br/><br/>
 
-<%= form_for @party do |f| %>
-<div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-</div>
-<div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-</div>
-<div>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-</div>
-<div>
-    <%= f.label :capacity %>
-    <%= f.number_field :capacity %>
-</div>
-<div>
-    <%= f.label :cost %>
-    <%= f.number_field :cost %>
-</div>
-<div>
-    <%= f.label :Active_participant_search? %>
-    <%= f.check_box :search %>
-</div>
-<%= fields_for(@all_comunas) do |c| %>
-<div>
-    <%= c.label "Comuna it belongs to" %><br />
-    <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {include_blank: true}, {:multiple => false}) %>
-</div>
-<% end %>
-<!-- <%= fields_for(@contracts) do |c| %>
-<div>
-    <%= c.label "Services to hire:" %><br />
-    <%= grouped_collection_select(:comunas, :id, Comuna.all, :services, :name, :id, :name, {}, {:multiple => true})  %>
-</div>
-<% end %>   -->
-<div>
-    <%= f.submit %>
-</div>
+
+<% if current_user %>
+    <%= form_for @party do |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <div>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+    </div>
+    <div>
+        <%= f.label :capacity %>
+        <%= f.number_field :capacity %>
+    </div>
+    <div>
+        <%= f.label :cost %>
+        <%= f.number_field :cost %>
+    </div>
+    <div>
+        <%= f.label :Active_participant_search? %>
+        <%= f.check_box :search %>
+    </div>
+    <%= fields_for(@all_comunas) do |c| %>
+    <div>
+        <%= c.label "Comuna it belongs to" %><br />
+        <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {include_blank: true}, {:multiple => false}) %>
+    </div>
+    <% end %>
+    <!-- <%= fields_for(@contracts) do |c| %>
+    <div>
+        <%= c.label "Services to hire:" %><br />
+        <%= grouped_collection_select(:comunas, :id, Comuna.all, :services, :name, :id, :name, {}, {:multiple => true})  %>
+    </div>
+    <% end %>   -->
+    <div>
+        <%= f.submit %>
+    </div>
+    <% end %>
+<% else %>
+    <h2>You need to be logged in to create a new party.</h2>
 <% end %>

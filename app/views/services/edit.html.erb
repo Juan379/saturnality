@@ -1,36 +1,42 @@
 <h1>Edit Service</h1> <br/>
 <%= link_to "Back", services_url %> <br/><br/>
 
+<% if current_user && service.user == current_user%>
+    <%= form_for @service do |f| %>
 
-<%= form_for @service do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <div>
+        <%= f.label :capacity %>
+        <%= f.number_field :capacity %>
+    </div>
+    <div>
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+    </div>
+    <div>
+        <%= f.label :rating %>
+        <%= f.number_field :rating, min: 1, max: 5, step: 0.01 %>
+    </div>
+    <%= fields_for(@coverages) do |c| %>
+    <div>
+        <%= c.label "Comunas it covers" %><br />
+        <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => true}) %>
+    </div>
+    <% end %>
+    <div>
+        <%= f.submit %>
+    </div>
+    <% end %>
+<% else %>
+    <h2> You're either not logged in or this service isn't yours to edit. </h2>
+<% end %>
 
-<div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-</div>
-<div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-</div>
-<div>
-    <%= f.label :capacity %>
-    <%= f.number_field :capacity %>
-</div>
-<div>
-    <%= f.label :price %>
-    <%= f.number_field :price %>
-</div>
-<div>
-    <%= f.label :rating %>
-    <%= f.number_field :rating, min: 1, max: 5, step: 0.01 %>
-</div>
-<%= fields_for(@coverages) do |c| %>
-<div>
-    <%= c.label "Comunas it covers" %><br />
-    <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => true}) %>
-</div>
-<% end %>
-<div>
-    <%= f.submit %>
-</div>
-<% end %>
+
+
