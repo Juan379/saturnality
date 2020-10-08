@@ -24,11 +24,11 @@ class PartiesController < ApplicationController
 
         @party.comuna_id = @selected
 
-        params[:services][:id].each do |service|
-            if !service.empty?
-                @party.contracts.build(:service_id => service)
-            end
-        end
+        # params[:services][:id].each do |service|
+        #     if !service.empty?
+        #         @party.contracts.build(:service_id => service)
+        #     end
+        # end
 
         if @party.save
             redirect_to parties_path

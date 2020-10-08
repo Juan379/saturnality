@@ -1,4 +1,6 @@
-<h1>New Party</h1>
+<h1>New Party</h1> <br/>
+<%= link_to "Back", parties_url %> <br/><br/>
+
 <%= form_for @party do |f| %>
 <div>
     <%= f.label :title %>
@@ -22,16 +24,16 @@
 </div>
 <%= fields_for(@all_comunas) do |c| %>
 <div>
-    <%= c.label "Comunas it belongs to" %><br />
+    <%= c.label "Comuna it belongs to" %><br />
     <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {include_blank: true}, {:multiple => false}) %>
 </div>
 <% end %>
-<%= fields_for(@contracts) do |c| %>
+<!-- <%= fields_for(@contracts) do |c| %>
 <div>
     <%= c.label "Services to hire:" %><br />
     <%= grouped_collection_select(:comunas, :id, Comuna.all, :services, :name, :id, :name, {}, {:multiple => true})  %>
 </div>
-<% end %>  
+<% end %>   -->
 <div>
     <%= f.submit %>
 </div>
