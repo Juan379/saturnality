@@ -22,7 +22,7 @@
 </div>
 <%= fields_for(@all_comunas) do |c| %>
 <div>
-    <%= c.label "Comuna it belongs to" %><br />
+    <%= c.label "Comunas it belongs to" %><br />
     <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {include_blank: true}, {:multiple => false}) %>
 </div>
 <% end %>

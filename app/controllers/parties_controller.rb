@@ -23,8 +23,6 @@ class PartiesController < ApplicationController
         @party = Party.create(party_params)
 
         @party.comuna_id = @selected
-        
-        @party.user_id = current_user.id
 
         params[:services][:id].each do |service|
             if !service.empty?

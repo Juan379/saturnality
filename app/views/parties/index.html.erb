@@ -13,12 +13,9 @@
         <td>
             <%= link_to "Show", party %>
             <%= link_to "Edit", edit_party_path(party) %>
-            <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?" } %> 
+            <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %>
         </td>
     </tr>
         <% end %>
 </table>
-<br/><br/>
-<%= link_to "Back", static_pages_home_url%>
-
 
