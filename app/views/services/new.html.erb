@@ -24,9 +24,9 @@
 </div>
 <%= fields_for(@coverages) do |c| %>
 <div>
-    <%= c.label "Comunas it covers" %><br />
-    <%= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {:multiple => true}) %>
-</div>
+<%= c.label "Comunas que cubre" %><br/>
+<%= collection_select(:comunas, :id, @all_comunas, :id, :name, {:multiple => true}) %>
+</div> 
 <% end %>
 <div>
     <%= f.submit %>
