@@ -1,10 +1,8 @@
 <% if current_user %>
-    <h1>Hello, <%= current_user.name %> </h1>
+    <p>hola, <%= current_user.name %> </p>
 <% else %>
-    <h3>You're not currently signed in.</h3>
-    <%= link_to 'Sign up', new_user_registration_path %><br/>
-    <%= link_to 'Log in', new_user_session_path  %>
-
+    <p>No estas conectado</p>
+    <%= link_to 'Registrarse', new_user_registration_path %>
 <% end %>
 
 
