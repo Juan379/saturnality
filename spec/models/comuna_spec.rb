@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Comuna, type: :model do
-
   context "When valid names are given to crate a Comuna" do
     it "should be created correctly" do
       comuna = Comuna.new(:name => "San Antonio")
