@@ -27,5 +27,20 @@ RSpec.describe User, type: :model do
       
       expect(user.phone).to eq("123456789")
     end
+    it 'cant be created without name' do
+      user = User.create(email: "testuser@gmail.com", age: 18, phone:"123456789", password: "asdffgg", password_confirmation: "asdffgg")
+      
+      expect(user).not_to be_valid
+    end
+    it 'cant be created without phone' do
+      user = User.create(email: "testuser@gmail.com", age: 18, name:"test", password: "asdffgg", password_confirmation: "asdffgg")
+      
+      expect(user).not_to be_valid
+    end
+    it 'cant be created without age' do
+      user = User.create(email: "testuser@gmail.com", phone: "18", name:"test", password: "asdffgg", password_confirmation: "asdffgg")
+      
+      expect(user).not_to be_valid
+    end
   end
 end
