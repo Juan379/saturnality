@@ -12,4 +12,13 @@
 <% @service.comunas.each do |comuna| %>
 <h3>><%= comuna.name %></h3>
 <% end %>
+<h3>Reviews:</h3>
+<%= link_to "Write a review", new_scomment_url %> <br/><br/>
+<% @service.scomments.each do |comment| %>
+  <h3>><%= comment.content %></h3>
+<% end %>
+
+
+
+
 

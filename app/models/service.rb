@@ -4,6 +4,7 @@ class Service < ApplicationRecord
   has_many :parties, through: :contracts, dependent: :delete_all
   has_many :coverages
   has_many :comunas, through: :coverages, dependent: :delete_all
+  has_many :scomments
   validates :name, :description, :capacity, :price, :rating, presence: true
 
 end

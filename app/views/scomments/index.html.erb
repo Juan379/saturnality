@@ -1,0 +1,24 @@
+<h1>Service reviews</h1>
+<%= link_to "Back", static_pages_home_url %> <br/><br/>
+<% if current_user %>
+  <%= link_to "Create service review", new_scomment_url %><br/><br/>
+<% end %>
+<table>
+  <tr>
+    <thead>
+    <th>Comments</th>
+    </thead>
+  </tr>
+  <% @scomments.each do |comment| %>
+    <tr>
+      <td><%= comment.user.name %></td>
+      <td>
+        <%= link_to "Show", comment %>
+        <% if current_user && current_user == comment.user%>
+          <%= link_to "Edit", edit_scomment_path(comment) %>
+          <%= link_to "Delete", comment, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :comunas
   resources :services
   resources :parties
+  resources :scomments
 end
