@@ -11,9 +11,10 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders the sign in view' do
       get '/users/sign_up'
-      expect(response).to render_template("users/registrations/new")
+      expect(response).to render_template('users/registrations/new')
     end
   end
+
   describe '/sign_in' do
     it 'returns a succesful request' do
       get '/users/sign_in'
@@ -22,7 +23,7 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders the sign in view' do
       get '/users/sign_in'
-      expect(response).to render_template("users/sessions/new")
+      expect(response).to render_template('users/sessions/new')
     end
   end
 end

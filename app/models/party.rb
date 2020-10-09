@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Party < ApplicationRecord
   belongs_to :comuna
   belongs_to :user
