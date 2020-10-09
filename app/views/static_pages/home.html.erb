@@ -1,6 +1,6 @@
 <% if !current_user %>
     <h1>You're not currently logged in</h1>
-    <p>Nota al PO corrector: Debe estar logged in para poder crear, editar y eliminar entidades, de lo contrario, solo se muestran.</p>
+    <p>Nota al PO corrector: Debes estar logged in para poder crear, editar y eliminar entidades, de lo contrario, solo se muestran. Adicionalmente, hay CRUD de comunas pero no es accesible porque no le encontramos mucho el sentido, ya que en las aplicaciones normalmente estas no son manipulables por los usuarios. Hay algunas comunas que ya estan cargadas para probarlas, pero si quieres puedes revisar el CRUD en el código.</p>
     <%= link_to 'Sign up', new_user_registration_path %> <br/>
     <%= link_to 'Log in', new_user_session_path %> <br/><br/>
     <%= link_to 'Parties', parties_url %> <br/>

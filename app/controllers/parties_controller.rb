@@ -28,11 +28,11 @@ class PartiesController < ApplicationController
             @party.user_id = current_user.id
         end
 
-        # params[:services][:id].each do |service|
-        #     if !service.empty?
-        #         @party.contracts.build(:service_id => service)
-        #     end
-        # end
+        params[:services][:id].each do |service|
+            if !service.empty?
+                @party.contracts.build(:service_id => service)
+            end
+        end
 
         if @party.save
             redirect_to parties_path
