@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.start do
-    add_filter '/config/'
-    add_filter '/spec/'
-    add_filter '/test/'
-    add_filter '/vendor/'
+  add_filter '/config/'
+  add_filter '/spec/'
+  add_filter '/test/'
+  add_filter '/vendor/'
 
-    add_group 'Controllers', 'app/controllers'
-    add_group 'Models', 'app/models'
-    add_group 'Helpers', 'app/helpers'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Models', 'app/models'
+  add_group 'Helpers', 'app/helpers'
 end
 # This outputs the report to your public folder
 # You will want to add this to .gitignore

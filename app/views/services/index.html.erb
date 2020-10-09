@@ -3,22 +3,28 @@
 <% if current_user %>
     <%= link_to "Create Service", new_service_url %><br/><br/>
 <% end %>
-<table>
-    <tr>
-        <thead>
-            <th>Name</th>
-        </thead>
-    </tr>
-        <% @services.each do |service| %>
-    <tr>
-        <td><%= service.name %></td>
-        <td>
-            <%= link_to "Show", service %>
-            <% if current_user && current_user == service.user%>
-                <%= link_to "Edit", edit_service_path(service) %>
-                <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+
+<% if @services.empty? %>
+    <h3>There are no service available .</h3>
+<% else %>
+    <table>
+        <tr>
+            <thead>
+                <th>Name</th>
+            </thead>
+        </tr>
+            <% @services.each do |service| %>
+        <tr>
+            <td><%= service.name %></td>
+            <td>
+                <%= link_to "Show", service %>
+                <% if current_user && current_user == service.user%>
+                    <%= link_to "Edit", edit_service_path(service) %>
+                    <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+                <% end %>
+            </td>
+        </tr>
             <% end %>
-        </td>
-    </tr>
-        <% end %>
-</table>
+    </table>
+<% end %>
+
