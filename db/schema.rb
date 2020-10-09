@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_220105) do
     t.text "description"
     t.integer "capacity"
     t.integer "price"
-    t.float "rating"
+    t.float "rating", default: 5.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
