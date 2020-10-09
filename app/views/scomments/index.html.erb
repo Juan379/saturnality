@@ -3,6 +3,10 @@
 <% if current_user %>
   <%= link_to "Create service review", new_scomment_url %><br/><br/>
 <% end %>
+
+<% if @scomments.empty? %>
+    <h3>There are no reviews available .</h3>
+<% else %>
 <table>
   <tr>
     <thead>
@@ -22,3 +26,4 @@
     </tr>
   <% end %>
 </table>
+<% end %>
