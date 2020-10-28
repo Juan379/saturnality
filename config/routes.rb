@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   get 'static_pages/home'
   resources :comunas
-  resources :services
+  resources :services do
+    resources :servicereviews
+    resources :partyreviews
+  end
   resources :parties
-  resources :scomments
+
 end

@@ -10,15 +10,35 @@
 <h3>Rating: <%= @service.rating %></h3>
 <h3>Comunas it covers:</h3>
 <% @service.comunas.each do |comuna| %>
-<h3>><%= comuna.name %></h3>
-<% end %>
-<h3>Reviews:</h3>
-<%= link_to "Write a review", new_scomment_url %> <br/><br/>
-<% @service.scomments.each do |comment| %>
-  <h3>><%= comment.content %></h3>
+<h3> <%= comuna.name %></h3>
 <% end %>
 
+<h2>Reviews:</h2>
+<% @service.servicereviews.each do |comment| %>
+  <p><%= comment.body %></p>
 
+  <p>
+    <%= link_to 'Destroy Comment', [comment.service, comment],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>
+
+<% if current_user %>
+<h2>Write a review:</h2>
+  <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+<% else %>
+  <h2>You need to be logged in to create a review.</h2>
+<% end %>
+<br><br>
 
 
 
