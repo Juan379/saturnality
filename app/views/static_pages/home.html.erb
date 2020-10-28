@@ -1,25 +1,110 @@
-
 <% if !current_user %>
-    <h1>You're not currently logged in</h1>
-    <p>Nota al PO corrector: Debes estar logged in para poder crear, editar y eliminar entidades, de lo contrario, solo se muestran. Adicionalmente, hay CRUD de comunas pero no es accesible porque no le encontramos mucho el sentido, ya que en las aplicaciones normalmente estas no son manipulables por los usuarios. Hay algunas comunas que ya estan cargadas para probarlas, pero si quieres puedes revisar el CRUD en el código.</p>
-    <p>Además, notar que al estar logged in, solo podrás eliminar y editar entidades que hayas creado con esa cuenta.</p>
-    <%= link_to 'Sign up', new_user_registration_path %> <br/>
-    <%= link_to 'Log in', new_user_session_path %> <br/><br/>
-    <h2>Search</h2>
-    <%= link_to 'Parties', parties_url %> <br/>
-    <%= link_to 'Services', services_url %><br/>
-    <%= link_to 'Services reviews', scomments_url %>
-<% else %>
-    <h1>Hello, <%= current_user.name %> </h1> 
-    <%= link_to "Log Out", destroy_user_session_path, :method => :delete %> <br/><br/>
-    <%= link_to "Edit Profile", edit_user_registration_path %><br/><br/>
-    <%= image_tag('picture.png', width: "200") %><br/><br/>
-    <h2>Search</h2>
-    <%= link_to 'Parties', parties_url %> <br/>
-    <%= link_to 'Services', services_url %><br/>
-    <%= link_to 'Services reviews', scomments_url %>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      </a>
 
-    <br/><br/><br/>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" <%= link_to 'Parties', parties_url %>
+        </a>
+
+        <a class="navbar-item" <%= link_to 'Services', services_url %>
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+            </a>
+            <a class="button is-primary" <%= link_to 'Sign up', new_user_registration_path %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <h1>You're not currently logged in</h1>
+  <p>Nota al PO corrector: Debes estar logged in para poder crear, editar y eliminar entidades, de lo contrario, solo se muestran. Adicionalmente, hay CRUD de comunas pero no es accesible porque no le encontramos mucho el sentido, ya que en las aplicaciones normalmente estas no son manipulables por los usuarios. Hay algunas comunas que ya estan cargadas para probarlas, pero si quieres puedes revisar el CRUD en el código.</p>
+  <p>Además, notar que al estar logged in, solo podrás eliminar y editar entidades que hayas creado con esa cuenta.</p>
+
+<% else %>
+  <script src="https://kit.fontawesome.com/6a23e6e1c3.js" crossorigin="anonymous"></script>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Parties
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" <%= link_to 'Search for a party', parties_url %>
+            </a>
+            <a class="navbar-item" <%= link_to "Create Party", new_party_url %>
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Services
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" <%= link_to 'view services', services_url %>
+            </a>
+            <a class="navbar-item" <%= link_to "Create Service", new_service_url %>
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Profile
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              View profile
+            </a>
+            <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <h1>Hello, <%= current_user.name %> </h1>
+  <%= image_tag('picture.png', width: "200") %><br/><br/>
+
+  <br/><br/><br/>
 <% end %>
 
 
