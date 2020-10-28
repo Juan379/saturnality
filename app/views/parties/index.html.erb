@@ -18,7 +18,11 @@
             <td><%= party.title %></td>
             <td>
                 <%= link_to "Show", party %>
-                <% if current_user && current_user == party.user%>
+                <% if current_user && current_user == party.user %>
+                    <%= link_to "Edit", edit_party_path(party) %>
+                    <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %>
+                <% end %>
+                <% if current_user && current_user.has_role?(:admin) %>
                     <%= link_to "Edit", edit_party_path(party) %>
                     <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %>
                 <% end %>

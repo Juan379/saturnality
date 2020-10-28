@@ -1,7 +1,7 @@
 <h1>Edit Party</h1> <br/>
 <%= link_to "Back", parties_url %> <br/><br/>
 
-<% if current_user && @party.user == current_user%>
+<% if (current_user && @party.user == current_user) || ( current_user && current_user.has_role?(:admin)) %>
     <%= form_for @party do |f| %>
         <div>
             <%= f.label :title %>
@@ -39,7 +39,7 @@
                 <%= collection_select(:services, :id, Service.all, :id, :name, {}, {:multiple => true}) %>
             </div>
         <% end %>
-        <div>
+        <div>exit
             <%= f.submit %>
         </div>
     <% end %>

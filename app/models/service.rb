@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Service < ApplicationRecord
+  resourcify
   belongs_to :user
   has_many :contracts
   has_many :parties, through: :contracts, dependent: :delete_all

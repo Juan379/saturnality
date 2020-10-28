@@ -8,7 +8,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/**/*'
 Metrics/LineLength:
-  Max: 120
+  Max: 154
 Metrics/BlockLength:
   Exclude:
     - config/**/*
@@ -20,3 +20,43 @@ Lint/AmbiguousBlockAssociation:
 
 Style/Documentation:
   Enabled: false
+
+Layout/EndOfLine:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:  
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+

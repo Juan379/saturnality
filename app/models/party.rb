@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Party < ApplicationRecord
+  resourcify
   belongs_to :comuna
   belongs_to :user
   has_many :contracts
