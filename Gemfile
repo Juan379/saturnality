@@ -72,5 +72,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'rspec', '~> 3.9'
 
+gem 'cancancan'
 gem 'devise', '~> 4.2'
+gem 'rolify'
 gem 'simplecov', '~> 0.19.0'

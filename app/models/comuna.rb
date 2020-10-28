@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Comuna < ApplicationRecord
+  resourcify
   has_many :parties, dependent: :destroy
   has_many :coverages
   has_many :services, through: :coverages, dependent: :delete_all

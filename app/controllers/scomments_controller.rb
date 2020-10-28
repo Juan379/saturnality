@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScommentsController < ApplicationController
   def index
     @scomments = Scomment.all
@@ -21,9 +23,7 @@ class ScommentsController < ApplicationController
 
     @scomment.service_id = @selected
 
-    if current_user
-      @scomment.user_id = current_user.id
-    end
+    @scomment.user_id = current_user.id if current_user
 
     if @scomment.save
       redirect_to scomments_path

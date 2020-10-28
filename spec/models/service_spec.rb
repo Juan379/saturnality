@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Service, type: :model do
   context 'when valid inputs are given to create a Service' do
     it 'creates the service correctly' do
-      user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789, 
+      user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
                       password: 'asdffgg', password_confirmation: 'asdffgg')
       service = described_class.new(name: 'CleaningService',
                                     description: 'The best cleaning service available',
@@ -49,7 +49,7 @@ RSpec.describe Service, type: :model do
     end
 
     it 'does not create a Service without a description' do
-      user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, 
+      user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18,
                       phone: 123_456_789, password: 'asdffgg', password_confirmation: 'asdffgg')
       service = described_class.new(name: 'CleaningService', capacity: 20,
                                     price: 50_000, rating: 3.0, user: user)
