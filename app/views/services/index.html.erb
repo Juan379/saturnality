@@ -18,9 +18,13 @@
             <td><%= service.name %></td>
             <td>
                 <%= link_to "Show", service %>
-                <% if current_user && current_user == service.user || current_user.has_role?(:admin) %>
+                <% if current_user && current_user == service.user  %>
                     <%= link_to "Edit", edit_service_path(service) %>
                     <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+                <% end %>
+                <% if current_user && current_user.has_role?(:admin) %>
+                <%= link_to "Edit", edit_service_path(service) %>
+                <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
                 <% end %>
             </td>
         </tr>
