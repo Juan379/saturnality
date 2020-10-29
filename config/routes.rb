@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   resources :comunas
   resources :services do
     resources :servicereviews
+  end
+  resources :parties do
     resources :partyreviews
   end
-  resources :parties
 
 end

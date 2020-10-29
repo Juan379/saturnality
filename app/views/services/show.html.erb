@@ -17,11 +17,14 @@
 <% @service.servicereviews.each do |comment| %>
   <p><%= comment.body %></p>
 
+  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
   <p>
     <%= link_to 'Delete review', [comment.service, comment],
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %>
   </p>
+
+  <% end %>
 <% end %>
 
 <% if current_user %>
