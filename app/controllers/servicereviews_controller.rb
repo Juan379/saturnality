@@ -1,10 +1,13 @@
 class ServicereviewsController < ApplicationController
 
-
   def create
     @service = Service.find(params[:service_id])
     @servicereview = @service.servicereviews.create(servicereview_params)
-    redirect_to service_path(@service)
+    @servicereview.user_id = current_user.id
+
+    if @servicereview.save
+      redirect_to service_path(@service)
+    end
   end
 
   def destroy
