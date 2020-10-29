@@ -7,5 +7,5 @@ class Party < ApplicationRecord
   has_many :contracts
   has_many :services, through: :contracts, dependent: :delete_all
   has_many :partyreviews, dependent: :destroy
-  validates :title, :description, :address, :capacity, :cost, :search, presence: true
+  validates :title, :description, :address, :capacity, :cost, presence: true
 end
