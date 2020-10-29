@@ -16,6 +16,25 @@
 <% end %>
 <h3>Hired services:</h3>
 <% @party.services.each do |service| %>
-<h3>><%= service.name %></h3>
+<h3>><%= service.name %></h3> <br/>
 <% end %>
+<h2>Like what you see?</h2> <br/>
+<p>Submit how much you would be willing to pay to attend this awesome party!</p>
+
+<% if current_user %>
+    <% if @party.search %>
+        <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
+            <p><%= form.label :offer %></p>
+            <p><%= form.number_field :offer %></p>
+            <%= form.submit "Submit offer" %>
+        <% end %>
+    <% end %>
+<% else %>
+    <h2>You need to be logged in to create a review.</h2>
+<% end %>
+</br>
+
+
+
+
 

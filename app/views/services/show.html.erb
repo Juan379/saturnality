@@ -12,14 +12,15 @@
 <% @service.comunas.each do |comuna| %>
 <h3> <%= comuna.name %></h3>
 <% end %>
+<br/>
 
-<h2>Reviews:</h2>
+<h2>Reviews</h2> 
 <% @service.servicereviews.each do |comment| %>
   <p><%= comment.body %></p>
 
   <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
   <p>
-    <%= link_to 'Delete review', [comment.service, comment],
+    <%= link_to 'Delete', [comment.service, comment],
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %>
   </p>
@@ -31,7 +32,6 @@
 <h2>Write a review:</h2>
   <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
     <p>
-      <%= form.label :body %><br>
       <%= form.text_area :body %>
     </p>
     <p>

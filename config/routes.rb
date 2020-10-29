@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   resources :parties do
     resources :partyreviews
   end
+  resources :parties do
+    resources :interesteds
+  end
 
+  resources :attendees
 end

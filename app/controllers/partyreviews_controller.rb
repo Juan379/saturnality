@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PartyreviewsController < ApplicationController
   def create
     @party = Party.find(params[:party_id])
@@ -13,6 +15,7 @@ class PartyreviewsController < ApplicationController
   end
 
   private
+
   def partyreview_params
     params.require(:partyreview).permit(:body)
   end
