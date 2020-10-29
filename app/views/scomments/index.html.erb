@@ -18,9 +18,13 @@
       <td><%= comment.user.name %></td>
       <td>
         <%= link_to "Show", comment %>
-        <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+        <% if current_user && current_user == comment.user  %>
           <%= link_to "Edit", edit_scomment_path(comment) %>
           <%= link_to "Delete", comment, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
+        <% end %>
+        <% if current_user && current_user.has_role?(:admin) %>
+        <%= link_to "Edit", edit_scomment_path(comment) %>
+        <%= link_to "Delete", comment, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
         <% end %>
       </td>
     </tr>

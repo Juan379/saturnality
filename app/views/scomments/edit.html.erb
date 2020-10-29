@@ -1,7 +1,7 @@
 <h1>Edit Review</h1> <br/>
 <%= link_to "Back", scomments_url %> <br/><br/>
 
-<% if current_user && @scomment.user == current_user || current_user.has_role?(:admin) %>
+<% if current_user && @scomment.user == current_user || (current_user.has_role?(:admin) && current_user) %>
   <%= form_for @scomment do |f| %>
     <div>
       <%= f.label :content %>
