@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2020_10_29_211415) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_comunas_on_name", unique: true
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -117,7 +116,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_211415) do
     t.text "description"
     t.integer "capacity"
     t.integer "price"
-    t.float "rating"
+    t.float "rating", default: 5.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

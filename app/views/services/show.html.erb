@@ -78,51 +78,7 @@
       </div>
   </div>
 </nav>
-=======
-<h1>Service: <%= @service.name %></h1> 
-<h2>Created by: <%= @service.user.name %></h2>
 
-<%= link_to "Back", services_url %> <br/><br/>
-
-
-<h2>Description: <%= @service.description %></h2>
-<h3>Capacity: <%= @service.capacity %></h3>
-<h3>Price: <%= @service.price %></h3>
-<h3>Rating: <%= @service.rating %></h3>
-<h3>Comunas it covers:</h3>
-<% @service.comunas.each do |comuna| %>
-<h3> <%= comuna.name %></h3>
-<% end %>
-<br/>
-
-<h2>Reviews</h2> 
-<% @service.servicereviews.each do |comment| %>
-  <p><%= comment.body %></p>
-
-  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-  <p>
-    <%= link_to 'Delete', [comment.service, comment],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-  </p>
-
-  <% end %>
-<% end %>
-
-<% if current_user %>
-<h2>Write a review:</h2>
-  <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
-    <p>
-      <%= form.text_area :body %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-<% else %>
-  <h2>You need to be logged in to create a review.</h2>
-<% end %>
->>>>>>> 8bff4f1242e302b7c0b3e65dbd3adb2ca2ebe344
 <br><br>
 
 
