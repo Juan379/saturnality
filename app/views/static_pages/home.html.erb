@@ -14,21 +14,43 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" <%= link_to 'Parties', parties_url %>
-        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Parties
+          </a>
 
-        <a class="navbar-item" <%= link_to 'Services', services_url %>
-        </a>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" <%= link_to 'Search for a party', parties_url %>
             </a>
-            <a class="button is-primary" <%= link_to 'Sign up', new_user_registration_path %>
+            <a class="navbar-item" <%= link_to "Create Party", new_party_url %>
             </a>
           </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Services
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" <%= link_to 'view services', services_url %>
+            </a>
+            <a class="navbar-item" <%= link_to "Create Service", new_service_url %>
+            </a>
+          </div>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+          </a>
+          <a class="button is-primary" <%= link_to 'Sign up', new_user_registration_path %>
+          </a>
         </div>
       </div>
     </div>

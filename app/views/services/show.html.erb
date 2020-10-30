@@ -1,47 +1,204 @@
-<h1>Service: <%= @service.name %></h1> 
-<h2>Created by: <%= @service.user.name %></h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<%= link_to "Back", services_url %> <br/><br/>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Parties
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" <%= link_to 'Search for a party', parties_url %>
+          </a>
+          <a class="navbar-item" <%= link_to "Create Party", new_party_url %>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Services
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" <%= link_to 'view services', services_url %>
+          </a>
+          <a class="navbar-item" <%= link_to "Create Service", new_service_url %>
+          </a>
+        </div>
+      </div>
+
+      <% if not current_user %>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+              </a>
+              <a class="button is-primary" <%= link_to 'Sign up', new_user_registration_path %>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      <% else %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Profile
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              View profile
+            </a>
+            <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+            </a>
+          </div>
+        </div>
+        </div>
 
 
-<h2>Description: <%= @service.description %></h2>
-<h3>Capacity: <%= @service.capacity %></h3>
-<h3>Price: <%= @service.price %></h3>
-<h3>Rating: <%= @service.rating %></h3>
-<h3>Comunas it covers:</h3>
-<% @service.comunas.each do |comuna| %>
-<h3> <%= comuna.name %></h3>
-<% end %>
-
-<h2>Reviews:</h2>
-<% @service.servicereviews.each do |comment| %>
-  <p><%= comment.body %></p>
-
-  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-  <p>
-    <%= link_to 'Delete review', [comment.service, comment],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-  </p>
-
-  <% end %>
-<% end %>
-
-<% if current_user %>
-<h2>Write a review:</h2>
-  <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
-    <p>
-      <%= form.label :body %><br>
-      <%= form.text_area :body %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-<% else %>
-  <h2>You need to be logged in to create a review.</h2>
-<% end %>
+      <% end %>
+      </div>
+  </div>
+</nav>
 <br><br>
+
+
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Capacity</p>
+      <p class="title"><%= @service.capacity %></p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Price</p>
+      <p class="title"><%= @service.price %></p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Rating</p>
+      <p class="title"><%= @service.rating %></p>
+    </div>
+  </div>
+</nav>
+
+<div class="tile is-ancestor">
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <p class="title"><%= @service.name %></p>
+      <p class="subtitle"><%= @service.user.name %></p>
+      <figure class="image is-4by3">
+        <img src="https://bulma.io/images/placeholders/640x480.png">
+      </figure>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <p class="title">Description</p>
+      <p class="subtitle"><%= @service.description %></p>
+    </article>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <p class="title">Coverages</p>
+      <p class="subtitle"><% @service.comunas.each do |comuna| %>
+          <%= comuna.name %><br>
+        <% end %></p>
+    </article>
+  </div>
+</div>
+    </p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container has-text-left">
+    <h2 class="title">Reviews</h2>
+  </div>
+</section>
+
+<div class="columns is-multiline is-mobile">
+  <div class="column">
+    <% if current_user %>
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/128x128.png">
+        </p>
+      </figure>
+      <div class="media-content">
+        <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
+        <div class="field">
+          <p class="control">
+            <textarea class="textarea" placeholder="Add a comment..." <%= form.text_area :body %></textarea>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <button class="button"><%= form.submit %></button>
+          </p>
+        </div>
+        <% end %>
+      </div>
+    </article>
+    <% else %>
+    <h2>You need to be logged in to create a review.</h2>
+    <% end %>
+
+    <% @service.servicereviews.each do |comment| %>
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= comment.user %></strong>
+              <br>
+              <%= comment.body %>
+              <br>
+            <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+                <small><a><%= link_to 'Delete review', [comment.service, comment],
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure?' } %></a>
+
+              <% end %>
+            </p>
+          </div>
+            </div>
+          </article>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+
+</html>
+
+
 
 
 

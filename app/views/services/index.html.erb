@@ -1,34 +1,148 @@
-<h1>Available Services</h1>
-<%= link_to "Back", static_pages_home_url %> <br/><br/>
-<% if current_user %>
-    <%= link_to "Create Service", new_service_url %><br/><br/>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
 
-<% if @services.empty? %>
-    <h3>There are no services available .</h3>
-<% else %>
-    <table>
-        <tr>
-            <thead>
-                <th>Name</th>
-            </thead>
-        </tr>
-            <% @services.each do |service| %>
-        <tr>
-            <td><%= service.name %></td>
-            <td>
-                <%= link_to "Show", service %>
-                <% if current_user && current_user == service.user  %>
-                    <%= link_to "Edit", edit_service_path(service) %>
-                    <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
-                <% end %>
-                <% if current_user && current_user.has_role?(:admin) %>
-                <%= link_to "Edit", edit_service_path(service) %>
-                <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %>
-                <% end %>
-            </td>
-        </tr>
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Parties
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" <%= link_to 'Search for a party', parties_url %>
+          </a>
+          <a class="navbar-item" <%= link_to "Create Party", new_party_url %>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Services
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" <%= link_to 'view services', services_url %>
+          </a>
+          <a class="navbar-item" <%= link_to "Create Service", new_service_url %>
+          </a>
+        </div>
+      </div>
+
+      <% if current_user %>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Profile
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            View profile
+          </a>
+          <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+          </a>
+        </div>
+      </div>
+        </div>
+
+      <% else %>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+              </a>
+              <a class="button is-primary" <%= link_to 'Sign up', new_user_registration_path %>
+              </a>
+            </div>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+
+
+</nav>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <h2 class="title">Services</h2>
+    <% if @services.empty? %>
+      <h3>There are no services available .</h3>
+      <% end %>
+    </div>
+</section>
+
+<div class="columns is-multiline is-mobile">
+
+    <% @services.each do |service| %>
+      <div class="column is-one-quarter">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <%= service.user.image %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4"><%= service.user.name %></p>
+
+              </div>
+            </div>
+        </div>
+
+
+          <header class="card-header-title">
+            <%= service.name %>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <%= service.description %>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" <%= link_to "Show", service %></a>
+            <% if current_user && current_user == service.user  %>
+              <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
+              <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %></a>
             <% end %>
-    </table>
-<% end %>
+            <% if current_user && current_user.has_role?(:admin) %>
+              <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
+              <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %></a>
+            <% end %>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+
+</div>
+</html>
+
+
+
+
+
+
+
 
