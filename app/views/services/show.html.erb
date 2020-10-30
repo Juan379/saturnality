@@ -180,11 +180,13 @@
               <br>
               <%= comment.body %>
               <br>
+              <% if current_user %>
             <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
                 <small><a><%= link_to 'Delete review', [comment.service, comment],
                                     method: :delete,
                                     data: { confirm: 'Are you sure?' } %></a>
 
+              <% end %>
               <% end %>
             </p>
           </div>
