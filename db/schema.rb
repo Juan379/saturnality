@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_221914) do
+ActiveRecord::Schema.define(version: 2020_10_29_211415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendees", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "party_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["party_id"], name: "index_attendees_on_party_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
+  end
 
   create_table "comunas", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_comunas_on_name", unique: true
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -37,6 +47,16 @@ ActiveRecord::Schema.define(version: 2020_10_28_221914) do
     t.datetime "updated_at", null: false
     t.index ["comuna_id"], name: "index_coverages_on_comuna_id"
     t.index ["service_id"], name: "index_coverages_on_service_id"
+  end
+
+  create_table "interesteds", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "party_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "offer"
+    t.index ["party_id"], name: "index_interesteds_on_party_id"
+    t.index ["user_id"], name: "index_interesteds_on_user_id"
   end
 
   create_table "parties", force: :cascade do |t|
@@ -97,7 +117,7 @@ ActiveRecord::Schema.define(version: 2020_10_28_221914) do
     t.text "description"
     t.integer "capacity"
     t.integer "price"
-    t.float "rating", default: 5.0
+    t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -128,10 +148,14 @@ ActiveRecord::Schema.define(version: 2020_10_28_221914) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "attendees", "parties"
+  add_foreign_key "attendees", "users"
   add_foreign_key "contracts", "parties"
   add_foreign_key "contracts", "services"
   add_foreign_key "coverages", "comunas"
   add_foreign_key "coverages", "services"
+  add_foreign_key "interesteds", "parties"
+  add_foreign_key "interesteds", "users"
   add_foreign_key "parties", "comunas"
   add_foreign_key "parties", "users"
   add_foreign_key "partyreviews", "parties"

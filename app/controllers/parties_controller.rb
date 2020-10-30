@@ -4,7 +4,7 @@ class PartiesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @parties = Party.all
+    @parties = Party.where(search: true)
   end
 
   def show

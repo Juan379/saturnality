@@ -1,13 +1,12 @@
-class ServicereviewsController < ApplicationController
+# frozen_string_literal: true
 
+class ServicereviewsController < ApplicationController
   def create
     @service = Service.find(params[:service_id])
     @servicereview = @service.servicereviews.create(servicereview_params)
     @servicereview.user_id = current_user.id
 
-    if @servicereview.save
-      redirect_to service_path(@service)
-    end
+    redirect_to service_path(@service) if @servicereview.save
   end
 
   def destroy
@@ -30,6 +29,7 @@ class ServicereviewsController < ApplicationController
   end
 
   private
+
   def servicereview_params
     params.require(:servicereview).permit(:body)
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Partyreview < ApplicationRecord
+class Interested < ApplicationRecord
   belongs_to :user
   belongs_to :party
 end
