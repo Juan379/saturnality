@@ -8,12 +8,13 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id])
+    @service = Service.where(id: params[:id])
+    @all_parties = Party.where(id: current_user.id, )
+
   end
 
   def new
     @service = Service.new
-    @all_comunas = Comuna.all
     @coverages = @service.coverages.build
   end
 

@@ -78,13 +78,14 @@
   </div>
 </nav>
 </html>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %> <br/>
 
 <h1>Party: <%= @party.title %></h1>
 <h2>Created by: <%= @party.user.name %></h2>
-
-
-
-
 <h2>Description: <%= @party.description %></h2>
 <h3>Address: <%= @party.address %></h3>
 <h3>Comuna: <%= @party.comuna.name %></h3>
@@ -94,16 +95,29 @@
     <h3>Search state: On going</h3>
 <% else %>
     <h3>Search state: Terminated</h3>
-<% end %>
-<h3>Hired services:</h3>
-<% @party.services.each do |service| %>
-<h3>><%= service.name %></h3> <br/>
-<% end %>
-<h2>Like what you see?</h2> <br/>
+<% end %> <br/> 
+
+
+<% if !@party.services.empty? %>
+  <h3>Hired services:</h3> 
+
+  <% @party.services.each do |service| %>
+  <h3>><%= service.name %></h3> <br/> 
+  <% end %>
+
+<% else %>
+<h3>No services hired yet!</h3>
+<% end %> 
+
+<%= link_to "Hire service", services_path %> <br/> <br/> 
+
+
+
+<h2>Like what you see?</h2>
 <p>Submit how much you would be willing to pay to attend this awesome party!</p>
 
-<% if current_user %>
-    <% if @party.search %>
+<% if current_user  %>
+    <% if @party.search && @party.user_id == current_user.id %>
         <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
             <p><%= form.label :offer %></p>
             <p><%= form.number_field :offer %></p>

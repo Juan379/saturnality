@@ -78,10 +78,14 @@
   </div>
 </nav>
 
-<h1>Available Parties</h1>
-
+<h1 class="title">Available Parties</h1> <br/>
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
 <% if current_user %>
-    <%= link_to "Create Party", new_party_url %> <br/><br/>
+    <%= link_to "Create Party", new_party_url %> <br/>
 <% end %>
 
 <% if @parties.empty? %>

@@ -10,15 +10,25 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   get 'static_pages/home'
   resources :comunas
+
   resources :services do
     resources :servicereviews
   end
+
+  # resources :parties do
+  #   resources :partyreviews
+  #   resources :interesteds
+
+  # end
+
   resources :parties do
     resources :partyreviews
-  end
-  resources :parties do
     resources :interesteds
+    resources :services do
+      resources :servicereviews
+    end
   end
 
   resources :attendees
+
 end

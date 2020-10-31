@@ -78,52 +78,54 @@
   </div>
 </nav>
 
-<h1>New Party</h1> <br/>
-<br/><br/>
+<h1 class="title">New Party</h1>
+<%= form_with(model: @party, local: true) do |f| %>
 
-
-<% if current_user %>
-    <%= form_for @party do |f| %>
-        <div>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-        </div>
-        <div>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-        </div>
-        <div>
-            <%= f.label :address %>
-            <%= f.text_field :address %>
-        </div>
-        <div>
-            <%= f.label :capacity %>
-            <%= f.number_field :capacity %>
-        </div>
-        <div>
-            <%= f.label :cost %>
-            <%= f.number_field :cost %>
-        </div>
-        <div>
-            <%= f.label :Active_participant_search? %>
-            <%= f.check_box :search %>
-        </div>
-        <%= fields_for(@all_comunas) do |c| %>
-        <div>
-            <%= c.label "Comuna it belongs to" %><br />
-            <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {include_blank: true}, {:multiple => false}) %>
-        </div>
-        <%= fields_for(@contracts) do |c| %>
-            <div>
-                <%= c.label "Services to hire" %><br/>
-                <%= collection_select(:services, :id, @all_services, :id, :name, {}, {:multiple => true}) %>
-            </div>
-        <% end %>
-    <% end %>
+  <% if @party.errors.any? %>
+  <div id="error_explanation">
+    <b><%= pluralize(@party.errors.count, "error") %> prohibited this party from being created:</b>
+    <ul>
+      <% @party.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <br/>
+  
+  <div>
+    <%= f.label :title %> <br/>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %> <br/>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :address %> <br/>
+    <%= f.text_field :address %>
+  </div>
+  <div>
+    <%= f.label :capacity %> <br/>
+    <%= f.number_field :capacity %>
+  </div>
+  <div>
+    <%= f.label :cost %> <br/>
+    <%= f.number_field :cost %>
+  </div> <br/>
+  <div>
+    <%= f.label :"Publish party and search for attendees?" %> 
+    <%= f.check_box :search %>
+  </div> <br />
+  <%= fields_for(@all_comunas) do |c| %>
     <div>
-        <%= f.submit %>
+        <%= c.label "Comuna" %><br />
+        <%= collection_select(:comuna, :id, Comuna.all, :id, :name, {include_blank: true}) %>
     </div>
-    <% end %>
-<% else %>
-    <h2>You need to be logged in to create a new party.</h2>
+  <% end %>
+  <br/>
+  <div>
+    <%= f.submit "Create party!"%>
+  </div>
 <% end %>
+
