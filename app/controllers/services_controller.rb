@@ -10,7 +10,7 @@ class ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @valid_ids = @service.comunas.pluck(:id)
-    @valid_parties = Party.where("search = true AND comuna_id IN (?)", @valid_ids)
+    @valid_parties = Party.where('search = true AND comuna_id IN (?)', @valid_ids)
   end
 
   def new
