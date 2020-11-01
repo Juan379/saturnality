@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Servicereview, type: :model do
   describe 'creation' do
-    it 'is created correctly' do
+    it 'is not correctly' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
                       password: 'asdffgg', password_confirmation: 'asdffgg')
       service = Service.new(name: 'CleaningService',
@@ -14,7 +14,7 @@ RSpec.describe Servicereview, type: :model do
       expect(ser_rev).to be_valid
     end
 
-    it 'is dosent created correctly without body' do
+    it 'is not created correctly without body' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
                       password: 'asdffgg', password_confirmation: 'asdffgg')
       service = Service.new(name: 'CleaningService',
@@ -24,7 +24,7 @@ RSpec.describe Servicereview, type: :model do
       expect(ser_rev).not_to be_valid
     end
 
-    it 'is dosent created correctly without a user' do
+    it 'is not created correctly without a user' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
                       password: 'asdffgg', password_confirmation: 'asdffgg')
       service = Service.new(name: 'CleaningService',
@@ -34,7 +34,7 @@ RSpec.describe Servicereview, type: :model do
       expect(ser_rev).not_to be_valid
     end
 
-    it 'is dosent created correctly without a service' do
+    it 'is not created correctly without a service' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
                       password: 'asdffgg', password_confirmation: 'asdffgg')
       service = Service.new(name: 'CleaningService',

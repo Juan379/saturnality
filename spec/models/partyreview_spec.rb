@@ -15,7 +15,7 @@ RSpec.describe Partyreview, type: :model do
       expect(part_rev).to be_valid
     end
 
-    it 'is dosent created correctly without a body' do
+    it 'is not created correctly without a body' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18,
                       phone: 123_456_789, password: 'asdffgg', password_confirmation: 'asdffgg')
       comuna = Comuna.new(name: 'San Antonio')
@@ -26,7 +26,7 @@ RSpec.describe Partyreview, type: :model do
       expect(part_rev).not_to be_valid
     end
 
-    it 'is dosent created correctly without a user' do
+    it 'is not created correctly without a user' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18,
                       phone: 123_456_789, password: 'asdffgg', password_confirmation: 'asdffgg')
       comuna = Comuna.new(name: 'San Antonio')
@@ -37,7 +37,7 @@ RSpec.describe Partyreview, type: :model do
       expect(part_rev).not_to be_valid
     end
 
-    it 'is dosent created correctly without a party' do
+    it 'is not created correctly without a party' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18,
                       phone: 123_456_789, password: 'asdffgg', password_confirmation: 'asdffgg')
       comuna = Comuna.new(name: 'San Antonio')
