@@ -9,8 +9,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.where(id: params[:id])
-    @all_parties = Party.where(id: current_user.id, )
-
+    @all_parties = Party.where(id: current_user.id)
   end
 
   def new

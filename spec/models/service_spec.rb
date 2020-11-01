@@ -73,14 +73,5 @@ RSpec.describe Service, type: :model do
                                     capacity: 20, rating: 3.0, user: user)
       expect(service).not_to be_valid
     end
-
-    it 'does not create a Service without a rating' do
-      user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18, phone: 123_456_789,
-                      password: 'asdffgg', password_confirmation: 'asdffgg')
-      service = described_class.new(name: 'CleaningService',
-                                    description: 'The best cleaning service available',
-                                    capacity: 20, price: 50_000, user: user)
-      expect(service).not_to be_valid
-    end
   end
 end

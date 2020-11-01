@@ -30,5 +30,4 @@ Rails.application.routes.draw do
   end
 
   resources :attendees
-
 end

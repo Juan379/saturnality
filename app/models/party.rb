@@ -9,12 +9,12 @@ class Party < ApplicationRecord
   has_many :services, through: :contracts, dependent: :delete_all
 
   has_many :partyreviews, dependent: :destroy
-  
+
   has_many :interesteds
   has_many :users, through: :interesteds, dependent: :delete_all
-  
+
   has_many :attendees
   has_many :users, through: :attendees, dependent: :delete_all
-  
+
   validates :title, :description, :address, :capacity, :cost, presence: true
 end
