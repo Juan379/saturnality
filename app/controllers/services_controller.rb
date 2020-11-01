@@ -8,8 +8,9 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.where(id: params[:id])
-    @all_parties = Party.where(id: current_user.id)
+    @service = Service.find(params[:id])
+    @valid_ids = @service.comunas.pluck(:id)
+    @valid_parties = Party.where("search = true AND comuna_id IN (?)", @valid_ids)
   end
 
   def new

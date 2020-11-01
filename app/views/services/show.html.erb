@@ -134,18 +134,25 @@
 
 <% if current_user %>
 
-<section class="section">
-  <div class="container has-text-left">
-    <h2 class="title">Hire for a party:</h2>
-  </div>
-</section>
-<%= fields_for(@all_parties) do |c| %>
-    <div>
-        <%= collection_select(:party, :id, Party.all, :id, :title, {include_blank: true}) %>
+  <section class="section">
+    <div class="container has-text-left">
+      <h2 class="title">Hire for a party:</h2>
     </div>
-  <% end %>
-<% end %>
+  </section>
 
+  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
+
+    <%= fields_for(@all_parties) do |ap| %>
+        <div>
+            <%= ap.label :party, "Choose your party" %> <br/>
+            <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
+        </div>
+    <% end %>
+    <button class="button"><%= form.submit "Hire service" %></button>
+    <% end %>
+
+
+<% end %>
 
 <section class="section">
   <div class="container has-text-left">

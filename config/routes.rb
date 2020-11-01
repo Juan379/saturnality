@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :services do
     resources :servicereviews
+    resources :contracts
   end
 
   # resources :parties do

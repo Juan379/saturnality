@@ -3,7 +3,7 @@
 class InterestedsController < ApplicationController
   def create
     @party = Party.find(params[:party_id])
-    @interested = @party.interesteds.create(interested_params)
+    @interested = @party.interesteds.build(interested_params)
     @interested.user_id = current_user.id
 
     redirect_to party_path(@party) if @interested.save
