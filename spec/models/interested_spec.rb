@@ -35,7 +35,7 @@ RSpec.describe Interested, type: :model do
                         search: true, user: user, comuna: comuna)
       interested_user = described_class.new(id: 1, offer: 20_000, party: party)
       expect(interested_user).not_to be_valid
-  end
+    end
 
     it 'is not created correctly without a party' do
       user = User.new(email: 'testuser@gmail.com', name: 'test', age: 18,
