@@ -3,8 +3,10 @@
 class PartyreviewsController < ApplicationController
   def create
     @party = Party.find(params[:party_id])
-    @partyreview = @party.partyreviews.create(partyreview_params)
-    redirect_to party_path(@party)
+    @partyreview = @party.partyreviews.build(partyreview_params)
+    @partyreview.user_id = current_user.id
+
+    redirect_to party_path(@party) if @partyreview.save
   end
 
   def destroy
@@ -14,9 +16,21 @@ class PartyreviewsController < ApplicationController
     redirect_to party_path(@party)
   end
 
+  def index
+    @partyreviews = Partyreview.all
+  end
+
+  def show
+    @partyreview = Partyreview.find(params[:id])
+  end
+
+  def edit
+    @partyreview = Partyreview.find(params[:id])
+  end
+
   private
 
-  def partyreview_params
+  def servicereview_params
     params.require(:partyreview).permit(:body)
   end
 end
