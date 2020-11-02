@@ -16,8 +16,7 @@ class PartiesController < ApplicationController
 
   def create
     @party = Party.new(party_params)
-    @selected_comuna_id = params[:comuna][:id]
-    @party.comuna_id =  @selected_comuna_id
+    @party.comuna_id =  params[:comuna][:id]
 
     @party.user_id = current_user.id if current_user
     if @party.save

@@ -15,7 +15,6 @@ class ServicesController < ApplicationController
 
   def new
     @service = Service.new
-    @coverages = @service.coverages.build
     @all_comunas = Comuna.all
   end
 
