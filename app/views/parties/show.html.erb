@@ -22,22 +22,23 @@
   <h3>Hired services:</h3> 
 
   <% @party.services.each do |service| %>
-  <h3>><%= service.name %></h3> <br/> 
+  <h3>><%= link_to service.name, service_path(service) %></h3> <br/> 
   <% end %>
 
 <% else %>
 <h3>No services hired yet!</h3>
 <% end %> 
 
-<%= link_to "Hire service", services_path %> <br/> <br/> 
-
-
-
-<h2>Like what you see?</h2>
-<p>Submit how much you would be willing to pay to attend this awesome party!</p>
-
 <% if current_user  %>
     <% if @party.search && @party.user_id == current_user.id %>
+        <%= link_to "Hire service", services_path %> <br/> <br/> 
+    <% end %>
+<% end %>
+
+<% if current_user  %>
+    <% if @party.search && @party.user_id != current_user.id %>
+        <h2>Like what you see?</h2>
+        <p>Submit how much you would be willing to pay to attend this awesome party!</p>
         <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
             <p><%= form.label :offer %></p>
             <p><%= form.number_field :offer %></p>
