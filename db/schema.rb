@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2020_10_30_034138) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_comunas_on_name", unique: true
   end
 
   create_table "contracts", force: :cascade do |t|
@@ -95,14 +94,6 @@ ActiveRecord::Schema.define(version: 2020_10_30_034138) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "scomments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "service_id"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "servicereviews", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
@@ -118,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_034138) do
     t.text "description"
     t.integer "capacity"
     t.integer "price"
-    t.float "rating"
+    t.float "rating", default: 5.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
