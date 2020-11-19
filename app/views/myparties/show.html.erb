@@ -1,0 +1,26 @@
+<% @my_parties.each do |party| %>
+    <h1><%= party.title %> <%= link_to "Show", party %>
+    <% if ! party.over %>
+    <%= link_to "Edit", edit_party_path(party) %>
+    <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></h1>
+    
+        <%= form_for party do |f| %>
+        <div>
+          <%= f.label :Search %>
+          <%= f.check_box :search%>
+        </div>
+        <div>
+          <%= f.label :Over %>
+          <%= f.check_box :over%>
+        </div>
+        <div>Update
+            <%= f.submit %>
+        </div>
+        <% end %>
+    <% else %>
+        <h1>This party has already end</h1>
+    <% end %>
+    <br>
+
+    
+<% end %>

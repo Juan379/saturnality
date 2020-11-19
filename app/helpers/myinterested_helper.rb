@@ -1,0 +1,2 @@
+module MyinterestedHelper
+end

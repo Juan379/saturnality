@@ -33,10 +33,6 @@
     <%= f.label :cost %> <br/>
     <%= f.number_field :cost %>
   </div> <br/>
-  <div>
-    <%= f.label :"Publish party and search for attendees?" %> 
-    <%= f.check_box :search %>
-  </div> <br />
   <%= fields_for(@all_comunas) do |c| %>
     <div>
         <%= c.label "Comuna" %><br />

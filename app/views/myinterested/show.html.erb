@@ -1,0 +1,9 @@
+<% @parties.each do |parti| %>
+    <% parti.interesteds.each do |interested| %>
+        <% if interested.user_id == @user.id %>
+            <h3>Yo have an offer in <%= link_to parti.title, parti %> , your actual offer is: $<%= interested.offer %> <%= link_to "Edit", edit_interested_path(interested) %> 
+                    <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %></h3> 
+         <br/> 
+        <% end %>
+    <% end %>
+<% end %>
