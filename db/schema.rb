@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_034138) do
     t.bigint "comuna_id"
     t.string "address"
     t.integer "cost"
-    t.boolean "search"
+    t.boolean "search", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

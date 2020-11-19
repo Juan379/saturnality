@@ -6,7 +6,7 @@ class CreateParties < ActiveRecord::Migration[5.2]
       t.references :comuna, foreign_key: true
       t.string :address
       t.integer :cost
-      t.boolean :search
+      t.boolean :search, :default => true
 
       t.timestamps
     end
