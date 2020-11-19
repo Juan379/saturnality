@@ -33,21 +33,54 @@
     <% if @party.search && @party.user_id == current_user.id %>
         <%= link_to "Hire service", services_path %> <br/> <br/> 
     <% end %>
+
+
+
+
+    <% if @party.search && @party.user_id == current_user.id %>
+        <% if !@party.interesteds.empty? %>
+            <h3>Postulations for your party:</h3> 
+            <br>
+            <% @party.interesteds.each do |interested| %>
+            <h3>Name: <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %>, Offer: <%= interested.offer %></h3> <br/> 
+        <% end %>
+    <% else %>
+        <h3>No postulations for your party yet!</h3>
+    <% end %>  
+<% end %>
+
+
 <% end %>
 
 <% if current_user  %>
     <% if @party.search && @party.user_id != current_user.id %>
-        <h2>Like what you see?</h2>
-        <p>Submit how much you would be willing to pay to attend this awesome party!</p>
-        <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
-            <p><%= form.label :offer %></p>
-            <p><%= form.number_field :offer %></p>
-            <%= form.submit "Submit offer" %>
+        <% if user_is_interested(current_user, @party)   %>
+            <% @party.interesteds.each do |interested| %>
+                <% if interested.user_id == current_user.id   %>
+                    <h3>Your actual offer is: $<%= interested.offer %>
+                    <%= link_to "Edit", edit_interested_path(interested) %>
+                    <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %></h3> 
+                <% end %>
+            <% end %>    
+
+
+        <% else  %>
+            <h2>Like what you see?</h2>
+            <p>Submit how much you would be willing to pay to attend this awesome party!</p>
+            
+            <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
+                <p><%= form.label :offer %></p>
+                <p><%= form.number_field :offer %></p>
+                <%= form.submit "Submit offer" %>
+            <% end %>
         <% end %>
     <% end %>
 <% else %>
-    <h2>You need to be logged in to create a review.</h2>
+        <h2>You need to be logged in to create a review.</h2>
 <% end %>
+
+
+
 </br>
 
 

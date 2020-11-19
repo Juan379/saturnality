@@ -20,14 +20,31 @@ class InterestedsController < ApplicationController
     @interesteds = Interested.all
   end
 
+  def update
+    @interested = Interested.find(params[:id])
+    if @interested.update(interested_params)
+      redirect_to party_path(@interested.party_id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @interested = Interested.find(params[:id])
+    @parti_id = @interested.party_id
+    @interested.destroy
+    redirect_to party_path(@parti_id)
+  end
+
+
   def show
     @party = Party.find(params[:party_id])
     @interesteds = @party.interesteds
   end
 
-  # def edit
-  #     @servicereview = Servicereview.find(params[:id])
-  # end
+  def edit
+      @interested = Interested.find(params[:id])
+  end
 
   private
 

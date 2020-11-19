@@ -124,7 +124,7 @@
 
             <div class="navbar-dropdown">
               <a class="navbar-item">
-                View profile
+                <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %>
               </a>
               <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
               </a>

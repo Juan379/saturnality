@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class PartiesController < ApplicationController
+
+  helper PartiesHelper
+
   def index
     @parties = Party.where(search: true)
   end
@@ -8,7 +11,7 @@ class PartiesController < ApplicationController
   def show
     @party = Party.find(params[:id])
   end
-
+  
   def new
     @comunas = Comuna.all
     @party = Party.new
@@ -37,6 +40,7 @@ class PartiesController < ApplicationController
   def party_params
     params.require(:party).permit(:title, :description, :address, :capacity, :cost, :search, :over)
   end
+
 end
 
 # skip_before_action :verify_authenticity_token

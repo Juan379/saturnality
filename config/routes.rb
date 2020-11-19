@@ -1,16 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/index'
   Rails.application.routes.draw do
+  get 'users/index'
     devise_for :users, controllers: {
       sessions: 'users/sessions', registrations: 'users/registrations'
     }
+        
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, :only =>[:show]
   root to: 'static_pages#home'
   get 'static_pages/home'
   resources :comunas
-
+  match '/users',   to: 'users#index',   via: 'get'
+  match '/users/:id',     to: 'users#show',       via: 'get'
   resources :services do
     resources :servicereviews
     resources :contracts
@@ -31,4 +36,5 @@ Rails.application.routes.draw do
   end
 
   resources :attendees
+  resources :interesteds
 end
