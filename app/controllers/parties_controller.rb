@@ -23,11 +23,12 @@ class PartiesController < ApplicationController
 
     @party.user_id = current_user.id if current_user
     if @party.save
-      redirect_to party_path(@party), notice: 'Party created successfully! Now you can choose to hire services for your event!'
+      redirect_to party_path(@party), notice: 'Party created successfully! Now you can choose to hire services  your event!'
     else
       render :new
     end
   end
+
 
   def destroy
     @party = Party.find(params[:id])
@@ -37,6 +38,16 @@ class PartiesController < ApplicationController
 
   def edit
     @party = Party.find(params[:id])
+  end
+  
+    
+  def update
+    @party = Party.find(params[:id])
+    if @party.update(party_params)
+      redirect_to parties_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -90,14 +101,7 @@ end
 #   @party = Party.find(params[:id])
 # end
 
-# def update
-#   @party = Party.find(params[:id])
-#   if @party.update(party_params)
-#     redirect_to parties_path
-#   else
-#     render :edit
-#   end
-# end
+
 
 # def destroy
 #   @party = Party.find(params[:id])
