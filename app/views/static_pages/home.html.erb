@@ -1,10 +1,200 @@
+<% if !current_user %>
+<!DOCTYPE html>
+  <html lang="en">
 
-<% if current_user %>
-  <h1>Hello <%= current_user.name %>, good to have you here. Use our amazing webpage to search for the best parties. Enjoy! </h1>
-  <%= image_tag('picture.png', width: "200") %><br/><br/>
+  <body>
+  <!-- Begin Preloader -->
+  <div class="preloader-wrapper">
+    <div class="preloader">
+      <img alt="" />
+    </div>
+  </div>
+  <!-- End Preloader-->
 
-  <br/><br/><br/>
+  <!-- Hero -->
+  <section id="hero" class="hero is-medium" >
+    <div class="hero-head">
+
+      <nav class="navbar">
+        <div class="container" >
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              <h3 class="logo has-text-green is-size-4">SATURNALITY</h3>
+            </a></div>
+
+          <div class="navbar-menu">
+            <div id="navbarBasicExample" class="navbar-menu">
+
+              <div class="navbar-end">
+                <div class="navbar-item">
+                  <div class="buttons">
+                      <a class="button is-black" <%= link_to 'Sign up', new_user_registration_path %></a>
+
+                    <a class="button is-light" <%= link_to 'Log in', new_user_session_path %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <!-- END Hero -->
+
+  <div class="header-wrapper" id="home">
+    <!-- Begin Hero -->
+    <section class="hero is-large is-transparent">
+      <!-- Begin Mobile Nav -->
+      <!-- End Mobile Nav -->
+      <!-- Begin Hero Content-->
+
+      <img alt="" />
+
+      <div class="hero-body is-transparent"  >
+        <div class="container has-text-centered">
+          <h1 class="subtitle">Welcome to</h1>
+          <h2 class="title is-size-1">SATURNALITY</h2>
+          <h1 class="subtitle profession">The best way to party</h1>
+          <%= image_tag('undraw_having_fun_iais.png') %>
+        </div>
+      </div>
+      <!-- End Hero Content-->
+
+    </section>
+    <!-- End Hero -->
+  </div>
+  <!-- End Header -->
+
+  <!-- Begin Main Content -->
+  <div class="main-content">
+    <!-- Begin About Me Section -->
+    <div class="section-light about-me" id="about-me">
+      <div class="container">
+        <div class="column is-12 about-me">
+          <h1 class="title has-text-centered section-title is-size-1">Plan</h1>
+        </div>
+        <div class="columns is-multiline">
+          <div
+            class="column is-6 has-vertically-aligned-content"
+            data-aos="fade-right"
+          >
+            <p class="is-larger">
+              &emsp;&emsp;<strong>
+            </strong
+            >
+            </p>
+            <br />
+            <h1 class="is-size-4">Organize a party in few simple steps! just set the specifications of location, date,
+              and price. You may also select different services to hire and have the best experience ever. Don't forget
+              to set the searching button ON so that other users can view your party and send an request to assit.
+              <br />
+              <br />
+              If you are just looking to have a great time, you can easily browse through the app and find the best
+              parties in town.</h1>
+
+            <br />
+            <div class="is-divider"></div>
+
+          </div>
+          <div class="column is-6 right-image " data-aos="fade-left">
+            <img
+            <%= image_tag('undraw_collaborators_prrw.png') %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End About US Content -->
+
+    <!-- Begin About Me Section -->
+    <div class="section-light about-me" id="about-me">
+      <div class="container">
+        <div class="column is-12 about-me">
+          <h1 class="title has-text-centered section-title is-size-1">Offer a service</h1>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-6 right-image " data-aos="fade-right">
+            <img
+            <%= image_tag('undraw_forms_78yw.png') %>
+          </div>
+          <div
+            class="column is-6 has-vertically-aligned-content"
+            data-aos="fade-left"
+          >
+            <p class="is-larger">
+              &emsp;&emsp;<strong>
+            </strong
+            >
+            </p>
+            <br />
+            <h1 class="is-size-4">Because we want to offer you the best experience, once you have joined our community
+              you may send an application form through the app so that our administrator can verify it. After your
+              application has been approved, you can begin to earn money as their users hire your service.</h1>
+            <div class="is-divider"></div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End About US Content -->
+    <div class="section-dark resume">
+      <div class="container">
+        <div
+          class="columns is-multiline"
+          data-aos="fade-in"
+          data-aos-easing="linear"
+        >
+          <div class="column is-12 about-me">
+            <h1 class="title has-text-centered section-title">
+              Join us now!
+            </h1>
+          </div>
+          <div class="column is-10 has-text-centered is-offset-1">
+            <div class="has-text-centered">
+              <a class="button is-black" <%= link_to 'Sign up', new_user_registration_path %></a>
+              <a class="button is-light" <%= link_to 'Log in', new_user_session_path %></a>
+            </div>
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Main Content -->
+
+  <!-- Begin Footer -->
+  <div class="footer">
+    <p>
+      <strong class="white"> <%= link_to 'SATURNALITY', static_pages_home_url %></strong> by Juan Jimenez, Victoria
+      Sanchez, and Ami Ustilovsky
+    </p>
+  </div>
+  <!-- End Footer -->
+   Scripts
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/showcase.js"></script>
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          easing: "ease-out",
+          duration: 800,
+      });
+  </script>
+
+
+
+<% else %>
+    <h1>Hello <%= current_user.name %>, good to have you here. Use our amazing webpage to search for the best parties. Enjoy! </h1>
+    <%= image_tag('picture.png', width: "200") %><br/><br/>
+
+    <br/><br/><br/>
 <% end %>
+
+
 
 
 
