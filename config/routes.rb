@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'myinterested/show'
+  get 'myparties/show'
   get 'users/index'
   Rails.application.routes.draw do
+  get 'myinterested/show'
+  get 'myparties/show'
   get 'users/index'
     devise_for :users, controllers: {
       sessions: 'users/sessions', registrations: 'users/registrations'
@@ -16,6 +20,8 @@ Rails.application.routes.draw do
   resources :comunas
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'
+  get '/myparties/show' => 'myparties#show', as: :mypartiesshow
+  get '/myinterested/show' => 'myinterested#show', as: :myinterestedshow
   resources :services do
     resources :servicereviews
     resources :contracts

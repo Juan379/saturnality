@@ -35,11 +35,17 @@ class PartiesController < ApplicationController
     redirect_to parties_path
   end
 
+  def edit
+    @party = Party.find(params[:id])
+  end
+
   private
 
   def party_params
     params.require(:party).permit(:title, :description, :address, :capacity, :cost, :search, :over)
   end
+
+  
 
 end
 

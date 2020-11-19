@@ -121,8 +121,16 @@
             <a class="navbar-link">
               Profile
             </a>
+            
 
             <div class="navbar-dropdown">
+              <a class="navbar-item">
+                <a class="navbar-item" <%= link_to "My Parties", mypartiesshow_path %>
+              </a>
+              <a class="navbar-item">
+                <a class="navbar-item" <%= link_to "My Interestation", myinterestedshow_path %>
+              </a>
+
               <a class="navbar-item">
                 <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %>
               </a>
