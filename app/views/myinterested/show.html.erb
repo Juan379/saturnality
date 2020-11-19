@@ -1,7 +1,7 @@
 <% @parties.each do |parti| %>
     <% parti.interesteds.each do |interested| %>
         <% if interested.user_id == @user.id %>
-            <h3>Yo have an offer in <%= link_to parti.title, party %> , your actual offer is: $<%= interested.offer %></h3> <br/> 
+            <h3>Yo have an offer in <%= link_to parti.title, parti %> , your actual offer is: $<%= interested.offer %></h3> <br/> 
         <% end %>
     <% end %>
 <% end %>
