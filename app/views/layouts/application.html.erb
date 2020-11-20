@@ -87,13 +87,18 @@
                   </div>
                 </div>
                 <% end %>
+
+              </div>
+
+
+              <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Profile
                   </a>
 
 
-                  <div class="navbar-dropdown">
+                  <div class="navbar-dropdown is-right">
                     <a class="navbar-item" <%= link_to "My Parties", mypartiesshow_path %>
                     </a>
                     <a class="navbar-item" <%= link_to "My Interestation", myinterestedshow_path %>
@@ -105,7 +110,7 @@
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item"
-                  <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+                    <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
                     </a>
 
 

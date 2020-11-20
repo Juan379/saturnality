@@ -1,10 +1,5 @@
-<section class="hero is-fullheight">
-  <% flash.each do |type, msg| %>
-    <div>
-      <%= msg %>
-    </div>
-  <% end %>
-  <div class="container has-text-centered" data-aos="fade-in" >
+<section class="section">
+  <div class="container has-text-centered" data-aos="fade-in">
     <h2 class="title is-size-1">Parties</h2>
     <% if @parties.empty? %>
       <h3 class="subtitle is-size-5"> There are no parties available.</h3>
@@ -12,62 +7,65 @@
   </div>
 </section>
 
-<div class="main-content">
-  <div class="columns is-multiline is-mobile">
+<div class="columns is-multiline is-mobile">
 
-    <% @parties.each do |party| %>
-      <div class="column is-one-quarter">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= party.user.name %></p>
-              </div>
-            </div>
-          </div>
-
-
-          <header class="card-header-title">
+  <% @parties.each do |party| %>
+    <div class="column is-one-quarter ">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title is-size-3">
             <%= party.title %>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <%= party.description %>
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <%= party.comuna.name %>
+            <br>
+           <%= party.description %>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag('picture.png') %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= party.user.name %></p>
+              <p class="subtitle is-6"><%= party.user.age %></p>
             </div>
           </div>
-          <footer class="card-footer">
-            <a class="card-footer-item"  <%= link_to "Show", party %> </a>
-            <% if current_user && current_user == service.user  %>
-              <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %> </a>
-              <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %> </a>
-            <% end %>
-            <% if current_user && current_user.has_role?(:admin) %>
-              <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %> </a>
-              <a class="card-footer-item"<%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %> </a>
-            <% end %>
-          </footer>
         </div>
-      </div>
-      </div>
-    <% end %>
-    </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="../js/showcase.js"></script>
-<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        easing: "ease-out",
-        duration: 800,
-    });
-</script>
-</html>
 
+
+
+        <footer class="card-footer">
+          <a class="card-footer-item" <%= link_to "More", party %></a>
+          <% if current_user && current_user == party.user  %>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+          <% end %>
+          <% if current_user && current_user.has_role?(:admin) %>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+          <% end %>
+        </footer>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/showcase.js"></script>
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            easing: "ease-out",
+            duration: 800,
+        });
+    </script>
+</html>
 
 
 

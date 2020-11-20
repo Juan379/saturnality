@@ -1,47 +1,128 @@
-<h1 class="title">New Party</h1>
-<%= form_with(model: @party, local: true) do |f| %>
+<section class="hero is-fullheight">
 
-  <% if @party.errors.any? %>
-  <div id="error_explanation">
-    <b><%= pluralize(@party.errors.count, "error") %> prohibited this party from being created:</b>
-    <ul>
-      <% @party.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+
+  <div class="column has-text-left is-3 is-offset-1">
+    <%= form_with(model: @party, local: true) do |f| %>
+      <% if @party.errors.any? %>
+        <div id="error_explanation">
+          <b><%= pluralize(@party.errors.count, "error") %> prohibited this party from being created:</b>
+          <ul>
+            <% @party.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <br/>
+      <br/>
+
+      <div class="Edit is-centered">
+        <h3 class="logo has-text-green is-size-4">New party</h3>
+        <br />
+        <form>
+          <div class="field is-size-5">
+            <%= f.label :title %> <br/>
+            <div class="control">
+              <input class="input is-medium is-squared" <%= f.text_field :title %>
+            </div>
+          </div>
+          <br />
+          <div class="field is-size-5">
+            <%= f.label :description %> <br/>
+            <div class="control">
+              <input class="input is-medium is-squared"<%= f.text_area :description %>
+            </div>
+          </div>
+          <br />
+          <div class="field is-size-5">
+            <%= f.label :address %><br />
+            <div class="control">
+              <input class="input is-medium is-squared"<%= f.text_field :address %>
+            </div>
+          </div>
+          <br />
+          <div class="field is-size-5">
+            <%= f.label :capacity %><br />
+            <div class="control">
+              <input class="input is-medium is-squared"<%= f.number_field :capacity %>
+            </div>
+          </div>
+          <br />
+
+          <div class="field is-size-5">
+            <%= f.label :cost %><br />
+            <div class="control">
+              <input class="input is-medium is-squared"<%= f.number_field :cost %>
+            </div>
+          </div>
+          <br />
+          <div class="field is-size-5">
+            <%= fields_for(@all_comunas) do |c| %>
+              <div>
+                <%= c.label "Comuna" %><br />
+                <%= collection_select(:comuna, :id, Comuna.all, :id, :name, {include_blank: true}) %>
+              </div>
+            <% end %>
+          </div>
+
+          <br />
+          <button class="button is-block is-fullwidth is-black is-medium is-rounded" type="submit">
+            Create Party!
+          </button>
+        </form>
+        <br>
+
+      </div>
+      </div>
+      </div>
+    <% end %>
+      </section>
+
+
+
+<!--<h1 class="title">New Party</h1>-->
+<%#= form_with(model: @party, local: true) do |f| %>
+
+  <%# if @party.errors.any? %>
+<!--  <div id="error_explanation">-->
+<!--    <b><%#= pluralize(@party.errors.count, "error") %> prohibited this party from being created:</b>-->
+<!--    <ul>-->
+      <%# @party.errors.full_messages.each do |message| %>
+<!--        <li><%#= message %></li>-->
+      <%# end %>
+<!--    </ul>-->
+<!--  </div>-->
+  <%# end %>
+<!--  <br/>-->
   
-  <div>
-    <%= f.label :title %> <br/>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :description %> <br/>
-    <%= f.text_area :description %>
-  </div>
-  <div>
-    <%= f.label :address %> <br/>
-    <%= f.text_field :address %>
-  </div>
-  <div>
-    <%= f.label :capacity %> <br/>
-    <%= f.number_field :capacity %>
-  </div>
-  <div>
-    <%= f.label :cost %> <br/>
-    <%= f.number_field :cost %>
-  </div> <br/>
-  <%= fields_for(@all_comunas) do |c| %>
-    <div>
-        <%= c.label "Comuna" %><br />
-        <%= collection_select(:comuna, :id, Comuna.all, :id, :name, {include_blank: true}) %>
-    </div>
-  <% end %>
-  <br/>
-  <div>
-    <%= f.submit "Create party!"%>
-  </div>
-<% end %>
+<!--  <div>-->
+<!--    <%#= f.label :title %> <br/>-->
+    <%#= f.text_field :title %>
+<!--  </div>-->
+<!--  <div>-->
+<!--    <%#= f.label :description %> <br/>-->
+    <%#= f.text_area :description %>
+<!--  </div>-->
+<!--  <div>-->
+<!--    <%#= f.label :address %> <br/>-->
+    <%#= f.text_field :address %>
+<!--  </div>-->
+<!--  <div>-->
+<!--    <%#= f.label :capacity %> <br/>-->
+    <%#= f.number_field :capacity %>
+<!--  </div>-->
+<!--  <div>-->
+<!--    <%#= f.label :cost %> <br/>-->
+    <%#= f.number_field :cost %>
+<!--  </div> <br/>-->
+  <%#= fields_for(@all_comunas) do |c| %>
+<!--    <div>-->
+<!--        <%#= c.label "Comuna" %><br />-->
+        <%#= collection_select(:comuna, :id, Comuna.all, :id, :name, {include_blank: true}) %>
+<!--    </div>-->
+  <%# end %>
+<!--  <br/>-->
+<!--  <div>-->
+    <%#= f.submit "Create party!"%>
+<!--  </div>-->
+<%# end %>
 

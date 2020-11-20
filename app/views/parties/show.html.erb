@@ -1,90 +1,156 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
-<% end %> <br/>
+<% if current_user %>
 
-<h1>Party: <%= @party.title %></h1>
-<h2>Created by: <%= @party.user.name %></h2>
-<h2>Description: <%= @party.description %></h2>
-<h3>Address: <%= @party.address %></h3>
-<h3>Comuna: <%= @party.comuna.name %></h3>
-<h3>Capacity: <%= @party.capacity %></h3>
-<h3>Cost: <%= @party.cost %></h3>
-<% if @party.search %>
-    <h3>Search state: On going</h3>
-<% else %>
-    <h3>Search state: Terminated</h3>
-<% end %> <br/> 
+<section class="hero is-fullheight" data-aos="fade-in">
+  <div class="columns is-mobile">
 
-
-<% if !@party.services.empty? %>
-  <h3>Hired services:</h3> 
-
-  <% @party.services.each do |service| %>
-  <h3>><%= link_to service.name, service_path(service) %></h3> <br/> 
-  <% end %>
-
-<% else %>
-<h3>No services hired yet!</h3>
-<% end %> 
-
-<% if current_user  %>
-    <% if @party.search && @party.user_id == current_user.id %>
-        <%= link_to "Hire service", services_path %> <br/> <br/> 
-    <% end %>
-
-
-
-
-    <% if @party.search && @party.user_id == current_user.id %>
-        <% if !@party.interesteds.empty? %>
-            <h3>Postulations for your party:</h3> 
+    <div class="column is-5 is-offset-1">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title is-size-3">
+            <%= @party.title %>
+          </p>
+        </header>
+        <div class="card-content ">
+          <div class="content is-size-5">
+            <%= @party.description %>
+            <br><br>
+            Address: <%= @party.address %>, <%= @party.comuna.name %>
             <br>
-            <% @party.interesteds.each do |interested| %>
-            <h3>Name: <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %></h3> <br/> 
-        <% end %>
-        <h3>There is a total of: $<%= how_much_money(@party) %> offered in you party</h3>
+            Capacity: <%= @party.capacity %>
+            <br>
+            Cost: <%= @party.cost %>
+            <br>
+            <br>
+            <% if @party.search %>
+              Search state: On going
+            <% else %>
+              Search state: Terminated
+            <% end %> <br/>
 
-    <% else %>
-        <h3>No postulations for your party yet!</h3>
-    <% end %>  
-<% end %>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag('picture.png') %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= @party.user.name %></p>
+              <p class="subtitle is-6"><%= @party.user.age %></p>
+            </div>
+          </div>
+        </div>
 
-
-<% end %>
-
-<% if current_user  %>
-    <% if @party.search && @party.user_id != current_user.id %>
-        <% if user_is_interested(current_user, @party)   %>
-            <% @party.interesteds.each do |interested| %>
+        <footer class="card-footer">
+          <% if @party.search && @party.user_id == current_user.id %>
+              <p class="card-footer-item"> There is a total of: $<%= how_much_money(@party) %> offered in you party
+              </p>
+          <% else %>
+            <% if user_is_interested(current_user, @party)   %>
+              <% @party.interesteds.each do |interested| %>
                 <% if interested.user_id == current_user.id   %>
-                    <h3>Your actual offer is: $<%= interested.offer %>
-                    <%= link_to "Edit", edit_interested_path(interested) %>
-                    <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %></h3> 
+                  <p class="card-footer-item"> Your actual offer is: $<%= interested.offer %> </p>
+                  <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
+                  <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
                 <% end %>
-            <% end %>    
-
-
-        <% else  %>
-            <h3>There are <%= how_much_interesteds(@party)%> interested in this party </h3>
-            <h2>Like what you see?</h2>
-            <p>Submit how much you would be willing to pay to attend this awesome party!</p>
-            
-            <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
-                <p><%= form.label :offer %></p>
-                <p><%= form.number_field :offer %></p>
-                <%= form.submit "Submit offer" %>
+              <% end %>
+            <% else  %>
+              <p class="card-footer-item"> Like what you see? <br>
+                Submit how much you would be willing to pay to attend this awesome party!</p>
             <% end %>
+          <% end %>
+        </footer>
+    </div>
+      <br><br>
+      <% if @party.search && @party.user_id != current_user.id %>
+        <% if !user_is_interested(current_user, @party)   %>
+         <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
+             <%= form.number_field :offer %>
+            <br /><br />
+            <%= form.submit "Submit offer" %>
+
+      <% end %>
         <% end %>
-    <% end %>
-<% else %>
-        <h2>You need to be logged in to create a review.</h2>
+
+      <% end %>
+
+
+<br><br>
+
+
+
+  </div>
+    <div class="column is-4 is-offset-1">
+      <div class="card">
+        <header class="card-header ">
+          <% if !@party.services.empty? %>
+            <p class="card-header-title hast-text-centered is-size-3">Hired services:</p>
+          <% else %>
+            <p class="card-header-title is-size-4"> No services hired yet!</p>
+          <% end %>
+        </header>
+        <div class="card-content ">
+          <% if !@party.services.empty? %>
+            <% @party.services.each do |service| %>
+              <a class="content is-size-5" <%= link_to service.name, service_path(service) %> </a>
+            <% end %>
+          <% end %>
+        </div>
+        <footer class="card-footer">
+          <% if @party.search && @party.user_id == current_user.id %>
+            <a class="card-footer-item"  <%= link_to "Hire service", services_path %> </a>
+            <br/> <br/>
+          <% end %>
+        </footer>
+
+    </div>
+<br><br>
+      <div class="card">
+        <header class="card-header ">
+          <% if @party.search && @party.user_id == current_user.id %>
+            <% if !@party.interesteds.empty? %>
+              <p class="card-header-title is-size-4">Postulations por your party:</p>
+            <% else %>
+              <p class="card-header-title is-size-4">No postulations for your party yet!</p>
+            <% end %>
+          <% end %>
+        </header>
+
+        <div class="card-content ">
+          <% if @party.search && @party.user_id == current_user.id %>
+            <% if !@party.interesteds.empty? %>
+              <% @party.interesteds.each do |interested| %>
+                <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
+                <br/>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p class="content is-size-5"> There are <%= how_much_interesteds(@party)%> interested in this party </p>
+          <% end %>
+        </div>
+
+
+      </div>
+
+  </div>
+  </div>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>
+
 <% end %>
 
 
-
-</br>
 
 
 
