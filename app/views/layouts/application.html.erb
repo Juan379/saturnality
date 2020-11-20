@@ -40,6 +40,8 @@
           <div class="navbar-menu">
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
+                <a class="navbar-item" <%= link_to 'Home', static_pages_home_url %>
+                </a>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Parties
@@ -73,15 +75,12 @@
 
 
                   <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                      <a class="navbar-item" <%= link_to "My Parties", mypartiesshow_path %>
+                    <a class="navbar-item" <%= link_to "My Parties", mypartiesshow_path %>
                     </a>
-                    <a class="navbar-item">
-                      <a class="navbar-item" <%= link_to "My Interestation", myinterestedshow_path %>
+                    <a class="navbar-item" <%= link_to "My Interestation", myinterestedshow_path %>
                     </a>
 
-                    <a class="navbar-item">
-                      <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %>
+                    <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %>
                     </a>
                     <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
                     </a>

@@ -45,14 +45,12 @@
 
   <div class="header-wrapper" id="home">
     <!-- Begin Hero -->
-    <section class="hero is-large is-transparent">
+    <section class="hero is-large">
       <!-- Begin Mobile Nav -->
       <!-- End Mobile Nav -->
       <!-- Begin Hero Content-->
 
-      <img alt="" />
-
-      <div class="hero-body is-transparent"  >
+      <div class="hero-body"  >
         <div class="container has-text-centered">
           <h1 class="subtitle">Welcome to</h1>
           <h2 class="title is-size-1">SATURNALITY</h2>
@@ -73,7 +71,7 @@
     <div class="section-light about-me" id="about-me">
       <div class="container">
         <div class="column is-12 about-me">
-          <h1 class="title has-text-centered section-title is-size-1">Plan</h1>
+          <h1 class="title has-text-centered section-title is-size-1" data-aos="fade-in">Plan</h1>
         </div>
         <div class="columns is-multiline">
           <div
@@ -86,7 +84,7 @@
             >
             </p>
             <br />
-            <h1 class="is-size-4">Organize a party in few simple steps! just set the specifications of location, date,
+            <h1 class="is-size-4 has-text-justified">Organize a party in few simple steps! just set the specifications of location, date,
               and price. You may also select different services to hire and have the best experience ever. Don't forget
               to set the searching button ON so that other users can view your party and send an request to assit.
               <br />
@@ -106,12 +104,12 @@
       </div>
     </div>
     <!-- End About US Content -->
-
+    <br/><br/><br/><br/><br/><br/>
     <!-- Begin About Me Section -->
     <div class="section-light about-me" id="about-me">
       <div class="container">
         <div class="column is-12 about-me">
-          <h1 class="title has-text-centered section-title is-size-1">Offer a service</h1>
+          <h1 class="title has-text-centered section-title is-size-1" data-aos="fade-in">Offer a service</h1>
         </div>
         <div class="columns is-multiline">
           <div class="column is-6 right-image " data-aos="fade-right">
@@ -128,7 +126,7 @@
             >
             </p>
             <br />
-            <h1 class="is-size-4">Because we want to offer you the best experience, once you have joined our community
+            <h1 class="is-size-4 has-text-justified">Because we want to offer you the best experience, once you have joined our community
               you may send an application form through the app so that our administrator can verify it. After your
               application has been approved, you can begin to earn money as their users hire your service.</h1>
             <div class="is-divider"></div>
@@ -139,6 +137,7 @@
       </div>
     </div>
     <!-- End About US Content -->
+    <br/><br/><br/><br/><br/><br/>
     <div class="section-dark resume">
       <div class="container">
         <div
@@ -183,10 +182,31 @@
 
 
 <% else %>
-    <h1>Hello <%= current_user.name %>, good to have you here. Use our amazing webpage to search for the best parties. Enjoy! </h1>
-    <%= image_tag('picture.png', width: "200") %><br/><br/>
 
+  <section class="hero is-large">
+    <br/><br/>
+      <div class="container has-text-centered" data-aos="fade-right">
+        <h1 class="subtitle">Welcome to Saturnality</h1>
+        <h2 class="title is-size-1"><%= current_user.name %> </h2>
+      </div>
     <br/><br/><br/>
+    <br/><br/><br/>
+    <br/><br/><br/>
+    <br/><br/><br/>
+    <br/><br/><br/>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/showcase.js"></script>
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          easing: "ease-out",
+          duration: 800,
+      });
+  </script>
+
+
 <% end %>
 
 

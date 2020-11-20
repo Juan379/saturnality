@@ -1,4 +1,37 @@
-<h1>Name: <%= @user.name %></h1>
-<h5>Age: <%= @user.age%></h5>
-<h1>Email: <%= @user.email %></h1>
-<h5>phone: <%= @user.phone%></h5>
+
+<section class="hero is-fullheight">
+<div class="columns is-mobile">
+  <div class="column is-half is-offset-1">
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-128x128">
+              <%= image_tag('picture.png', width: 150) %>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= @user.name %></p>
+            <p class="subtitle is-5"><%= @user.age%>
+              <br>
+              <%= @user.email%>
+              <br>
+              <%= @user.phone%>
+            </p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" <%= link_to "Edit Profile", edit_user_registration_path %> </a>
+          <a class="card-footer-item" <%= link_to "My Parties", mypartiesshow_path %> </a>
+          <a class="card-footer-item" <%= link_to "My Interestation", myinterestedshow_path %> </a>
+          <a class="card-footer-item">My services</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+
+
