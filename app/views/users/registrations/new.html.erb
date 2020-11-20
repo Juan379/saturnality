@@ -1,41 +1,78 @@
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<body>
+<section class="hero is-fullheight">
+  <div class="hero-body has-text-centered">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="column has-text-centered is-3 is-offset-4">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+        <div class="Singup is-centered">
+          <h3 class="logo has-text-green is-size-4">SATURNALITY</h3>
+          <br />
+          <form>
+            <div class="field">
+              <%= f.label :email %>
+              <div class="control">
+                <input class="input is-medium is-rounded"<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :name %><br />
+              <div class="control">
+                <input class="input is-medium is-rounded"<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :age %><br />
+              <div class="control">
+                <input class="input is-medium is-rounded"<%= f.text_field :age, autofocus: true, autocomplete: "age" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :phone %><br />
+              <div class="control">
+                <input class="input is-medium is-rounded"<%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <div class="control">
+                <input class="input is-medium is-rounded" <%= f.password_field :password, autocomplete: "new-password" %>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <div class="control">
+                <input class="input is-medium is-rounded"<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              </div>
+            </div>
+            <br />
+            <button class="button is-block is-fullwidth is-black is-medium is-rounded" type="submit">
+              Sign up
+            </button>
+          </form>
+          <br>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                Already have an Account? <a <%= link_to 'Sign in', new_user_session_path %> </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+        </div>
+        </div>
+        </section>
+        </body>
 
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-  </div>
+        </html>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
