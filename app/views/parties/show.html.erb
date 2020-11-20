@@ -1,5 +1,4 @@
 <% if current_user %>
-
 <section class="hero is-fullheight" data-aos="fade-in">
   <div class="columns is-mobile">
 
@@ -54,7 +53,7 @@
                   <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
                 <% end %>
               <% end %>
-            <% else  %>
+            <% else %>
               <p class="card-footer-item"> Like what you see? <br>
                 Submit how much you would be willing to pay to attend this awesome party!</p>
             <% end %>
@@ -71,12 +70,7 @@
 
       <% end %>
         <% end %>
-
       <% end %>
-
-
-<br><br>
-
 
 
   </div>
@@ -131,12 +125,7 @@
 
 
       </div>
-
-  </div>
-  </div>
-
-</section>
-
+    </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>
 <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -150,9 +139,5 @@
 
 <% end %>
 
-
-
-
-
-
-
+</div>
+</section>

@@ -10,4 +10,8 @@ Comuna.create(name: "Las Condes")
 Comuna.create(name: "El Bosque")
 Comuna.create(name: "Quilicura")
 Comuna.create(name: "San Joaquín")
+<<<<<<< HEAD
 Comuna.create(name: "Santiago")
+=======
+Comuna.create(name: "Santiago")
+>>>>>>> 248237f3bcfa9cbd8b84000996807980979cd0cf

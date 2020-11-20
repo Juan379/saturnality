@@ -7,6 +7,8 @@ class CreateParties < ActiveRecord::Migration[5.2]
       t.string :address
       t.integer :cost
       t.boolean :search, :default => true
+      t.boolean :ended, :default => false
+
 
       t.timestamps
     end

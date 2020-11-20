@@ -8,6 +8,27 @@ class PartiesController < ApplicationController
     @parties = Party.where(search: true)
   end
 
+  def close_and_notify
+    party = Party.find(params[:id])
+    limit = party.capacity
+    cost = party.cost
+
+    candidates = party.interesteds.order(offer: :desc)[0..limit]
+    if !candidates.empty?
+        offer_sum = candidates.pluck(:offer).sum
+        if offer_sum >= cost
+          party.update_attribute(:search, false)
+          candidates.each do |candidate|
+            candidate.delete
+            Attendee.create(user_id: current_user.id, party_id: party.id)
+          end
+          redirect_to party_path(party), notice: "Party search closed and attendees notified correctly!"
+        else
+          redirect_to party_path(party), notice: "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
+        end
+    end
+  end
+
   def show
     @party = Party.find(params[:id])
   end

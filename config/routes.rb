@@ -30,13 +30,8 @@ Rails.application.routes.draw do
     resources :contracts
   end
 
-  # resources :parties do
-  #   resources :partyreviews
-  #   resources :interesteds
-
-  # end
-
   resources :parties do
+    post :close_and_notify, on: :member
     resources :partyreviews
     resources :interesteds
     resources :services do
@@ -45,5 +40,6 @@ Rails.application.routes.draw do
   end
 
   resources :attendees
+
   resources :interesteds
 end
