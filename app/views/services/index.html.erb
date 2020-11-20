@@ -1,12 +1,15 @@
-<section class="section">
-  <div class="container has-text-centered">
-    <h2 class="title">Services</h2>
+<section class="hero is-fullheight">
+  <div class="container has-text-centered" data-aos="fade-in">
+    <h2 class="title is-size-1">Services</h2>
     <% if @services.empty? %>
-      <h3>There are no services available .</h3>
+      <h3 class="subtitle is-size-5"> There are no services available.</h3>
       <% end %>
     </div>
 </section>
-
+<span class="icon">
+  <i class="fas fa-home"></i>
+</span>
+<div class="main-content">
 <div class="columns is-multiline is-mobile">
 
     <% @services.each do |service| %>
@@ -53,9 +56,20 @@
           </footer>
         </div>
       </div>
+    </div>
     <% end %>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>
 </html>
 
 
