@@ -8,4 +8,21 @@ module PartiesHelper
         end
         return false
     end
+
+    def how_much_interesteds(party)
+        contador = 0
+        party.interesteds.each do |interested|
+            contador += 1
+        end
+        return contador
+    end    
+
+    def how_much_money(party)
+        contador = 0
+        party.interesteds.each do |interested|
+            contador += interested.offer.to_i
+        end
+        return contador
+    end    
+
 end

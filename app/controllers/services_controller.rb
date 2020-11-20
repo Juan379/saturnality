@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @services = Service.all
+    @services = Service.where(status: "accept")
   end
 
   def show
@@ -20,7 +20,6 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.create(service_params)
-
     @service.user_id = current_user.id if current_user
 
     params[:comunas][:id].each do |comuna|
@@ -28,6 +27,7 @@ class ServicesController < ApplicationController
     end
 
     if @service.save
+      @service.status = 'pending'
       redirect_to services_path
     else
       render :new
@@ -56,6 +56,6 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:name, :description, :capacity, :price, :rating)
+    params.require(:service).permit(:name, :description, :capacity, :price, :rating, :status)
   end
 end

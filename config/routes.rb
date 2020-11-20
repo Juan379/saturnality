@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'admin/show'
   get 'myinterested/show'
   get 'myparties/show'
   get 'users/index'
   Rails.application.routes.draw do
+  get 'admin/show'
   get 'myinterested/show'
   get 'myparties/show'
   get 'users/index'
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   match '/users/:id',     to: 'users#show',       via: 'get'
   get '/myparties/show' => 'myparties#show', as: :mypartiesshow
   get '/myinterested/show' => 'myinterested#show', as: :myinterestedshow
+  get '/admin/show' => 'admin#show', as: :admin
   resources :services do
     resources :servicereviews
     resources :contracts
