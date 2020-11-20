@@ -13,6 +13,9 @@
 <h3>Cost: <%= @party.cost %></h3>
 <% if @party.search %>
     <h3>Search state: On going</h3>
+    <% if @party.user_id == current_user.id && @party.interesteds.count > 0 %>
+        <%= button_to 'Close and notify', close_and_notify_party_path(@party.id), method: :post, class: 'btn primary' %>
+    <% end %>
 <% else %>
     <h3>Search state: Terminated</h3>
 <% end %> <br/> 
@@ -22,7 +25,7 @@
   <h3>Hired services:</h3> 
 
   <% @party.services.each do |service| %>
-  <h3>><%= link_to service.name, service_path(service) %></h3> <br/> 
+  <h3> > <%= link_to service.name, service_path(service) %></h3> <br/> 
   <% end %>
 
 <% else %>
@@ -30,17 +33,13 @@
 <% end %> 
 
 <% if current_user  %>
-    <% if @party.search && @party.user_id == current_user.id %>
+    <% if @party.user_id == current_user.id %>
         <%= link_to "Hire service", services_path %> <br/> <br/> 
     <% end %>
 
-
-
-
     <% if @party.search && @party.user_id == current_user.id %>
         <% if !@party.interesteds.empty? %>
-            <h3>Postulations for your party:</h3> 
-            <br>
+            <h3>Offers for your party:</h3><br>
             <% @party.interesteds.each do |interested| %>
             <h3>Name: <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %></h3> <br/> 
         <% end %>
@@ -51,6 +50,16 @@
     <% end %>  
 <% end %>
 
+    <% if !@party.search && @party.user_id == current_user.id %>
+        <% if !@party.attendees.empty? %>
+            <h3>Attendees for your party:</h3><br>
+            <% @party.attendees.each do |attendee| %>
+                <h3>Name: <%= link_to  User.find(attendee.user_id).name , user_path(User.find(attendee.user_id).id) %></h3> <br/> 
+            <% end %>
+        <% else %>
+            <h3>No offers for your party yet!</h3>
+        <% end %>
+    <% end %>
 
 <% end %>
 

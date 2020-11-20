@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_11_20_030325) do
     t.bigint "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "offer"
+    t.integer "offer"
     t.index ["party_id"], name: "index_interesteds_on_party_id"
     t.index ["user_id"], name: "index_interesteds_on_user_id"
   end
@@ -64,7 +64,8 @@ ActiveRecord::Schema.define(version: 2020_11_20_030325) do
     t.bigint "comuna_id"
     t.string "address"
     t.integer "cost"
-    t.boolean "search"
+    t.boolean "search", default: true
+    t.boolean "ended", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
