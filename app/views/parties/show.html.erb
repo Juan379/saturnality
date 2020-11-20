@@ -87,6 +87,7 @@
           <% if !@party.services.empty? %>
             <% @party.services.each do |service| %>
               <a class="content is-size-5" <%= link_to service.name, service_path(service) %> </a>
+              <br/>
             <% end %>
           <% end %>
         </div>

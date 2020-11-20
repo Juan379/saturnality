@@ -13,9 +13,8 @@
     <div class="column is-one-quarter ">
       <div class="card">
         <header class="card-header">
-          <p class="card-header-title is-size-3">
-            <%= party.title %>
-          </p>
+          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %>
+          </a>
         </header>
         <div class="card-content">
           <div class="content">
@@ -39,7 +38,6 @@
 
 
         <footer class="card-footer">
-          <a class="card-footer-item" <%= link_to "More", party %></a>
           <% if current_user && current_user == party.user  %>
             <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
             <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
