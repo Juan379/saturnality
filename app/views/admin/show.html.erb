@@ -1,0 +1,14 @@
+<% @services.each do |service| %>
+    <h3>Name of service: <%= service.name %></h3>
+    <%= form_for service do |f| %>
+        <div>
+          <%= f.select :status, ['pending', 'rejected', 'accept']%>
+        </div>
+        <div>Update
+            <%= f.submit %>
+        </div>
+    <% end %>
+    
+<% end %>
+
+

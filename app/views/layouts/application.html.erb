@@ -65,7 +65,18 @@
                     </a>
                   </div>
                 </div>
+                <% if current_user.has_role?(:admin) %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    Admin
+                  </a>
 
+                  <div class="navbar-dropdown">
+                    <a class="navbar-item" <%= link_to 'Check Services', admin_path %>
+                    </a>
+                  </div>
+                </div>
+                <% end %>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Profile
