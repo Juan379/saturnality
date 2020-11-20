@@ -2,7 +2,7 @@
   <div class="container has-text-centered" data-aos="fade-in">
     <h2 class="title is-size-1">Services</h2>
     <% if @services.empty? %>
-      <h3 class="subtitle is-size-5"> There are no services available.</h3>
+      <h3 class="subtitle is-size-5"> There are no Services available.</h3>
     <% end %>
   </div>
 </section>
@@ -12,14 +12,13 @@
   <% @services.each do |service| %>
     <div class="column is-one-quarter ">
       <div class="card">
-        <header class="card-header-title is-size-3">
-          <%= service.name %>
+        <header class="card-header">
+          <a class="card-header-title is-size-3" <%= link_to "#{service.name}", service %>
+          </a>
         </header>
         <div class="card-content">
           <div class="content">
-            <%= service.description %>
-            <br>
-            Rating: <%= service.rating %>
+            <%= party.description %>
           </div>
           <div class="media">
             <div class="media-left">
@@ -31,20 +30,18 @@
               <p class="title is-4"><%= service.user.name %></p>
             </div>
           </div>
-
-
         </div>
 
 
+
         <footer class="card-footer">
-          <a class="card-footer-item" <%= link_to "More", service %></a>
           <% if current_user && current_user == service.user  %>
             <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %></a>
+            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %></a>
           <% end %>
           <% if current_user && current_user.has_role?(:admin) %>
             <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this Service?"} %></a>
+            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %></a>
           <% end %>
         </footer>
       </div>
