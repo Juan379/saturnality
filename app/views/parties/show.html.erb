@@ -42,8 +42,10 @@
             <h3>Postulations for your party:</h3> 
             <br>
             <% @party.interesteds.each do |interested| %>
-            <h3>Name: <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %>, Offer: <%= interested.offer %></h3> <br/> 
+            <h3>Name: <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %></h3> <br/> 
         <% end %>
+        <h3>There is a total of: $<%= how_much_money(@party) %> offered in you party</h3>
+
     <% else %>
         <h3>No postulations for your party yet!</h3>
     <% end %>  
@@ -65,6 +67,7 @@
 
 
         <% else  %>
+            <h3>There are <%= how_much_interesteds(@party)%> interested in this party </h3>
             <h2>Like what you see?</h2>
             <p>Submit how much you would be willing to pay to attend this awesome party!</p>
             
