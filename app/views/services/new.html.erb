@@ -28,13 +28,7 @@
             <div class="control">
               <input class="input is-medium is-squared"<%= f.number_field :price %>
             </div><br/>
-          </div> <br/>
-          <div class="field is-size-5">
-            <%= f.label :rating %><br />
-            <div class="control">
-              <input class="input is-medium is-squared"<%= f.number_field :rating, min: 1, max: 5, step: 0.01 %>
-            </div>
-          </div> <br/>
+          </div> 
           <div class="field is-size-5">
             <%= fields_for(@coverages) do |c| %>
               <div>
