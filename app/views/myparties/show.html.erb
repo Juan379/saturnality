@@ -17,14 +17,14 @@
         <div class="card-content">
             <div class="content">
               <%= form_for party do |f| %>
-                <% if !party.over %>
+                <% if !party.ended %>
                 <div>
                   <%= f.label :Search %>
                   <%= f.check_box :search%>
                 </div>
                 <div>
-                  <%= f.label :Over %>
-                  <%= f.check_box :over%>
+                  <%= f.label :Ended %>
+                  <%= f.check_box :ended%>
                 </div>
                 <div>
                   <%= f.submit %>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <footer class="card-footer">
-          <% if ! party.over %>
+          <% if !party.ended %>
             <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %> </a>
             <a class="card-footer-item"  <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
           <% end %>

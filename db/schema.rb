@@ -65,10 +65,6 @@ ActiveRecord::Schema.define(version: 2020_11_20_030325) do
     t.string "address"
     t.integer "cost"
     t.boolean "search", default: true
-<<<<<<< HEAD
-=======
-    t.boolean "ended", default: false
->>>>>>> 248237f3bcfa9cbd8b84000996807980979cd0cf
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

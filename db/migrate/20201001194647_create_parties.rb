@@ -9,7 +9,6 @@ class CreateParties < ActiveRecord::Migration[5.2]
       t.boolean :search, :default => true
       t.boolean :ended, :default => false
 
-
       t.timestamps
     end
   end

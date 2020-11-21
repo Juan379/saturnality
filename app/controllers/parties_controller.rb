@@ -5,7 +5,7 @@ class PartiesController < ApplicationController
   helper PartiesHelper
 
   def index
-    @parties = Party.where(search: true, over: false)
+    @parties = Party.where(search: true, ended: false)
   end
 
   def close_and_notify
@@ -72,6 +72,6 @@ class PartiesController < ApplicationController
   private
 
   def party_params
-    params.require(:party).permit(:title, :description, :address, :capacity, :cost, :search, :over)
+    params.require(:party).permit(:title, :description, :address, :capacity, :cost, :search, :ended)
   end
 end
