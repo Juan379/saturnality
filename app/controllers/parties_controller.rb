@@ -5,7 +5,7 @@ class PartiesController < ApplicationController
   helper PartiesHelper
 
   def index
-    @parties = Party.where(search: true)
+    @parties = Party.where(search: true, over: false)
   end
 
   def close_and_notify
