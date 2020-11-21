@@ -15,8 +15,9 @@
           <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a>
         </header>
         <div class="card-content">
-            <div class="content" <%= form_for party do |f| %>
-              <% if !party.over %>
+            <div class="content">
+              <%= form_for party do |f| %>
+                <% if !party.over %>
                 <div>
                   <%= f.label :Search %>
                   <%= f.check_box :search%>
