@@ -1,6 +1,5 @@
 <h1>Edit Service</h1> <br/>
 
-
 <% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
     <%= form_for @service do |f| %>
         <div>
