@@ -65,11 +65,11 @@ ActiveRecord::Schema.define(version: 2020_11_20_030325) do
     t.string "address"
     t.integer "cost"
     t.boolean "search", default: true
+    t.boolean "ended", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.integer "capacity"
-    t.boolean "over"
     t.index ["comuna_id"], name: "index_parties_on_comuna_id"
     t.index ["user_id"], name: "index_parties_on_user_id"
   end
