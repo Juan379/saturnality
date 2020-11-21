@@ -8,19 +8,16 @@
 </section>
 
 <div class="columns is-multiline is-mobile">
-
   <% @parties.each do |party| %>
     <div class="column is-one-quarter ">
       <div class="card">
         <header class="card-header">
-          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %>
-          </a>
+          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a> 
         </header>
         <div class="card-content">
           <div class="content">
-            <%= party.comuna.name %>
-            <br>
-           <%= party.description %>
+            <%= party.comuna.name %><br>
+            <%= party.description %>
           </div>
           <div class="media">
             <div class="media-left">
@@ -34,9 +31,6 @@
             </div>
           </div>
         </div>
-
-
-
         <footer class="card-footer">
           <% if current_user && current_user == party.user  %>
             <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
@@ -49,20 +43,20 @@
         </footer>
       </div>
     </div>
-
   <% end %>
-
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/showcase.js"></script>
-    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            easing: "ease-out",
-            duration: 800,
-        });
-    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>
+
 </html>
 
 

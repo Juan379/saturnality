@@ -1,61 +1,43 @@
 <section class="section">
   <div class="container has-text-centered" data-aos="fade-in">
-    <h2 class="title is-size-1">My Interests</h2>
+    <h2 class="title is-size-1">My party offers</h2>
   </div>
 </section>
 
 <div class="columns is-multiline is-mobile">
+  <% @parties.each do |party| %>
+    <% party.interesteds.each do |interested| %>
+      <% if interested.user_id == @user.id %> <br/>
 
-  <% @parties.each do |parti| %>
-    <% parti.interesteds.each do |interested| %>
-      <% if interested.user_id == @user.id %>
-
-
-        <br/>
-
-    <div class="column is-one-quarter ">
-      <div class="card">
-        <header class="card-header">
-          <a class="card-header-title is-size-3" <%= link_to "#{parti.title}", parti %>
-          </a>
-        </header>
-        <div class="card-content">
-            <div class="content" > your actual offer is: $<%= interested.offer %>
+        <div class="column is-one-quarter ">
+          <div class="card">
+            <header class="card-header">
+              <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a>
+            </header>
+            <div class="card-content">
+              <div class="content" > Your current offer is: $<%= interested.offer %></div>
+            </div>
+            <footer class="card-footer">
+              <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
+              <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this party offer?"} %> </a>
+            </footer>
+          </div>
         </div>
-      </div>
-
-      <footer class="card-footer">
-          <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
-        <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
-      </footer>
-    </div>
-    </div>
+  
       <% end %>
     <% end %>
   <% end %>
+</div>
 
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="../js/showcase.js"></script>
-  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-  <script>
-      AOS.init({
-          easing: "ease-out",
-          duration: 800,
-      });
-  </script>
-  </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>
 
-
-<%# @parties.each do |parti| %>
-  <%# parti.interesteds.each do |interested| %>
-    <%# if interested.user_id == @user.id %>
-<!--      <h3>Yo have an offer in <%#= link_to parti.title, parti %> , your actual offer is: $<%#= interested.offer %> <%#= link_to "Edit", edit_interested_path(interested) %>-->
-<!--        <%#= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %></h3>-->
-<!--      <br/>-->
-    <%# end %>
-  <%# end %>
-<%# end %>
-
-
+</html>

@@ -39,25 +39,19 @@
     <article class="tile is-child box">
       <p class="title">Coverages</p>
       <p class="subtitle"><% @service.comunas.each do |comuna| %>
-          <%= comuna.name %><br>
-        <% end %></p>
+        <%= comuna.name %><br>
+      <% end %></p>
     </article>
   </div>
-</div>
-    </p>
-  </div>
-</div>
+</div></p>
 
 <% if current_user %>
-
   <section class="section">
     <div class="container has-text-left">
       <h2 class="title">Hire for a party:</h2>
     </div>
   </section>
-
   <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
-
     <%= fields_for(@all_parties) do |ap| %>
         <div>
             <%= ap.label :party, "Choose your party" %> <br/>
@@ -65,9 +59,7 @@
         </div>
     <% end %>
     <button class="button"><%= form.submit "Hire service" %></button>
-    <% end %>
-
-
+  <% end %>
 <% end %>
 
 <section class="section">
@@ -79,24 +71,24 @@
 <div class="columns is-multiline is-mobile">
   <div class="column">
     <% if current_user %>
-    <article class="media">
-      <div class="media-content">
-        <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
-        <div class="field">
-          <p class="control">
-            <textarea class="textarea" placeholder="Add a comment..." <%= form.text_area :body %></textarea>
-          </p>
+      <article class="media">
+        <div class="media-content">
+          <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
+            <div class="field">
+              <p class="control">
+                <textarea class="textarea" placeholder="Add a comment..." <%= form.text_area :body %></textarea>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button"><%= form.submit %></button>
+              </p>
+            </div>
+          <% end %>
         </div>
-        <div class="field">
-          <p class="control">
-            <button class="button"><%= form.submit %></button>
-          </p>
-        </div>
-        <% end %>
-      </div>
-    </article>
+      </article>
     <% else %>
-    <h2>You need to be logged in to create a review.</h2>
+      <h2>You need to be logged in to create a review.</h2>
     <% end %>
 
     <% @service.servicereviews.each do |comment| %>
@@ -109,29 +101,22 @@
         <div class="media-content">
           <div class="content">
             <p>
-              <strong><%= comment.user %></strong>
-              <br>
-              <%= comment.body %>
-              <br>
+              <strong><%= comment.user %></strong> <br>
+              <%= comment.body %> <br>
               <% if current_user %>
-            <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-                <small><a><%= link_to 'Delete review', [comment.service, comment],
-                                    method: :delete,
-                                    data: { confirm: 'Are you sure?' } %></a>
-
-              <% end %>
+                <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+                  <small><a><%= link_to 'Delete review', [comment.service, comment],
+                                      method: :delete,
+                                      data: { confirm: 'Are you sure?' } %></a>
+                <% end %>
               <% end %>
             </p>
           </div>
-            </div>
-          </article>
+        </div>
+      </article>
     <% end %>
-
   </div>
 </div>
-
-
-
 
 </html>
 

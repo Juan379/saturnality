@@ -50,7 +50,6 @@ class PartiesController < ApplicationController
     end
   end
 
-
   def destroy
     @party = Party.find(params[:id])
     @party.destroy
@@ -61,7 +60,6 @@ class PartiesController < ApplicationController
     @party = Party.find(params[:id])
   end
   
-    
   def update
     @party = Party.find(params[:id])
     if @party.update(party_params)
@@ -76,7 +74,4 @@ class PartiesController < ApplicationController
   def party_params
     params.require(:party).permit(:title, :description, :address, :capacity, :cost, :search, :over)
   end
-
-  
-
 end

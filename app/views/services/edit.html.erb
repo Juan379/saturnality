@@ -3,32 +3,31 @@
 
 <% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
     <%= form_for @service do |f| %>
-
-    <div>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-    </div>
-    <div>
-        <%= f.label :description %>
-        <%= f.text_area :description %>
-    </div>
-    <div>
-        <%= f.label :capacity %>
-        <%= f.number_field :capacity %>
-    </div>
-    <div>
-        <%= f.label :price %>
-        <%= f.number_field :price %>
-    </div>
-    <%= fields_for(@coverages) do |c| %>
-    <div>
-        <%= c.label "Comunas it covers" %><br />
-        <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => true}) %>
-    </div>
-    <% end %>
-    <div>
-        <%= f.submit %>
-    </div>
+        <div>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+        </div>
+        <div>
+            <%= f.label :description %>
+            <%= f.text_area :description %>
+        </div>
+        <div>
+            <%= f.label :capacity %>
+            <%= f.number_field :capacity %>
+        </div>
+        <div>
+            <%= f.label :price %>
+            <%= f.number_field :price %>
+        </div>
+        <%= fields_for(@coverages) do |c| %>
+        <div>
+            <%= c.label "Comunas it covers" %><br />
+            <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => true}) %>
+        </div>
+        <% end %>
+        <div>
+            <%= f.submit %>
+        </div>
     <% end %>
 <% else %>
     <h2> You're either not logged in or this service isn't yours to edit. </h2>

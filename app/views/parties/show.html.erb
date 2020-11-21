@@ -2,6 +2,9 @@
 <section class="hero is-fullheight" data-aos="fade-in">
   <div class="columns is-mobile">
 
+
+
+
     <div class="column is-5 is-offset-1">
       <div class="card">
         <header class="card-header">
@@ -11,21 +14,15 @@
         </header>
         <div class="card-content ">
           <div class="content is-size-5">
-            <%= @party.description %>
-            <br><br>
-            Address: <%= @party.address %>, <%= @party.comuna.name %>
-            <br>
-            Capacity: <%= @party.capacity %>
-            <br>
-            Cost: <%= @party.cost %>
-            <br>
-            <br>
+            <%= @party.description %><br><br>
+            Address: <%= @party.address %>, <%= @party.comuna.name %> <br>
+            Capacity: <%= @party.capacity %> <br>
+            Cost: <%= @party.cost %> <br><br>
             <% if @party.search %>
               Search state: On going
             <% else %>
               Search state: Terminated
             <% end %> <br/>
-
           </div>
           <div class="media">
             <div class="media-left">
@@ -39,7 +36,6 @@
             </div>
           </div>
         </div>
-
         <footer class="card-footer">
           <% if @party.search && @party.user_id == current_user.id %>
               <p class="card-footer-item"> There is a total of: $<%= how_much_money(@party) %> offered in you party
@@ -59,21 +55,17 @@
             <% end %>
           <% end %>
         </footer>
-    </div>
-      <br><br>
+      </div> <br><br>
       <% if @party.search && @party.user_id != current_user.id %>
         <% if !user_is_interested(current_user, @party)   %>
-         <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
-             <%= form.number_field :offer %>
-            <br /><br />
+          <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
+            <%= form.number_field :offer %>
             <%= form.submit "Submit offer" %>
-
-      <% end %>
+          <% end %>
         <% end %>
       <% end %>
+    </div>
 
-
-  </div>
     <div class="column is-4 is-offset-1">
       <div class="card">
         <header class="card-header ">
@@ -86,8 +78,7 @@
         <div class="card-content ">
           <% if !@party.services.empty? %>
             <% @party.services.each do |service| %>
-              <a class="content is-size-5" <%= link_to service.name, service_path(service) %> </a>
-              <br/>
+              <a class="content is-size-5" <%= link_to service.name, service_path(service) %> </a><br/>
             <% end %>
           <% end %>
         </div>
@@ -97,48 +88,41 @@
             <br/> <br/>
           <% end %>
         </footer>
-
-    </div>
-<br><br>
-      <div class="card">
-        <header class="card-header ">
-          <% if @party.search && @party.user_id == current_user.id %>
-            <% if !@party.interesteds.empty? %>
-              <p class="card-header-title is-size-4">Postulations por your party:</p>
-            <% else %>
-              <p class="card-header-title is-size-4">No postulations for your party yet!</p>
-            <% end %>
-          <% end %>
-        </header>
-
-        <div class="card-content ">
-          <% if @party.search && @party.user_id == current_user.id %>
-            <% if !@party.interesteds.empty? %>
-              <% @party.interesteds.each do |interested| %>
-                <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
-                <br/>
-              <% end %>
-            <% end %>
+    </div> <br><br>
+    <div class="card">
+      <header class="card-header ">
+        <% if @party.search && @party.user_id == current_user.id %>
+          <% if !@party.interesteds.empty? %>
+            <p class="card-header-title is-size-4">Postulations por your party:</p>
           <% else %>
-            <p class="content is-size-5"> There are <%= how_much_interesteds(@party)%> interested in this party </p>
+            <p class="card-header-title is-size-4">No postulations for your party yet!</p>
           <% end %>
-        </div>
-
-
+        <% end %>
+      </header>
+      <div class="card-content ">
+        <% if @party.search && @party.user_id == current_user.id %>
+          <% if !@party.interesteds.empty? %>
+            <% @party.interesteds.each do |interested| %>
+              <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
+              <br/>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="content is-size-5"> There are <%= how_much_interesteds(@party)%> interested in this party </p>
+        <% end %>
       </div>
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="../js/showcase.js"></script>
-<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
-<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        easing: "ease-out",
-        duration: 800,
-    });
-</script>
+  </div>
 
-<% end %>
-
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/showcase.js"></script>
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          easing: "ease-out",
+          duration: 800,
+      });
+  </script>
 </section>
+ <% end %>

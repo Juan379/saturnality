@@ -1,6 +1,5 @@
 <h1>Edit Interested</h1> <br/>
 
-
 <% if (current_user && @interested.user_id == current_user.id) || ( current_user && current_user.has_role?(:admin)) %>
     <%= form_for @interested do |f| %>
         <div>
@@ -10,7 +9,6 @@
         <div>exit
             <%= f.submit %>
         </div>
-
     <% end %>
 <% else %>
     <h2> You're either not logged in or this interested isn't yours to edit. </h2>

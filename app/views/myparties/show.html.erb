@@ -8,17 +8,15 @@
 </section>
 
 <div class="columns is-multiline is-mobile">
-
   <% @my_parties.each do |party| %>
     <div class="column is-one-quarter ">
       <div class="card">
         <header class="card-header">
-          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %>
-          </a>
+          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a>
         </header>
         <div class="card-content">
-          <% if ! party.over %>
-          <div class="content" <%= form_for party do |f| %>
+            <div class="content" <%= form_for party do |f| %>
+              <% if !party.over %>
                 <div>
                   <%= f.label :Search %>
                   <%= f.check_box :search%>
@@ -27,29 +25,26 @@
                   <%= f.label :Over %>
                   <%= f.check_box :over%>
                 </div>
-                <div>Update
+                <div>
                   <%= f.submit %>
                 </div>
+              <% else %>
+                <h1>Your party already ended.</h1>
               <% end %>
-            <% else %>
-              <h1>This party has already end</h1>
             <% end %>
-          </div>
+            </div>
         </div>
-
         <footer class="card-footer">
           <% if ! party.over %>
-
             <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %> </a>
             <a class="card-footer-item"  <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
           <% end %>
         </footer>
       </div>
     </div>
-
   <% end %>
-
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>
 <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">

@@ -1,52 +1,40 @@
 <% if current_user %>
-
 <section class="hero is-fullheight">
   <div class="column has-text-left is-3 is-offset-1">
-    <%= form_for @service do |f| %>
-      <br/>
+    <%= form_for @service do |f| %> <br/>
       <div class="Edit is-centered">
-        <h3 class="logo has-text-green is-size-4">New Service Application Form</h3>
-        <br />
+        <h3 class="logo has-text-green is-size-4">New Service Application Form</h3> <br/>
         <form>
           <div class="field is-size-5">
             <%= f.label :name %> <br/>
             <div class="control">
               <input class="input is-medium is-squared" <%= f.text_field :name %>
             </div>
-          </div>
-          <br />
+          </div> <br/>
           <div class="field is-size-5">
             <%= f.label :description %> <br/>
             <div class="control">
               <input class="input is-medium is-squared"<%= f.text_area :description %>
             </div>
-          </div>
-          <br />
+          </div> <br/>
           <div class="field is-size-5">
             <%= f.label :capacity %><br />
             <div class="control">
               <input class="input is-medium is-squared"<%= f.number_field :capacity %>
             </div>
-          </div>
-          <br />
-
+          </div> <br/>
           <div class="field is-size-5">
             <%= f.label :price %><br />
             <div class="control">
               <input class="input is-medium is-squared"<%= f.number_field :price %>
-            </div>
-          </div>
-          <br />
-
-
+            </div><br/>
+          </div> <br/>
           <div class="field is-size-5">
             <%= f.label :rating %><br />
             <div class="control">
               <input class="input is-medium is-squared"<%= f.number_field :rating, min: 1, max: 5, step: 0.01 %>
             </div>
-          </div>
-          <br />
-
+          </div> <br/>
           <div class="field is-size-5">
             <%= fields_for(@coverages) do |c| %>
               <div>
@@ -54,61 +42,13 @@
                 <%= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {:multiple => true}) %>
               </div>
             <% end %>
-          </div>
-
-          <br />
+          </div> <br/>
           <button class="button is-block is-fullwidth is-black is-medium is-rounded" type="submit">
             Submit!
           </button>
-        </form>
-        <br>
-
-      </div>
-      </div>
+        </form> <br>
       </div>
     <% end %>
-    </section>
+  </div>
+</section>
 <% end %>
-
-
-
-
-<!--<h1>New Service</h1> <br/>-->
-
-
-
-<%# if current_user %>
-    <%#= form_for @service do |f| %>
-<!--    <div>-->
-        <%#= f.label :name %>
-        <%#= f.text_field :name %>
-<!--    </div>-->
-<!--    <div>-->
-        <%#= f.label :description %>
-        <%#= f.text_area :description %>
-<!--    </div>-->
-<!--    <div>-->
-        <%#= f.label :capacity %>
-        <%#= f.number_field :capacity %>
-<!--    </div>-->
-<!--    <div>-->
-        <%#= f.label :price %>
-        <%#= f.number_field :price %>
-<!--    </div>-->
-<!--    <div>-->
-        <%#= f.label :rating %>
-        <%#= f.number_field :rating, min: 1, max: 5, step: 0.01 %>
-<!--    </div>-->
-    <%#= fields_for(@coverages) do |c| %>
-<!--    <div>-->
-<!--        <%#= c.label "Comunas it covers" %><br />-->
-        <%#= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {:multiple => true}) %>
-<!--    </div>-->
-    <%# end %>
-<!--    <div>-->
-        <%#= f.submit %>
-<!--    </div>-->
-    <%# end %>
-<%# else %>
-<!--    <h2>You need to be logged in to create a new service.</h2>-->
-<%# end %>

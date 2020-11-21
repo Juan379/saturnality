@@ -9,13 +9,6 @@ class InterestedsController < ApplicationController
     redirect_to party_path(@party) if @interested.save
   end
 
-  # def destroy
-  #     @service = Service.find(params[:service_id])
-  #     @servicereview = @service.servicereviews.find(params[:id])
-  #     @servicereview.destroy
-  #     redirect_to service_path(@service)
-  # end
-
   def index
     @interesteds = Interested.all
   end
@@ -35,8 +28,7 @@ class InterestedsController < ApplicationController
     @interested.destroy
     redirect_to party_path(@parti_id)
   end
-
-
+  
   def show
     @party = Party.find(params[:party_id])
     @interesteds = @party.interesteds
