@@ -43,16 +43,6 @@
             </div>
           </div>
         </div>
-        <footer class="card-footer">
-          <% if current_user && current_user == party.user  %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
-          <% end %>
-          <% if current_user && current_user.has_role?(:admin) %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
-          <% end %>
-        </footer>
       </div>
     </div>
   <% end %>
