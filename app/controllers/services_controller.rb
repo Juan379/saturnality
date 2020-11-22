@@ -41,7 +41,7 @@ class ServicesController < ApplicationController
   def update
     @service = Service.find(params[:id])
     if @service.update(service_params)
-      redirect_to services_path
+      redirect_to service_path(@service)
     else
       render :edit
     end
@@ -56,6 +56,6 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    params.require(:service).permit(:name, :description, :capacity, :price, :rating, :status)
+    params.require(:service).permit(:name, :description, :capacity, :price, :status)
   end
 end

@@ -1,13 +1,13 @@
-<h1>Edit Interested</h1> <br/>
+<h1>Edit party offer</h1> <br/>
 
 <% if (current_user && @interested.user_id == current_user.id) || ( current_user && current_user.has_role?(:admin)) %>
     <%= form_for @interested do |f| %>
         <div>
             <%= f.label :offer %>
-            <%= f.text_field :offer %>
+            <%= f.text_field :offer %> 
         </div>
-        <div>exit
-            <%= f.submit %>
+        <div><br/>
+            <%= f.submit "Update" %>
         </div>
     <% end %>
 <% else %>
