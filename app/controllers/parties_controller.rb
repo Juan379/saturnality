@@ -24,6 +24,7 @@ class PartiesController < ApplicationController
           end
           redirect_to party_path(party), notice: "Party search closed and attendees notified correctly!"
         else
+          flash[:error] = "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
           redirect_to party_path(party), notice: "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
         end
     end
