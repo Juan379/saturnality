@@ -34,16 +34,7 @@
           </div>
         </div>
 
-        <footer class="card-footer">
-          <% if current_user && current_user == service.user  %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %></a>
-          <% end %>
-          <% if current_user && current_user.has_role?(:admin) %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_service_path(service) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %></a>
-          <% end %>
-        </footer>
+
       </div>
     </div>
   <% end %>

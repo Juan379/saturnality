@@ -63,6 +63,20 @@
             </div>
           </div>
         </div>
+        <br>
+        <% if current_user && current_user == service.user  %>
+          <div class="has-text-centered">
+            <a class="button is-black" <%= link_to "Edit", edit_service_path(service) %> </a>
+            <a class="button is-light" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %> </a>
+          </div>
+        <% end %>
+        <% if current_user && current_user.has_role?(:admin) %>
+          <div class="has-text-centered">
+            <a class="button is-black" <%= link_to "Edit", edit_service_path(service) %> </a>
+            <a class="button is-light" <%= link_to "Delete", service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %> </a>
+          </div>
+        <% end %>
+
       </div>
     </div>
     <br>

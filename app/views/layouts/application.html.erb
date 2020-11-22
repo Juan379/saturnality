@@ -36,11 +36,11 @@
   </head>
 
   <!-- Hero -->
-  <body class="has-navbar-fixed-top">
+
   <section id="hero" class="hero is-medium" >
     <div class="hero-head">
 
-      <nav class="navbar is-white is-fixed-top">
+      <nav class="navbar is-white">
         <div class="container" >
           <div class="navbar-brand">
             <a class="navbar-item is-size-4" <%= link_to "SATURNALITY", static_pages_home_url  %> </a>
@@ -49,6 +49,20 @@
           <div class="navbar-menu">
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    How it works
+                  </a>
+
+                  <div class="navbar-dropdown">
+                    <a class="navbar-item" <%= link_to 'About parties', parties_url %>
+                    </a>
+                    <a class="navbar-item" <%= link_to "About services", new_party_url %>
+                    </a>
+                  </div>
+                </div>
+
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Parties
@@ -57,8 +71,13 @@
                   <div class="navbar-dropdown">
                     <a class="navbar-item" <%= link_to 'Search for a party', parties_url %>
                     </a>
-                    <a class="navbar-item" <%= link_to "Create Party", new_party_url %>
+                    <a class="navbar-item" <%= link_to "Create party", new_party_url %>
                     </a>
+                    <hr class="navbar-divider">
+                    <strong><p class="navbar-item"> My Parties</p></strong>
+                    <a class="navbar-item" <%= link_to "Created", mypartiesshow_path %> </a>
+                    <a class="navbar-item" <%= link_to "Pending", myinterestedshow_path %> </a>
+                    <a class="navbar-item" <%= link_to "Accepted to", mypartiesshow_path %> </a>
                   </div>
                 </div>
 
@@ -68,10 +87,12 @@
                   </a>
 
                   <div class="navbar-dropdown">
-                    <a class="navbar-item" <%= link_to 'view services', services_url %>
+                    <a class="navbar-item" <%= link_to 'View services', services_url %>
                     </a>
-                    <a class="navbar-item" <%= link_to "Create Service", new_service_url %>
+                    <a class="navbar-item" <%= link_to "Create service", new_service_url %>
                     </a>
+                    <hr class="navbar-divider">
+                    <strong><a class="navbar-item" <%= link_to "My Services", mypartiesshow_path %> </a> </strong>
                   </div>
                 </div>
                 <% if current_user.has_role?(:admin) %>
@@ -88,30 +109,19 @@
                 <% end %>
 
               </div>
-
-
               <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Profile
                   </a>
 
-
                   <div class="navbar-dropdown is-right">
-                    <a class="navbar-item" <%= link_to "My Parties", mypartiesshow_path %>
-                    </a>
-                    <a class="navbar-item" <%= link_to "My Interestation", myinterestedshow_path %>
-                    </a>
 
-                    <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %>
-                    </a>
-                    <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %>
-                    </a>
+                    <a class="navbar-item" <%= link_to "View Profile", user_path(current_user.id) %> </a>
+                    <a class="navbar-item" <%= link_to "Edit Profile", edit_user_registration_path %> </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item"
-                    <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-                    </a>
-
+                    <%= link_to "Log Out", destroy_user_session_path, :method => :delete %> </a>
 
                   </div>
                 </div>
@@ -131,7 +141,7 @@
 
 <% end %>
 <%= yield %>
-</body>
+
 <div class="footer">
   <p>
     <strong class="white"> <%= link_to 'SATURNALITY', static_pages_home_url %></strong> made with ⚡ by @Juan379, @victoriapsb, and @MINGOD24 
