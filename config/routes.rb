@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :users, :only =>[:show]
   root to: 'static_pages#home'
   get 'static_pages/home'
+  get 'static_pages/about_parties'
+  get 'static_pages/about_services'
+
   resources :comunas
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'

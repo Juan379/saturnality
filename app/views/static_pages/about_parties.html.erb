@@ -1,0 +1,69 @@
+<% if current_user %>
+<!DOCTYPE html>
+  <html lang="en">
+
+  <body>
+  <!-- Begin Preloader -->
+  <div class="preloader-wrapper">
+    <div class="preloader">
+      <img alt="" />
+    </div>
+  </div>
+  <!-- End Preloader-->
+
+  <!-- Begin Main Content -->
+  <div class="main-content">
+    <!-- Begin About Me Section -->
+    <div class="section-light about-me" id="about-me">
+      <div class="container">
+        <div class="column is-12 about-me">
+          <h1 class="title has-text-centered section-title is-size-1" data-aos="fade-in">Plan a party</h1>
+        </div>
+        <div class="columns is-multiline">
+          <div
+            class="column is-6 has-vertically-aligned-content"
+            data-aos="fade-right">
+            <p class="is-larger">
+              &emsp;&emsp;<strong>
+            </strong>
+            </p>
+            <br/>
+            <h1 class="is-size-4 has-text-justified">Organize a party in few simple steps! Just set the location, amout of 
+            attendees you wish to have and price, we'll handle the rest! You may also select different services to hire for your 
+            event in order to have the best experience ever.
+              <br/>
+              <br/>
+              If you are just looking to have a great time, you can easily browse through the app and find the best
+              parties in town.</h1>
+            <br/>
+            <div class="is-divider"></div>
+
+          </div>
+          <div class="column is-6 right-image " data-aos="fade-left">
+            <img
+            <%= image_tag('undraw_collaborators_prrw.png') %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End About US Content -->
+    <br/><br/><br/><br/><br/><br/>
+
+  </div>
+  <!-- End Main Content -->
+
+  <!-- Begin Footer -->
+
+  <!-- End Footer -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/showcase.js"></script>
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          easing: "ease-out",
+          duration: 800,
+      });
+  </script>
+<% end %>
