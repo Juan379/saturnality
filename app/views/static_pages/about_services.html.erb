@@ -1,0 +1,67 @@
+<% if current_user %>
+<!DOCTYPE html>
+  <html lang="en">
+
+  <body>
+  <!-- Begin Preloader -->
+  <div class="preloader-wrapper">
+    <div class="preloader">
+      <img alt="" />
+    </div>
+  </div>
+  <!-- End Preloader-->
+
+  <!-- Begin Main Content -->
+  <div class="main-content">
+    <!-- Begin About Me Section -->
+    <div class="section-light about-me" id="about-me">
+      <div class="container">
+        <div class="column is-12 about-me">
+          <h1 class="title has-text-centered section-title is-size-1" data-aos="fade-in">Offer a service</h1>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-6 right-image " data-aos="fade-right">
+            <img
+            <%= image_tag('undraw_forms_78yw.png') %>
+          </div>
+          <div
+            class="column is-6 has-vertically-aligned-content"
+            data-aos="fade-left"
+          >
+            <p class="is-larger">
+              &emsp;&emsp;<strong>
+            </strong
+            >
+            </p>
+            <br />
+            <h1 class="is-size-4 has-text-justified">Because we want to offer you the best experience, once you've joined 
+            our community, you can list a service for parties to hire! Just fill out the service registration form
+            and wait for it to be approved. Now you can earn money as other users hire your service for their parties!</h1>
+            <div class="is-divider"></div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End About US Content -->
+    <br/><br/><br/><br/><br/><br/>
+
+  </div>
+  <!-- End Main Content -->
+
+  <!-- Begin Footer -->
+
+  <!-- End Footer -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/showcase.js"></script>
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          easing: "ease-out",
+          duration: 800,
+      });
+  </script>
+<% end %>

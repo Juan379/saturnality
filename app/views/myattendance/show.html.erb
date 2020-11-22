@@ -1,0 +1,64 @@
+<section class="hero is-medium">
+  <div class="container has-text-centered" data-aos="fade-in">
+    <h2 class="title is-size-1 ">Parties you're attending</h2>
+    <% if @closed_parties.empty? %>
+      <h3 class="subtitle is-size-5"> You've not been accepted to attend any parties yet.</h3>
+    <% end %>
+  </div>
+</section>
+<br>
+<section class="hero">
+  <div class="hero-body">
+<div class="container">
+<div class="columns is-multiline is-mobile">
+  <% @closed_parties.each do |party| %>
+    <div class="column is-4 ">
+      <div class="card">
+        <header class="card-header">
+          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a> 
+        </header>
+        <div class="card-content">
+          <div class="content">
+            Address: <%= party.address %>, <%= party.comuna.name %> <br>
+            Cost: <%= party.cost %><br>
+            Interested users: <%= party.interesteds.count %>
+          </div>
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag('picture.png') %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= party.user.name %></p>
+              <p class="subtitle is-6"><%= party.user.age %></p>
+            </div>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <% if current_user && current_user == party.user  %>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+          <% end %>
+          <% if current_user && current_user.has_role?(:admin) %>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+          <% end %>
+        </footer>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>

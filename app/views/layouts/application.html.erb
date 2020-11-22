@@ -56,9 +56,9 @@
                   </a>
 
                   <div class="navbar-dropdown">
-                    <a class="navbar-item" <%= link_to 'About parties', parties_url %>
+                    <a class="navbar-item" <%= link_to 'About parties', static_pages_about_parties_url %>
                     </a>
-                    <a class="navbar-item" <%= link_to "About services", new_party_url %>
+                    <a class="navbar-item" <%= link_to "About services", static_pages_about_services_url %>
                     </a>
                   </div>
                 </div>
@@ -76,8 +76,8 @@
                     <hr class="navbar-divider">
                     <strong><p class="navbar-item"> My Parties</p></strong>
                     <a class="navbar-item" <%= link_to "Created", mypartiesshow_path %> </a>
-                    <a class="navbar-item" <%= link_to "Pending", myinterestedshow_path %> </a>
-                    <a class="navbar-item" <%= link_to "Accepted to", mypartiesshow_path %> </a>
+                    <a class="navbar-item" <%= link_to "Pending acceptance", myinterestedshow_path %> </a>
+                    <a class="navbar-item" <%= link_to "Accepted to", myattendanceshow_path %> </a>
                   </div>
                 </div>
 
@@ -92,7 +92,9 @@
                     <a class="navbar-item" <%= link_to "Create service", new_service_url %>
                     </a>
                     <hr class="navbar-divider">
-                    <strong><a class="navbar-item" <%= link_to "My Services", mypartiesshow_path %> </a> </strong>
+                    <strong><p class="navbar-item"> My Services</p></strong>
+                    <a class="navbar-item" <%= link_to "Pending acceptance", mypservicesshow_path %> </a>
+                    <a class="navbar-item" <%= link_to "Accepted", myaservicesshow_path %> </a>
                   </div>
                 </div>
 

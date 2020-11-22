@@ -19,11 +19,18 @@ Rails.application.routes.draw do
   resources :users, :only =>[:show]
   root to: 'static_pages#home'
   get 'static_pages/home'
+  get 'static_pages/about_parties'
+  get 'static_pages/about_services'
+
   resources :comunas
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'
   get '/myparties/show' => 'myparties#show', as: :mypartiesshow
   get '/myinterested/show' => 'myinterested#show', as: :myinterestedshow
+  get '/myattendance/show' => 'myattendance#show', as: :myattendanceshow
+  get '/myaservices/show' => 'myaservices#show', as: :myaservicesshow
+  get '/mypservices/show' => 'mypservices#show', as: :mypservicesshow
+
   get '/admin/show' => 'admin#show', as: :admin
   resources :services do
     resources :servicereviews

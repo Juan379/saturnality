@@ -1,14 +1,15 @@
 <section class="section">
   <div class="container has-text-centered" data-aos="fade-in">
-    <h2 class="title is-size-1">My party offers</h2>
+    <h2 class="title is-size-1">Parties you want to attend</h2>
   </div>
 </section>
 
 <div class="columns is-multiline is-mobile">
+  <% @shown = false %>
   <% @parties.each do |party| %>
     <% party.interesteds.each do |interested| %>
       <% if interested.user_id == @user.id %> <br/>
-
+        <% @shown = true %>
         <div class="column is-one-quarter ">
           <div class="card">
             <header class="card-header">
@@ -23,11 +24,18 @@
             </footer>
           </div>
         </div>
-  
       <% end %>
     <% end %>
   <% end %>
 </div>
+
+<% if !@shown %>
+  <section class="section">
+    <div class="container has-text-centered" data-aos="fade-in">
+        <h3 class="subtitle is-size-5"> You haven't made offers to attend parties yet.</h3>
+    </div>
+  </section>
+<% end %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>
