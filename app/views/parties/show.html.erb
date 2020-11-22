@@ -71,8 +71,8 @@
             <% if user_is_interested(current_user, @party)  %>
               <% @party.interesteds.each do |interested| %>
                 <% if interested.user_id == current_user.id  %>
-                  <a class="card-footer-item"<%= link_to "Edit", edit_interested_path(interested) %> </a>
-                  <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
+                  <a class="card-footer-item"> <%= link_to "Edit", edit_interested_path(interested) %> </a>
+                  <a class="card-footer-item"> <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
                 <% end %>
               <% end %>
             <% else %>
@@ -82,8 +82,12 @@
                 <%= form.number_field :offer %>
                   <button class="button"><%= form.submit "Submit offer" %></button>
                 <% end %>
+<<<<<<< Updated upstream
               </p>
 >>>>>>> 8050cc54504224b9488068ea4267ce749c553ce3
+=======
+
+>>>>>>> Stashed changes
             <% end %>
         </footer>
       </div>
