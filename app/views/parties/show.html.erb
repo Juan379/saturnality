@@ -53,6 +53,10 @@
             <% if !user_is_interested(current_user, @party)   %>
             Like what you see? <br>
             Submit how much you would be willing to pay to attend this awesome party!
+              <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
+                <%= form.number_field :offer %>
+                <%= form.submit "Submit offer" %>
+              <% end %>
             <% else  %>
               <% @party.interesteds.each do |interested| %>
                 <% if interested.user_id == current_user.id   %>
@@ -72,10 +76,6 @@
                 <% end %>
               <% end %>
             <% else %>
-              <p class="card-footer-item" <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
-                <%= form.number_field :offer %>
-                <%= form.submit "Submit offer" %>
-              <% end %></p>
             <% end %>
         </footer>
       </div>

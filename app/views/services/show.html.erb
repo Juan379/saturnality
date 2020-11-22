@@ -19,6 +19,14 @@
           <p class="title"><%= @service.rating %></p>
         </div>
       </div>
+    <% if current_user && current_user == @service.user || current_user && current_user.has_role?(:admin) %>
+      <div class="level-item has-text-centered">
+        <div>
+          <a class="button is-black is-medium" <%= link_to "Edit", edit_service_path(@service) %> </a>
+          <a class="button is-light is-medium" <%= link_to "Delete", @service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %> </a>
+        </div>
+      </div>
+    <% end %>
   </nav>
   <br>
 
@@ -66,13 +74,7 @@
             </div>
           </div>
         </div>
-        <br>
-        <% if current_user && current_user == @service.user || current_user && current_user.has_role?(:admin) %>
-          <div class="has-text-centered">
-            <a class="button is-black" <%= link_to "Edit", edit_service_path(@service) %> </a>
-            <a class="button is-light" <%= link_to "Delete", @service, method: :delete, data: { confirm: "Do you really want to delete this service?"} %> </a>
-          </div>
-        <% end %>
+
       </div>
     </div>
     <br>
@@ -82,21 +84,21 @@
   <section class="section">
     <div class="container has-text-left">
       <h2 class="title">Hire for a party:</h2>
+      <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
+        <% if @valid_parties.count > 0 %>
+          <%= fields_for(@all_parties) do |ap| %>
+            <div>
+              <%= ap.label :party, "Choose your party" %> <br/>
+              <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
+            </div>
+          <% end %>
+          <button class="button"><%= form.submit "Hire service" %></button>
+        <% else %>
+          You have no parties that match the comunas of this service.
+        <% end %>
+      <% end %>
     </div>
   </section>
-  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
-    <% if @valid_parties.count > 0 %>
-      <%= fields_for(@all_parties) do |ap| %>
-        <div>
-          <%= ap.label :party, "Choose your party" %> <br/>
-          <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
-        </div>
-      <% end %>
-      <button class="button"><%= form.submit "Hire service" %></button>
-    <% else %>
-      You have no parties that match the comunas of this service.
-    <% end %>
-  <% end %>
 
   <section class="section">
     <div class="container has-text-left">
