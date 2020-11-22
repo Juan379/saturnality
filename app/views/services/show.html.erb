@@ -84,7 +84,7 @@
   <section class="section">
     <div class="container has-text-left">
       <h2 class="title">Hire for a party:</h2>
-<<<<<<< HEAD
+
       <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
         <% if @valid_parties.count > 0 %>
           <%= fields_for(@all_parties) do |ap| %>
@@ -99,22 +99,7 @@
         <% end %>
       <% end %>
     </div>
-=======
-  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
-    <% if @valid_parties.count > 0 %>
-      <%= fields_for(@all_parties) do |ap| %>
-        <div>
-          <%= ap.label :party, "Choose your party" %> <br/>
-          <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
-        </div>
-      <% end %>
-      <button class="button"><%= form.submit "Hire service" %></button>
-    <% else %>
-      <h2 class="subtitle">You have no parties that match the comunas of this service.</h2>
-    <% end %>
-  <% end %>
-  </div>
->>>>>>> 8050cc54504224b9488068ea4267ce749c553ce3
+
   </section>
 
   <section class="section">
