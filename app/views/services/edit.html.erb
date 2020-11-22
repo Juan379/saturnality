@@ -1,125 +1,56 @@
+<% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
 <section class="hero">
   <div class="column has-text-left is-3 is-offset-1">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "users/shared/error_messages", resource: resource %>
+    <%= form_for @service do |f| %>
 
       <div class="Edit is-centered">
-        <h3 class="logo has-text-green is-size-4">Edit <%= resource_name.to_s.humanize %> information</h3>
+        <h3 class="logo has-text-green is-size-4">Edit Service</h3>
         <br />
         <form>
           <div class="field is-size-5">
-            <%= f.label :email %>
+            <%= f.label :name %>
             <div class="control">
-              <input class="input is-medium is-squared"<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-          </div>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
-          <br />
-          <div class="field is-size-5">
-            <%= f.label :name %><br />
-            <div class="control">
-              <input class="input is-medium is-squared"<%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+              <input class="input is-medium is-squared" <%= f.text_field :name %>
             </div>
           </div>
           <br />
           <div class="field is-size-5">
-            <%= f.label :age %><br />
+            <%= f.label :description %>
             <div class="control">
-              <input class="input is-medium is-squared"<%= f.text_field :age, autofocus: true, autocomplete: "age" %>
+              <input class="input is-medium is-squared"<%= f.text_field :description %>
             </div>
           </div>
           <br />
           <div class="field is-size-5">
-            <%= f.label :phone %><br />
+            <%= f.label :capacity %>
             <div class="control">
-              <input class="input is-medium is-squared"<%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+              <input class="input is-medium is-squared"<%= f.number_field :capacity %>
             </div>
           </div>
           <br />
           <div class="field is-size-5">
-            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
+            <%= f.label :price %>
             <div class="control">
-              <input class="input is-medium is-squared" <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
-          </div>
-          <br />
-          <div class="field is-size-5">
-            <%= f.label :password_confirmation %><br />
-            <div class="control">
-              <input class="input is-medium is-squared"<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </div>
-          </div>
-          <br />
-          <div class="field is-size-5">
-            <%= f.label :current_password %> <i>(to confirm your changes)</i><br />
-            <div class="control">
-              <input class="input is-medium is-squared"<%= f.password_field :current_password, autocomplete: "current-password" %>
+              <input class="input is-medium is-squared"<%= f.number_field :price %>
             </div>
           </div>
 
-          <br />
-          <button class="button is-block is-fullwidth is-black is-medium is-rounded" type="submit">
-            Update
-          </button>
+
+          <div>
+            <%= f.submit %>
+          </div>
+
         </form>
         <br>
-        <nav class="level">
-          <div class="level-item has-text-centered">
-            <div>
-              Unhappy? <a <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %> </a>
-            </div>
-          </div>
-        </nav>
+
       </div>
       </div>
       </div>
       </section>
-      </body>
-
-      </html>
-
     <% end %>
-
-
-
-<h1>Edit Service</h1> <br/>
-
-<% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
-    <%= form_for @service do |f| %>
-        <div>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-        </div>
-        <div>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-        </div>
-        <div>
-            <%= f.label :capacity %>
-            <%= f.number_field :capacity %>
-        </div>
-        <div>
-            <%= f.label :price %>
-            <%= f.number_field :price %>
-        </div>
-        <%= fields_for(@coverages) do |c| %>
-        <div>
-            <%= c.label "Comunas it covers" %><br />
-            <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => true}) %>
-        </div>
-        <% end %>
-        <div>
-            <%= f.submit %>
-        </div>
-    <% end %>
-<% else %>
-    <h2> You're either not logged in or this service isn't yours to edit. </h2>
 <% end %>
+
+
 
 
 

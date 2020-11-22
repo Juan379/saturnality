@@ -1,38 +1,60 @@
-<h1>Edit Party</h1> <br/>
+<% if current_user && @party.user == current_user || current_user.has_role?(:admin) %>
+  <section class="hero">
+    <div class="column has-text-left is-3 is-offset-1">
+      <%= form_for @party do |f| %>
 
-<% if (current_user && @party.user == current_user) || ( current_user && current_user.has_role?(:admin)) %>
-    <%= form_for @party do |f| %>
-        <div>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-        </div>
-        <div>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-        </div>
-        <div>
-            <%= f.label :address %>
-            <%= f.text_field :address %>
-        </div>
-        <div>
-            <%= f.label :capacity %>
-            <%= f.number_field :capacity %>
-        </div>
-        <div>
-            <%= f.label :cost %>
-            <%= f.number_field :cost %>
-        </div>
-
-        <%= fields_for(@all_comunas) do |c| %>
-            <div>
-                <%= c.label "Comuna it belongs to" %><br />
-                <%= collection_select(:comunas, :id, Comuna.all, :id, :name, {}, {:multiple => false}) %>
+        <div class="Edit is-centered">
+          <h3 class="logo has-text-green is-size-4">Edit Party</h3>
+          <br />
+          <form>
+            <div class="field is-size-5">
+              <%= f.label :title %>
+              <div class="control">
+                <input class="input is-medium is-squared" <%= f.text_field :title %>
+              </div>
             </div>
-        <% end %> <br>
-        <div>
-            <%= f.submit %>
+            <br />
+            <div class="field is-size-5">
+              <%= f.label :description %>
+              <div class="control">
+                <input class="input is-medium is-squared"<%= f.text_field :description %>
+              </div>
+            </div>
+            <br />
+            <div class="field is-size-5">
+              <%= f.label :address %>
+              <div class="control">
+                <input class="input is-medium is-squared"<%= f.text_field :address %>
+              </div>
+            </div>
+            <br />
+            <div class="field is-size-5">
+              <%= f.label :capacity %>
+              <div class="control">
+                <input class="input is-medium is-squared"<%= f.number_field :capacity %>
+              </div>
+            </div>
+            <br />
+            <div class="field is-size-5">
+              <%= f.label :cost %>
+              <div class="control">
+                <input class="input is-medium is-squared"<%= f.number_field :cost %>
+              </div>
+            </div>
+
+
+            <div>
+              <%= f.submit %>
+            </div>
+
+          </form>
+          <br>
+
         </div>
-    <% end %>
-<% else %>
-    <h2> You're either not logged in or this party isn't yours to edit. </h2>
+        </div>
+        </div>
+        </section>
+      <% end %>
 <% end %>
+
+
