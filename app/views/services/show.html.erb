@@ -46,14 +46,14 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= link_to  @service.user.name , user_path(@service.user.id) %></p>
+              <a class="title is-size-4" <%= link_to "#{@service.user.name}", user_path(@service.user.id) %></a><br/>
               <p class="subtitle is-6"><%= @service.user.email %></p>
             </div>
             </div>
           </div>
         </div>
 
-        </div>
+      </div>
       <div class="column is-4 is-offset-1">
         <div class="card">
           <header class="card-header ">
@@ -101,6 +101,7 @@
   <section class="section">
     <div class="container has-text-left">
       <h2 class="title">Reviews</h2>
+      <% if current_user != @service.user %>
       <article class="media">
         <div class="media-content">
           <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
@@ -117,6 +118,7 @@
           <% end %>
         </div>
       </article>
+      <% end %>
       <% if !@service.servicereviews.empty? %>
       <% @service.servicereviews.each do |comment| %>
         <% if comment.body %>
@@ -128,7 +130,6 @@
               </div>
               <div class="media-content">
                 <div class="content">
-                  <p>
                     <strong><%= comment.user.name %></strong> <br>
                     <%= comment.body %> <br>
                     <% if current_user %>
@@ -144,6 +145,8 @@
             </article>
         <% end %>
       <% end %>
+      <% else %>
+        <h2 class="subtitle">No reviews yet</h2>
       <% end %>
       <br>
     </div>

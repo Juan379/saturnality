@@ -1,5 +1,5 @@
 <% if current_user %>
-<section class="hero is-fullheight" data-aos="fade-in">
+<section class="hero" data-aos="fade-in">
   <div class="columns is-mobile">
     <div class="column is-5 is-offset-1">
       <div class="card">
@@ -10,17 +10,21 @@
         </header>
         <div class="card-content ">
           <div class="content is-size-5">
-            <%= @party.description %><br><br>
-            Address: <%= @party.address %>, <%= @party.comuna.name %> <br>
-            Capacity: <%= @party.capacity %> <br>
-            Cost: <%= @party.cost %> <br><br>
+            <%= @party.description %>
+          </div>
+          <div class="content is-size-5"><strong>Address:</strong>
+             <%= @party.address %>, <%= @party.comuna.name %> <br>
+            <strong>Capacity:</strong> <%= @party.capacity %> <br>
+            <strong>Cost:</strong> <%= @party.cost %> <br>
+          </div>
+          <div class="content is-size-5">
             <% if @party.user_id == current_user.id || current_user.has_role?(:admin) %>
               <% if @party.search %>
-                Search state: On going
+                <strong>Search state:</strong> On going
               <% else %>
-                Search state: Terminated
+                <strong>Search state:</strong> Terminated
               <% end %> <br/>
-            <% end %> 
+            <% end %>
           </div>
           <div class="media">
             <div class="media-left">
@@ -29,43 +33,96 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= link_to  @party.user.name , user_path(@party.user.id) %></p>
+              <a class="title is-size-4" <%= link_to "#{@party.user.name}", user_path(@party.user.id) %></a><br/>
               <p class="subtitle is-6"><%= @party.user.age %></p>
             </div>
           </div>
         </div>
-        <footer class="card-footer">
-          <% if @party.search && @party.user_id == current_user.id %>
-              <% if how_much_money(@party) > 0 %>
-                <p class="card-footer-item"> Users have offered a total of $<%= how_much_money(@party) %> to attend your party. </p>
+      </div>
+      <br><br>
+
+      <% if @party.search && @party.user_id != current_user.id %>
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title is-size-3">
+            Your Offers
+          </p>
+        </header>
+        <div class="card-content ">
+          <div class="content is-size-5">
+            <% if !user_is_interested(current_user, @party)   %>
+            Like what you see? <br>
+            Submit how much you would be willing to pay to attend this awesome party!
+            <% else  %>
+              <% @party.interesteds.each do |interested| %>
+                <% if interested.user_id == current_user.id   %>
+                  Your actual offer is: $<%= interested.offer %>
+                <% end %>
               <% end %>
-          <% else %>
+
+            <% end %>
+          </div>
+        </div>
+        <footer class="card-footer">
             <% if user_is_interested(current_user, @party)   %>
               <% @party.interesteds.each do |interested| %>
                 <% if interested.user_id == current_user.id   %>
-                  <p class="card-footer-item"> Your actual offer is: $<%= interested.offer %> </p>
                   <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
                   <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
                 <% end %>
               <% end %>
             <% else %>
-              <p class="card-footer-item"> Like what you see? <br>
-                Submit how much you would be willing to pay to attend this awesome party!</p>
+              <p class="card-footer-item" <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
+                <%= form.number_field :offer %>
+                <%= form.submit "Submit offer" %>
+              <% end %></p>
             <% end %>
-          <% end %>
         </footer>
-      </div> <br><br>
-      <% if @party.search && @party.user_id != current_user.id %>
-        <% if !user_is_interested(current_user, @party)   %>
-          <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
-            <%= form.number_field :offer %>
-            <%= form.submit "Submit offer" %>
-          <% end %>
-        <% end %>
+      </div>
+
+      <% elsif @party.search && @party.user_id == current_user.id && how_much_money(@party) > 0 %>
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title is-size-3">
+              Offered
+            </p>
+          </header>
+          <div class="card-content ">
+            <div class="content is-size-5">
+              Users have offered a total of $<%= how_much_money(@party) %> to attend your party.
+            </div>
+          </div>
+        </div>
+
       <% end %>
+       <br><br>
+      <br><br>
     </div>
 
+    <% if @party.search %>
     <div class="column is-4 is-offset-1">
+      <% if current_user && current_user == @party.user || current_user && current_user.has_role?(:admin) %>
+        <div class="level">
+        <% if how_much_money(@party) >= @party.cost %>
+            <div class="level-item has-text-centered">
+              <div>
+                <a class="button is-medium is-link" <%= link_to 'Close and notify', close_and_notify_party_path(@party.id), method: :post, class: 'btn primary' %> </a>
+              </div>
+            </div>
+          <% end %>
+          <div class="level-item has-text-centered">
+            <div>
+              <a class="button is-medium is-black" <%= link_to "Edit", edit_party_path(@party) %> </a>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <a class="button is-medium is-light" <%= link_to "Delete", @party, method: :delete, data: { confirm: "Do you really want to delete this party?"} %> </a>
+            </div>
+          </div>
+        </div>
+        <br><br>
+      <% end %>
       <div class="card">
         <header class="card-header ">
           <% if !@party.services.empty? %>
@@ -87,42 +144,97 @@
             <br/> <br/>
           <% end %>
         </footer>
-    </div> <br><br>
-    <div class="card">
-      <header class="card-header ">
-        <% if @party.search && @party.user_id == current_user.id %>
-          <% if !@party.interesteds.empty? %>
-            <p class="card-header-title is-size-4">Users who've made offers to attend:</p>
-          <% else %>
-            <p class="card-header-title is-size-4">No offers for your party yet!</p>
+      </div>
+      <br><br>
+      <div class="card">
+        <header class="card-header ">
+          <% if @party.search && @party.user_id == current_user.id %>
+            <% if !@party.interesteds.empty? %>
+              <p class="card-header-title is-size-4">Users who've made offers to attend:</p>
+            <% else %>
+              <p class="card-header-title is-size-4">No offers for your party yet!</p>
+            <% end %>
           <% end %>
+        </header>
+        <div class="card-content ">
+          <% if @party.search && @party.user_id == current_user.id %>
+            <% if !@party.interesteds.empty? %>
+              <% @party.interesteds.each do |interested| %>
+                <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
+                <br/>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% if how_much_interesteds(@party) == 0%>
+              <p class="content is-size-5"> No users have made offers to attend this party. </p>
+            <% else %>
+              <% if how_much_interesteds(@party) == 1%>
+                <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has made an offer to attend this party.</p>
+              <% else %>
+                <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have made offers to attend this party.</p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</section>
+
+  <% if @party.ended %>
+    <section class="section">
+      <div class="container has-text-left">
+        <h2 class="title">Reviews</h2>
+        <% if current_user != @party.user && current_user.attendees.include?(@party) %>
+          <article class="media">
+            <div class="media-content">
+              <%= form_with model: [ @party, @party.partyreviews.build ], local: true do |form| %>
+                <div class="field">
+                  <p class="control">
+                    <textarea class="textarea" placeholder="Add a comment..." <%= form.text_area :body %> </textarea>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control">
+                    <button class="button"><%= form.submit %></button>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+          </article>
         <% end %>
-      </header>
-      <div class="card-content ">
-        <% if @party.search && @party.user_id == current_user.id %>
-          <% if !@party.interesteds.empty? %>
-            <% @party.interesteds.each do |interested| %>
-              <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
-              <br/>
+        <% if !@party.partyreviews.empty? %>
+          <% @party.partyreviews.each do |comment| %>
+            <% if comment.body %>
+              <article class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <%= image_tag('picture.png') %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                      <strong><%= comment.user.name %></strong> <br>
+                      <%= comment.body %> <br>
+                      <% if current_user %>
+                        <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+                          <small><a><%= link_to 'Delete review', [comment.party, comment],
+                                                method: :delete,
+                                                data: { confirm: 'Are you sure?' } %></a>
+                        <% end %>
+                      <% end %>
+                  </div>
+                </div>
+              </article>
             <% end %>
           <% end %>
         <% else %>
-          <% if how_much_interesteds(@party) == 0%>
-            <p class="content is-size-5"> No users have made offers to attend this party. </p>
-          <% else %>
-            <% if how_much_interesteds(@party) == 1%>
-              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has made an offer to attend this party.</p>
-            <% else %>
-              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have made offers to attend this party.</p>
-            <% end %>
-          <% end %>
+          <h2 class="subtitle">No reviews yet</h2>
         <% end %>
       </div>
-    </div>
-  </div>
-  </div>
-  <%= button_to 'Close and notify', close_and_notify_party_path(@party.id), method: :post, class: 'btn primary' %>
-
+    </section>
+  <% end %>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/showcase.js"></script>
@@ -134,5 +246,6 @@
           duration: 800,
       });
   </script>
-</section>
+
+
 <% end %>
