@@ -60,7 +60,7 @@
             <% else  %>
               <% @party.interesteds.each do |interested| %>
                 <% if interested.user_id == current_user.id   %>
-                  Your actual offer is: $<%= interested.offer %>
+                  Your current offer is: $<%= interested.offer %>
                 <% end %>
               <% end %>
 
