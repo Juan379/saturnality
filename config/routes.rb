@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   match '/users/:id',     to: 'users#show',       via: 'get'
   get '/myparties/show' => 'myparties#show', as: :mypartiesshow
   get '/myinterested/show' => 'myinterested#show', as: :myinterestedshow
+  get '/myattendance/show' => 'myattendance#show', as: :myattendanceshow
+  get '/myaservices/show' => 'myaservices#show', as: :myaservicesshow
+  get '/mypservices/show' => 'mypservices#show', as: :mypservicesshow
+
   get '/admin/show' => 'admin#show', as: :admin
   resources :services do
     resources :servicereviews
