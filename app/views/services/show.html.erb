@@ -34,7 +34,10 @@
           </header>
           <div class="card-content ">
             <div class="content is-size-5">
-              <%= @service.description %><br><br>
+              <%= @service.description %>
+              <% if @service.status == "pending" %> <br><br>
+                Application status: <%= @service.status %><br><br>
+              <% end %>
             </div>
             <div class="media">
             <div class="media-left">

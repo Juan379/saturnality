@@ -1,13 +1,47 @@
-<% @services.each do |service| %>
-    <h3>Name of service: <%= service.name %></h3>
-    <%= form_for service do |f| %>
-        <div>
-            <%= f.select :status, ['pending', 'rejected', 'accept']%>
-        </div>
-        <div>Update
-            <%= f.submit %>
-        </div>
+<section class="section">
+  <div class="container has-text-centered" data-aos="fade-in">
+    <h2 class="title is-size-1">Service applications</h2>
+    <% if @services.empty? %>
+      <h3 class="subtitle is-size-5"> There are no pending applications at the moment.</h3>
     <% end %>
-<% end %>
+  </div>
+</section>
+
+
+<div class="columns is-multiline is-mobile">
+  <% @services.each do |service| %>
+    <div class="column is-one-quarter ">
+      <div class="card">
+        <header class="card-header">
+          <a class="card-header-title is-size-3" <%= link_to "#{service.name}", service %></a>
+        </header>
+        <div class="card-content">
+            <div class="content">
+              <%= form_for service do |f| %>
+                <div>
+                <%= f.select :status, ['accept', 'rejected']%>
+                </div> <br>
+                <div>
+                    <%= f.submit "Update service status" %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/showcase.js"></script>
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        easing: "ease-out",
+        duration: 800,
+    });
+</script>
+</html>
 
 
