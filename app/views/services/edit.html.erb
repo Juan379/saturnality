@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
 <section class="hero">
   <div class="column has-text-left is-3 is-offset-1">
@@ -52,36 +52,5 @@
 <% end %>
 
 
-
-=======
-<h1>Edit Service</h1> <br/>
-
-<% if current_user && @service.user == current_user || current_user.has_role?(:admin) %>
-    <%= form_for @service do |f| %>
-        <div>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-        </div>
-        <div>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-        </div>
-        <div>
-            <%= f.label :capacity %>
-            <%= f.number_field :capacity %>
-        </div>
-        <div>
-            <%= f.label :price %>
-            <%= f.number_field :price %>
-        </div>
-        <div> <br>
-            <%= f.submit %>
-        </div>
-    <% end %>
-<% else %>
-    <h2> You're either not logged in or this service isn't yours to edit. </h2>
-<% end %>
-
->>>>>>> d3a47263818cb28622c875f5f4cef476fa44eded
 
 

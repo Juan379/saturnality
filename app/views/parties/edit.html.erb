@@ -42,7 +42,7 @@
               </div>
             </div>
 
-<<<<<<< HEAD
+
 
             <div>
               <%= f.submit %>
@@ -51,32 +51,6 @@
           </form>
           <br>
 
-=======
-<% if (current_user && @party.user == current_user) || ( current_user && current_user.has_role?(:admin)) %>
-    <%= form_for @party do |f| %>
-        <div>
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-        </div>
-        <div>
-            <%= f.label :description %>
-            <%= f.text_area :description %>
-        </div>
-        <div>
-            <%= f.label :address %>
-            <%= f.text_field :address %>
-        </div>
-        <div>
-            <%= f.label :capacity %>
-            <%= f.number_field :capacity %>
-        </div>
-        <div>
-            <%= f.label :cost %>
-            <%= f.number_field :cost %>
-        </div>
-        <div> <br>
-            <%= f.submit %>
->>>>>>> d3a47263818cb28622c875f5f4cef476fa44eded
         </div>
         </div>
         </div>
