@@ -46,7 +46,7 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= @service.user.name %></p>
+              <p class="title is-4"><%= link_to  @service.user.name , user_path(@service.user.id) %></p>
               <p class="subtitle is-6"><%= @service.user.email %></p>
             </div>
             </div>
@@ -78,12 +78,31 @@
     <br>
   </section>
   </p>
+
+  <section class="section">
+    <div class="container has-text-left">
+      <h2 class="title">Hire for a party:</h2>
+    </div>
+  </section>
+  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
+    <% if @valid_parties.count > 0 %>
+      <%= fields_for(@all_parties) do |ap| %>
+        <div>
+          <%= ap.label :party, "Choose your party" %> <br/>
+          <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
+        </div>
+      <% end %>
+      <button class="button"><%= form.submit "Hire service" %></button>
+    <% else %>
+      You have no parties that match the comunas of this service.
+    <% end %>
+  <% end %>
+
   <section class="section">
     <div class="container has-text-left">
       <h2 class="title">Reviews</h2>
       <article class="media">
         <div class="media-content">
-          <% if current_user != @service.user %>
           <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
             <div class="field">
               <p class="control">
@@ -95,7 +114,6 @@
                 <button class="button"><%= form.submit %></button>
               </p>
             </div>
-          <% end %>
           <% end %>
         </div>
       </article>
@@ -131,20 +149,7 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="container has-text-left">
-      <h2 class="title">Hire for a party:</h2>
-    </div>
-  </section>
-  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
-    <%= fields_for(@all_parties) do |ap| %>
-      <div>
-        <%= ap.label :party, "Choose your party" %> <br/>
-        <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
-      </div>
-    <% end %>
-    <button class="button"><%= form.submit "Hire service" %></button>
-  <% end %>
+  
 
 <% end %>
 

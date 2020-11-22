@@ -14,11 +14,13 @@
             Address: <%= @party.address %>, <%= @party.comuna.name %> <br>
             Capacity: <%= @party.capacity %> <br>
             Cost: <%= @party.cost %> <br><br>
-            <% if @party.search %>
-              Search state: On going
-            <% else %>
-              Search state: Terminated
-            <% end %> <br/>
+            <% if @party.user_id == current_user.id || current_user.has_role?(:admin) %>
+              <% if @party.search %>
+                Search state: On going
+              <% else %>
+                Search state: Terminated
+              <% end %> <br/>
+            <% end %> 
           </div>
           <div class="media">
             <div class="media-left">
@@ -27,7 +29,7 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= @party.user.name %></p>
+              <p class="title is-4"><%= link_to  @party.user.name , user_path(@party.user.id) %></p>
               <p class="subtitle is-6"><%= @party.user.age %></p>
             </div>
           </div>
@@ -75,7 +77,7 @@
         <div class="card-content ">
           <% if !@party.services.empty? %>
             <% @party.services.each do |service| %>
-              <a class="content is-size-5" <%= link_to service.name, service_path(service) %> </a><br/>
+              <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a><br/>
             <% end %>
           <% end %>
         </div>
