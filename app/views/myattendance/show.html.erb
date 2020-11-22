@@ -11,17 +11,17 @@
   <div class="hero-body">
 <div class="container">
 <div class="columns is-multiline is-mobile">
-  <% @closed_parties.each do |party| %>
+  <% @closed_parties.each do |attendee| %>
     <div class="column is-4 ">
       <div class="card">
         <header class="card-header">
-          <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a> 
+          <a class="card-header-title is-size-3" <%= link_to "#{attendee.party.title}", attendee.party %></a> 
         </header>
         <div class="card-content">
           <div class="content">
-            Address: <%= party.address %>, <%= party.comuna.name %> <br>
-            Cost: <%= party.cost %><br>
-            Interested users: <%= party.interesteds.count %>
+            Address: <%= attendee.party.address %>, <%= attendee.party.comuna.name %> <br>
+            Cost: <%= attendee.party.cost %><br>
+            Interested users: <%= attendee.party.interesteds.count %>
           </div>
           <div class="media">
             <div class="media-left">
@@ -30,19 +30,19 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4"><%= party.user.name %></p>
-              <p class="subtitle is-6"><%= party.user.age %></p>
+              <p class="title is-4"><%= attendee.party.user.name %></p>
+              <p class="subtitle is-6"><%= attendee.party.user.age %></p>
             </div>
           </div>
         </div>
         <footer class="card-footer">
-          <% if current_user && current_user == party.user  %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+          <% if current_user && current_user == attendee.party.user  %>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
           <% end %>
           <% if current_user && current_user.has_role?(:admin) %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
+            <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
           <% end %>
         </footer>
       </div>

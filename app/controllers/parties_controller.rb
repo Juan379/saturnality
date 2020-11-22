@@ -20,7 +20,7 @@ class PartiesController < ApplicationController
           party.update_attribute(:search, false)
           candidates.each do |candidate|
             candidate.delete
-            Attendee.create(user_id: current_user.id, party_id: party.id)
+            Attendee.create(user_id: candidate.id, party_id: party.id)
           end
           redirect_to party_path(party), notice: "Party search closed and attendees notified correctly!"
         else
