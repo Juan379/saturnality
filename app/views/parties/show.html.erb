@@ -104,7 +104,15 @@
             <% end %>
           <% end %>
         <% else %>
-          <p class="content is-size-5"> There are <%= how_much_interesteds(@party)%> interested in this party </p>
+          <% if how_much_interesteds(@party) == 0%>
+            <p class="content is-size-5"> No users have shown interest in this party. </p>
+          <% else %>
+            <% if how_much_interesteds(@party) == 1%>
+              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has shown interest in this party.</p>
+            <% else %>
+              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have shown interest in this party.</p>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -10,19 +10,21 @@ module PartiesHelper
     end
 
     def how_much_interesteds(party)
-        contador = 0
+        count = -1
         party.interesteds.each do |interested|
-            contador += 1
+            if interested
+                count += 1
+            end
         end
-        return contador
+        return count
     end    
 
     def how_much_money(party)
-        contador = 0
+        count = 0
         party.interesteds.each do |interested|
-            contador += interested.offer.to_i
+            count += interested.offer.to_i
         end
-        return contador
+        return count
     end    
 
 end
