@@ -12,7 +12,7 @@ module PartiesHelper
     def how_much_interesteds(party)
         count = 0
         party.interesteds.each do |interested|
-            if interested
+            if interested.offer
                 count += 1
             end
         end
