@@ -68,14 +68,22 @@
           </div>
         </div>
         <footer class="card-footer">
-            <% if user_is_interested(current_user, @party)   %>
+            <% if user_is_interested(current_user, @party)  %>
               <% @party.interesteds.each do |interested| %>
-                <% if interested.user_id == current_user.id   %>
-                  <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
+                <% if interested.user_id == current_user.id  %>
+                  <a class="card-footer-item"<%= link_to "Edit", edit_interested_path(interested) %> </a>
                   <a class="card-footer-item" <%= link_to "Delete", interested, method: :delete, data: { confirm: "Do you really want to delete this interestation?"} %> </a>
                 <% end %>
               <% end %>
             <% else %>
+<<<<<<< HEAD
+=======
+              <p class="card-footer-item" <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %>
+                <%= form.number_field :offer %>
+                  <button class="button"><%= form.submit "Submit offer" %></button>
+                <% end %>
+              </p>
+>>>>>>> 8050cc54504224b9488068ea4267ce749c553ce3
             <% end %>
         </footer>
       </div>
@@ -215,7 +223,7 @@
                 </div>
                 <div class="media-content">
                   <div class="content">
-                      <strong><%= comment.user.name %></strong> <br>
+                      <strong><%= link_to "#{comment.user.name}", user_path(comment.user.id) %></strong> <br>
                       <%= comment.body %> <br>
                       <% if current_user %>
                         <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
