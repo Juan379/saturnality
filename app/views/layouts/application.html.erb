@@ -1,7 +1,6 @@
 <% if !current_user %>
 <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <title>Saturnality!</title>
     <%= csrf_meta_tags %>
@@ -37,22 +36,19 @@
   </head>
 
   <!-- Hero -->
+  <body class="has-navbar-fixed-top">
   <section id="hero" class="hero is-medium" >
     <div class="hero-head">
 
-      <nav class="navbar">
+      <nav class="navbar is-white is-fixed-top">
         <div class="container" >
           <div class="navbar-brand">
-            <a class="navbar-item">
-              <h3 class="logo has-text-green is-size-4">SATURNALITY</h3>
-            </a></div>
+            <a class="navbar-item is-size-4" <%= link_to "SATURNALITY", static_pages_home_url  %> </a>
+            </div>
 
           <div class="navbar-menu">
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
-                <a class="navbar-item"
-                <%= link_to 'Home', static_pages_home_url %>
-                </a>
                 <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     Parties
@@ -126,6 +122,7 @@
       </nav>
     </div>
   </section>
+
   <!-- END Hero -->
 
 
@@ -134,6 +131,7 @@
 
 <% end %>
 <%= yield %>
+</body>
 <div class="footer">
   <p>
     <strong class="white"> <%= link_to 'SATURNALITY', static_pages_home_url %></strong> made with ⚡ by @Juan379, @victoriapsb, and @MINGOD24 

@@ -1,15 +1,18 @@
-<section class="section">
+<section class="hero is-medium">
   <div class="container has-text-centered" data-aos="fade-in">
-    <h2 class="title is-size-1">Parties</h2>
+    <h2 class="title is-size-1 ">Parties</h2>
     <% if @parties.empty? %>
       <h3 class="subtitle is-size-5"> There are no parties available.</h3>
     <% end %>
   </div>
 </section>
-
+<br>
+<section class="hero">
+  <div class="hero-body">
+<div class="container">
 <div class="columns is-multiline is-mobile">
   <% @parties.each do |party| %>
-    <div class="column is-one-quarter ">
+    <div class="column is-4 ">
       <div class="card">
         <header class="card-header">
           <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a> 
@@ -45,7 +48,9 @@
     </div>
   <% end %>
 </div>
-
+</div>
+  </div>
+</section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>
 <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -57,7 +62,7 @@
     });
 </script>
 
-</html>
+
 
 
 

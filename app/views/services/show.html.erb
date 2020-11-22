@@ -1,78 +1,79 @@
-<nav class="level">
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading">Capacity</p>
-      <p class="title"><%= @service.capacity %></p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading">Price</p>
-      <p class="title"><%= @service.price %></p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading">Rating</p>
-      <p class="title"><%= @service.rating %></p>
-    </div>
-  </div>
-</nav>
-
-<div class="tile is-ancestor">
-  <div class="tile is-parent">
-    <article class="tile is-child box">
-      <p class="title"><%= @service.name %></p>
-      <p class="subtitle"><%= @service.user.name %></p>
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/640x480.png">
-      </figure>
-    </article>
-  </div>
-  <div class="tile is-parent">
-    <article class="tile is-child box">
-      <p class="title">Description</p>
-      <p class="subtitle"><%= @service.description %></p>
-    </article>
-  </div>
-  <div class="tile is-parent">
-    <article class="tile is-child box">
-      <p class="title">Coverages</p>
-      <p class="subtitle"><% @service.comunas.each do |comuna| %>
-        <%= comuna.name %><br>
-      <% end %></p>
-    </article>
-  </div>
-</div></p>
-
 <% if current_user %>
+
+  <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Capacity</p>
+          <p class="title"><%= @service.capacity %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Price</p>
+          <p class="title"><%= @service.price %></p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Rating</p>
+          <p class="title"><%= @service.rating %></p>
+        </div>
+      </div>
+  </nav>
+  <br>
+
+
+  <section class="hero" data-aos="fade-in">
+    <div class="columns is-mobile">
+      <div class="column is-5 is-offset-1">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title is-size-3">
+              <%= @service.name %>
+            </p>
+          </header>
+          <div class="card-content ">
+            <div class="content is-size-5">
+              <%= @service.description %><br><br>
+            </div>
+            <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag('picture.png') %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= @service.user.name %></p>
+              <p class="subtitle is-6"><%= @service.user.email %></p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      <div class="column is-4 is-offset-1">
+        <div class="card">
+          <header class="card-header ">
+            <p class="card-header-title is-size-3">Available in</p>
+          </header>
+          <div class="card-content ">
+            <div class="content is-size-5"> <% @service.comunas.each do |comuna| %>
+                <%= comuna.name %><br>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </section>
+  </p>
   <section class="section">
     <div class="container has-text-left">
-      <h2 class="title">Hire for a party:</h2>
-    </div>
-  </section>
-  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
-    <%= fields_for(@all_parties) do |ap| %>
-        <div>
-            <%= ap.label :party, "Choose your party" %> <br/>
-            <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
-        </div>
-    <% end %>
-    <button class="button"><%= form.submit "Hire service" %></button>
-  <% end %>
-<% end %>
-
-<section class="section">
-  <div class="container has-text-left">
-    <h2 class="title">Reviews</h2>
-  </div>
-</section>
-
-<div class="columns is-multiline is-mobile">
-  <div class="column">
-    <% if current_user %>
+      <h2 class="title">Reviews</h2>
       <article class="media">
         <div class="media-content">
+          <%= if current_user != @service.user %>
           <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
             <div class="field">
               <p class="control">
@@ -85,40 +86,60 @@
               </p>
             </div>
           <% end %>
+          <% end %>
         </div>
       </article>
-    <% else %>
-      <h2>You need to be logged in to create a review.</h2>
-    <% end %>
-
-    <% @service.servicereviews.each do |comment| %>
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png">
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong><%= comment.user %></strong> <br>
-              <%= comment.body %> <br>
-              <% if current_user %>
-                <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-                  <small><a><%= link_to 'Delete review', [comment.service, comment],
-                                      method: :delete,
-                                      data: { confirm: 'Are you sure?' } %></a>
-                <% end %>
-              <% end %>
-            </p>
+      <% @service.servicereviews.each do |comment| %>
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <%= image_tag('picture.png') %>
+            </figure>
           </div>
-        </div>
-      </article>
-    <% end %>
-  </div>
-</div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><%= comment.user.name %></strong> <br>
+                <%= comment.body %> <br>
+                <% if current_user %>
+                  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+                    <small><a><%= link_to 'Delete review', [comment.service, comment],
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' } %></a>
+                  <% end %>
+                <% end %>
 
-</html>
+            </div>
+          </div>
+        </article>
+      <% end %>
+      <br>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container has-text-left">
+      <h2 class="title">Hire for a party:</h2>
+    </div>
+  </section>
+  <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
+    <%= fields_for(@all_parties) do |ap| %>
+      <div>
+        <%= ap.label :party, "Choose your party" %> <br/>
+        <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
+      </div>
+    <% end %>
+    <button class="button"><%= form.submit "Hire service" %></button>
+  <% end %>
+
+<% end %>
+
+
+
+
+
+
+
 
 
 
