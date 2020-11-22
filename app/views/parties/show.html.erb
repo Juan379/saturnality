@@ -34,8 +34,9 @@
         </div>
         <footer class="card-footer">
           <% if @party.search && @party.user_id == current_user.id %>
-              <p class="card-footer-item"> There is a total of: $<%= how_much_money(@party) %> offered in you party
-              </p>
+              <% if how_much_money(@party) > 0 %>
+                <p class="card-footer-item"> Users have offered a total of $<%= how_much_money(@party) %> to attend your party. </p>
+              <% end %>
           <% else %>
             <% if user_is_interested(current_user, @party)   %>
               <% @party.interesteds.each do |interested| %>
@@ -89,9 +90,9 @@
       <header class="card-header ">
         <% if @party.search && @party.user_id == current_user.id %>
           <% if !@party.interesteds.empty? %>
-            <p class="card-header-title is-size-4">Postulations por your party:</p>
+            <p class="card-header-title is-size-4">Users who've made offers to attend:</p>
           <% else %>
-            <p class="card-header-title is-size-4">No postulations for your party yet!</p>
+            <p class="card-header-title is-size-4">No offers for your party yet!</p>
           <% end %>
         <% end %>
       </header>
@@ -104,7 +105,15 @@
             <% end %>
           <% end %>
         <% else %>
-          <p class="content is-size-5"> There are <%= how_much_interesteds(@party)%> interested in this party </p>
+          <% if how_much_interesteds(@party) == 0%>
+            <p class="content is-size-5"> No users have made offers to attend this party. </p>
+          <% else %>
+            <% if how_much_interesteds(@party) == 1%>
+              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has made an offer to attend this party.</p>
+            <% else %>
+              <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have made offers to attend this party.</p>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
