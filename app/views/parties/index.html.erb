@@ -19,8 +19,9 @@
         </header>
         <div class="card-content">
           <div class="content">
-            <%= party.comuna.name %><br>
-            <%= party.description %>
+            Address: <%= party.address %>, <%= party.comuna.name %> <br>
+            Cost: <%= party.cost %><br>
+            Interested users: <%= party.interesteds.count %>
           </div>
           <div class="media">
             <div class="media-left">
