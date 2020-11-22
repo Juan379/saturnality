@@ -11,7 +11,11 @@ RSpec.describe 'Services', type: :request do
                              capacity: 20, price: 50_000, rating: 3.0, user: user)
     get services_path
     expect(response).to be_successful
-    expect(response.body).to include('CleaningService')
+    get new_service_path
+    expect(response).to be_successful
+    # expect(response.body).to include('CleaningService')
+    # get service_path(service.id)
+    # expect(response).to be_successful
   end
 
   context 'rendering of different views' do
