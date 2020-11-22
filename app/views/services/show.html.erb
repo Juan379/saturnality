@@ -73,7 +73,7 @@
       <h2 class="title">Reviews</h2>
       <article class="media">
         <div class="media-content">
-          <%= if current_user != @service.user %>
+          <% if current_user != @service.user %>
           <%= form_with model: [ @service, @service.servicereviews.build ], local: true do |form| %>
             <div class="field">
               <p class="control">
@@ -91,28 +91,30 @@
       </article>
       <% if !@service.servicereviews.empty? %>
       <% @service.servicereviews.each do |comment| %>
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <%= image_tag('picture.png') %>
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong><%= comment.user.name %></strong> <br>
-                <%= comment.body %> <br>
-                <% if current_user %>
-                  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-                    <small><a><%= link_to 'Delete review', [comment.service, comment],
-                                          method: :delete,
-                                          data: { confirm: 'Are you sure?' } %></a>
-                  <% end %>
-                <% end %>
+        <% if comment.body %>
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <%= image_tag('picture.png') %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong><%= comment.user.name %></strong> <br>
+                    <%= comment.body %> <br>
+                    <% if current_user %>
+                      <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+                        <small><a><%= link_to 'Delete review', [comment.service, comment],
+                                              method: :delete,
+                                              data: { confirm: 'Are you sure?' } %></a>
+                      <% end %>
+                    <% end %>
 
-            </div>
-          </div>
-        </article>
+                </div>
+              </div>
+            </article>
+        <% end %>
       <% end %>
       <% end %>
       <br>
