@@ -64,7 +64,7 @@ class PartiesController < ApplicationController
   def update
     @party = Party.find(params[:id])
     if @party.update(party_params)
-      redirect_to parties_path
+      redirect_to party_path(@party)
     else
       render :edit
     end
