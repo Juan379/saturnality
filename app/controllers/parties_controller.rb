@@ -19,7 +19,7 @@ class PartiesController < ApplicationController
         if offer_sum >= cost
           party.update_attribute(:search, false)
           candidates.each do |candidate|
-            Attendee.create(user_id: candidate.id, party_id: party.id)
+            Attendee.create(user_id: candidate.user_id, party_id: party.id)
             candidate.delete
           end
           redirect_to party_path(party), notice: "Party search closed and attendees notified correctly!"
