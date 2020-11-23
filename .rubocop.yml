@@ -8,7 +8,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/**/*'
 Metrics/LineLength:
-  Max: 154
+  Max: 163
 Metrics/BlockLength:
   Exclude:
     - config/**/*
@@ -60,3 +60,20 @@ Rails/HasAndBelongsToMany:
 RSpec/ContextWording:
   Enabled: false
 
+Style/GuardClause:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
