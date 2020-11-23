@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PartiesController < ApplicationController
-
   helper PartiesHelper
 
   def index
@@ -14,26 +13,26 @@ class PartiesController < ApplicationController
     cost = party.cost
 
     candidates = party.interesteds.order(offer: :desc)[0..limit]
-    if !candidates.empty?
-        offer_sum = candidates.pluck(:offer).sum
-        if offer_sum >= cost
-          party.update_attribute(:search, false)
-          candidates.each do |candidate|
-            Attendee.create(user_id: candidate.user_id, party_id: party.id)
-            candidate.delete
-          end
-          redirect_to party_path(party), notice: "Party search closed and attendees notified correctly!"
-        else
-          flash[:error] = "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
-          redirect_to party_path(party), notice: "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
+    unless candidates.empty?
+      offer_sum = candidates.pluck(:offer).sum
+      if offer_sum >= cost
+        party.update_attribute(:search, false)
+        candidates.each do |candidate|
+          Attendee.create(user_id: candidate.user_id, party_id: party.id)
+          candidate.delete
         end
+        redirect_to party_path(party), notice: 'Party search closed and attendees notified correctly!'
+      else
+        flash[:error] = "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
+        redirect_to party_path(party), notice: "The sum of offers, $#{offer_sum}, does not cover the cost of the party!"
+      end
     end
   end
 
   def show
     @party = Party.find(params[:id])
   end
-  
+
   def new
     @comunas = Comuna.all
     @party = Party.new
@@ -60,7 +59,7 @@ class PartiesController < ApplicationController
   def edit
     @party = Party.find(params[:id])
   end
-  
+
   def update
     @party = Party.find(params[:id])
     if @party.update(party_params)

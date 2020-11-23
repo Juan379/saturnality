@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MypartiesController < ApplicationController
   def show
     @user = current_user

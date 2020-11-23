@@ -4,13 +4,13 @@ class ServicesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @services = Service.where(status: "accept")
+    @services = Service.where(status: 'accept')
   end
 
   def show
     @service = Service.find(params[:id])
     @valid_ids = @service.comunas.pluck(:id)
-    @valid_parties = Party.where('search = true AND user_id = (?) AND comuna_id IN (?)', current_user.id , @valid_ids)
+    @valid_parties = Party.where('search = true AND user_id = (?) AND comuna_id IN (?)', current_user.id, @valid_ids)
   end
 
   def new

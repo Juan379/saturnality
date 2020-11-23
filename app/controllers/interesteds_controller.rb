@@ -28,14 +28,14 @@ class InterestedsController < ApplicationController
     @interested.destroy
     redirect_to party_path(@parti_id)
   end
-  
+
   def show
     @party = Party.find(params[:party_id])
     @interesteds = @party.interesteds
   end
 
   def edit
-      @interested = Interested.find(params[:id])
+    @interested = Interested.find(params[:id])
   end
 
   private
