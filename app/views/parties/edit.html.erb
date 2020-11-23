@@ -1,4 +1,4 @@
-<% if current_user && @party.user == current_user || current_user.has_role?(:admin) %>
+<% if current_user && @party.user == current_user  %>
   <section class="hero">
     <div class="column has-text-left is-3 is-offset-1">
       <%= form_for @party do |f| %>
