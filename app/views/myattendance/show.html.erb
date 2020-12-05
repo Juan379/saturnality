@@ -1,8 +1,8 @@
 <section class="hero is-medium">
   <div class="container has-text-centered" data-aos="fade-in">
-    <h2 class="title is-size-1 ">Parties you're attending</h2>
+    <h2 class="title is-size-1 ">Parties you've been invited to</h2>
     <% if @closed_parties.empty? %>
-      <h3 class="subtitle is-size-5"> You've not been accepted to attend any parties yet.</h3>
+      <h3 class="subtitle is-size-5"> You've not been invited to any parties yet.</h3>
     <% end %>
   </div>
 </section>
@@ -12,41 +12,41 @@
 <div class="container">
 <div class="columns is-multiline is-mobile">
   <% @closed_parties.each do |attendee| %>
-    <div class="column is-4 ">
-      <div class="card">
-        <header class="card-header">
-          <a class="card-header-title is-size-3" <%= link_to "#{attendee.party.title}", attendee.party %></a> 
-        </header>
-        <div class="card-content">
-          <div class="content">
-            Address: <%= attendee.party.address %>, <%= attendee.party.comuna.name %> <br>
-            Cost: <%= attendee.party.cost %><br>
-            People going: <%= attendee.party.attendees.count %>
-          </div>
-          <div class="media">
-            <div class="media-left">
-              <figure class="image is-48x48">
-                <%= image_tag('picture.png') %>
-              </figure>
+      <div class="column is-4 ">
+        <div class="card">
+          <header class="card-header">
+            <a class="card-header-title is-size-3" <%= link_to "#{attendee.party.title}", attendee.party %></a> 
+          </header>
+          <div class="card-content">
+            <div class="content">
+              Address: <%= attendee.party.address %>, <%= attendee.party.comuna.name %> <br>
+              Cost: <%= attendee.party.cost %><br>
+              People going: <%= attendee.party.attendees.count %>
             </div>
-            <div class="media-content">
-              <p class="title is-4"><%= attendee.party.user.name %></p>
-              <p class="subtitle is-6"><%= attendee.party.user.age %></p>
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <%= image_tag('picture.png') %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4"><%= attendee.party.user.name %></p>
+                <p class="subtitle is-6"><%= attendee.party.user.age %></p>
+              </div>
             </div>
           </div>
+          <footer class="card-footer">
+            <% if current_user && current_user == attendee.party.user  %>
+              <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
+              <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+            <% end %>
+            <% if current_user && current_user.has_role?(:admin) %>
+              <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
+              <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
+            <% end %>
+          </footer>
         </div>
-        <footer class="card-footer">
-          <% if current_user && current_user == attendee.party.user  %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
-          <% end %>
-          <% if current_user && current_user.has_role?(:admin) %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(attendee.party) %></a>
-            <a class="card-footer-item" <%= link_to "Delete", attendee.party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
-          <% end %>
-        </footer>
       </div>
-    </div>
   <% end %>
 </div>
 </div>

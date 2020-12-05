@@ -45,7 +45,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :attendees
+  resources :attendees do
+    post :accept_invitation, on: :member
+    post :reject_invitation, on: :member
+  end
 
   resources :interesteds
 end

@@ -121,6 +121,21 @@
             </div>
           </div>
           <br><br>
+        <% elsif current_user != @party.user && current_user.attendees.pluck(:party_id).include?(@party.id) && Attendee.where(user_id: current_user.id, party_id: @party.id).first.status == "pending" %>
+          <div class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                  <a class="button is-medium is-black" <%= link_to 'Accept', accept_invitation_attendee_path(@party.id), method: :post, class: 'btn primary' %> </a>
+
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <a class="button is-medium is-black" <%= link_to 'Reject', reject_invitation_attendee_path(@party.id), method: :post, class: 'btn primary' %> </a>
+              </div>
+            </div>
+          </div>
+          <br><br>
         <% end %>
         <div class="card">
           <header class="card-header ">

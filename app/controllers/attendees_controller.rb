@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
 class AttendeesController < ApplicationController
-  # def new
-  #     @attendee = Attendee.new
-  # end
 
-  # def create
-  #     @attendee = Attendee.new
-  #     @attendee.user_id = current_user.id
-  #     @attendee.party_id =
+  def accept_invitation
+    party = Party.find(params[:id])
+    attendee = Attendee.where(user_id: current_user.id, party_id: party.id).first
+    attendee.update_attribute(:status, "accepted")
+    redirect_to party_path(party), notice: 'Party invitation accepted successfully!'
+  end
 
-  #     params[:comuna][:id]
-
-  #     @party.user_id = current_user.id if current_user
-  #     if @party.save
-  #         redirect_to party_path(@party), notice: 'Party created successfully! Now you can choose to hire services for your event!'
-  #     else
-  #         render :new
-  #     end
-  # end
-  # t.bigint "user_id"
-  # t.bigint "party_id"
+  def reject_invitation
+    party = Party.find(params[:id])
+    attendee = Attendee.where(user_id: current_user.id, party_id: party.id).first
+    attendee.update_attribute(:status, "rejected")
+    redirect_to party_path(party), notice: 'Party invitation rejected successfully.'
+  end
 end
