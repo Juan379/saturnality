@@ -4,7 +4,11 @@ class PartiesController < ApplicationController
   helper PartiesHelper
 
   def index
-    @parties = Party.where(search: true, ended: false)
+    if !current_user.has_role?(:admin)
+      @parties = Party.where(search: true, ended: false)
+    else 
+      @parties = Party.all
+    end
   end
 
   def close_and_notify

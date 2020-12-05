@@ -13,7 +13,7 @@
             <%= @party.description %>
           </div>
           <div class="content is-size-5"><strong>Address:</strong>
-             <%= @party.address %>, <%= @party.comuna.name %> <br>
+            <%= @party.address %>, <%= @party.comuna.name %> <br>
             <strong>Capacity:</strong> <%= @party.capacity %> <br>
             <strong>Cost:</strong> <%= @party.cost %> <br>
           </div>
@@ -94,98 +94,128 @@
         </div>
 
       <% end %>
-       <br><br>
+      <br><br>
       <br><br>
     </div>
 
-    <% if @party.search %>
-    <div class="column is-4 is-offset-1">
-      <% if current_user && current_user == @party.user || current_user && current_user.has_role?(:admin) %>
-        <div class="level">
-        <% if how_much_money(@party) >= @party.cost %>
+    <% if @party.search || !@party.search %>
+      <div class="column is-4 is-offset-1">
+        <% if current_user && current_user == @party.user || current_user && current_user.has_role?(:admin) %>
+          <div class="level">
+            <% if how_much_money(@party) >= @party.cost && @party.search %>
+              <div class="level-item has-text-centered">
+                <div>
+                  <a class="button is-medium is-link" <%= link_to 'Close and invite', close_and_notify_party_path(@party.id), method: :post, class: 'btn primary' %> </a>
+                </div>
+              </div>
+            <% end %>
             <div class="level-item has-text-centered">
               <div>
-                <a class="button is-medium is-link" <%= link_to 'Close and notify', close_and_notify_party_path(@party.id), method: :post, class: 'btn primary' %> </a>
+                <a class="button is-medium is-black" <%= link_to "Edit", edit_party_path(@party) %> </a>
               </div>
             </div>
-          <% end %>
-          <div class="level-item has-text-centered">
-            <div>
-              <a class="button is-medium is-black" <%= link_to "Edit", edit_party_path(@party) %> </a>
+            <div class="level-item has-text-centered">
+              <div>
+                <a class="button is-medium is-light" <%= link_to "Delete", @party, method: :delete, data: { confirm: "Do you really want to delete this party?"} %> </a>
+              </div>
             </div>
           </div>
-          <div class="level-item has-text-centered">
-            <div>
-              <a class="button is-medium is-light" <%= link_to "Delete", @party, method: :delete, data: { confirm: "Do you really want to delete this party?"} %> </a>
-            </div>
+          <br><br>
+        <% end %>
+        <div class="card">
+          <header class="card-header ">
+            <% if !@party.services.empty? %>
+              <p class="card-header-title hast-text-centered is-size-3">Hired services:</p>
+            <% else %>
+              <p class="card-header-title is-size-4"> No services hired yet!</p>
+            <% end %>
+          </header>
+          <div class="card-content ">
+            <% if !@party.services.empty? %>
+              <% @party.services.each do |service| %>
+                <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a><br/>
+              <% end %>
+            <% end %>
           </div>
+          <footer class="card-footer">
+            <% if @party.user_id == current_user.id %>
+              <a class="card-footer-item"  <%= link_to "Hire service", services_path %> </a>
+              <br/> <br/>
+            <% end %>
+          </footer>
         </div>
         <br><br>
-      <% end %>
-      <div class="card">
-        <header class="card-header ">
-          <% if !@party.services.empty? %>
-            <p class="card-header-title hast-text-centered is-size-3">Hired services:</p>
-          <% else %>
-            <p class="card-header-title is-size-4"> No services hired yet!</p>
-          <% end %>
-        </header>
-        <div class="card-content ">
-          <% if !@party.services.empty? %>
-            <% @party.services.each do |service| %>
-              <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a><br/>
-            <% end %>
-          <% end %>
-        </div>
-        <footer class="card-footer">
-          <% if @party.search && @party.user_id == current_user.id %>
-            <a class="card-footer-item"  <%= link_to "Hire service", services_path %> </a>
-            <br/> <br/>
-          <% end %>
-        </footer>
-      </div>
-      <br><br>
-      <div class="card">
-        <header class="card-header ">
-          <% if @party.search && @party.user_id == current_user.id %>
-            <% if !@party.interesteds.empty? %>
-              <p class="card-header-title is-size-4">Users who've made offers to attend:</p>
-            <% else %>
-              <p class="card-header-title is-size-4">No offers for your party yet!</p>
-            <% end %>
-          <% end %>
-        </header>
-        <div class="card-content ">
-          <% if @party.search && @party.user_id == current_user.id %>
-            <% if !@party.interesteds.empty? %>
-              <% @party.interesteds.each do |interested| %>
-                <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
-                <br/>
+        <% if @party.search %>
+          <div class="card">
+            <header class="card-header ">
+              <% if @party.user_id == current_user.id %>
+                <% if !@party.interesteds.empty? %>
+                  <p class="card-header-title is-size-4">Users who've made offers to attend:</p>
+                <% else %>
+                  <p class="card-header-title is-size-4">No offers for your party yet!</p>
+                <% end %>
               <% end %>
-            <% end %>
-          <% else %>
-            <% if how_much_interesteds(@party) == 0%>
-              <p class="content is-size-5"> No users have made offers to attend this party. </p>
-            <% else %>
-              <% if how_much_interesteds(@party) == 1%>
-                <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has made an offer to attend this party.</p>
+            </header>
+            <div class="card-content ">
+              <% if @party.user_id == current_user.id %>
+                <% if !@party.interesteds.empty? %>
+                  <% @party.interesteds.each do |interested| %>
+                    <a class="content is-size-5"  <%= link_to  User.find(interested.user_id).name , user_path(User.find(interested.user_id).id) %> </a>
+                    <br/>
+                  <% end %>
+                <% end %>
               <% else %>
-                <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have made offers to attend this party.</p>
+                <% if how_much_interesteds(@party) == 0%>
+                  <p class="content is-size-5"> No users have made offers to attend this party. </p>
+                <% else %>
+                  <% if how_much_interesteds(@party) == 1%>
+                    <p class="content is-size-5"> <%= how_much_interesteds(@party)%> user has made an offer to attend this party.</p>
+                  <% else %>
+                    <p class="content is-size-5"> <%= how_much_interesteds(@party)%> users have made offers to attend this party.</p>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% end %>
-          <% end %>
-        </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="card">
+            <header class="card-header ">
+              <% if @party.user_id == current_user.id %>
+                <% if !@party.attendees.empty? %>
+                  <p class="card-header-title is-size-4">Users invited to your party:</p>
+                <% else %>
+                  <p class="card-header-title is-size-4">No users where invited to your party.</p>
+                <% end %>
+              <% else %>
+                <% if !@party.attendees.empty? %>
+                  <p class="card-header-title is-size-4">Users invited to this party:</p>
+                <% else %>
+                  <p class="card-header-title is-size-4">No users where invited to this party.</p>
+                <% end %>
+              <% end %>
+            </header>
+            <div class="card-content ">
+              <% @party.user_id == current_user.id %>
+                <% if !@party.attendees.empty? %>
+                  <% @party.attendees.each do |attendee| %>
+                    <a class="content is-size-5"  <%= link_to  User.find(attendee.user_id).name , user_path(User.find(attendee.user_id).id) %> </a>
+                    <br/>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
     <% end %>
   </div>
 </section>
 
-  <% if @party.ended %>
+  <% if @party.ended || !@party.search %>
     <section class="section">
       <div class="container has-text-left">
         <h2 class="title">Reviews</h2>
-        <% if current_user != @party.user && current_user.attendees.include?(@party) %>
+        <% if current_user == @party.user || current_user.attendees.pluck(:party_id).include?(@party.id) || current_user.has_role?(:admin) %>
           <article class="media">
             <div class="media-content">
               <%= form_with model: [ @party, @party.partyreviews.build ], local: true do |form| %>
@@ -247,4 +277,3 @@
   </script>
 
 
-<% end %>

@@ -30,7 +30,7 @@ class PartyreviewsController < ApplicationController
 
   private
 
-  def servicereview_params
+  def partyreview_params
     params.require(:partyreview).permit(:body)
   end
 end
