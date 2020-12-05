@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_12_05_220604) do
     t.bigint "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
+    t.string "status", default: "pending"
     t.index ["party_id"], name: "index_attendees_on_party_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
