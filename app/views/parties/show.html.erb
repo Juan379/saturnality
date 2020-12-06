@@ -2,6 +2,25 @@
 <section class="hero" data-aos="fade-in">
   <div class="columns is-mobile">
     <div class="column is-5 is-offset-1">
+
+      <% if @party.user_id == current_user.id || current_user.has_role?(:admin) || current_user.attendees.pluck(:party_id).include?(@party.id) %>
+        <% if !@party.search %>
+          <div class="card">
+            <header class="card-header ">
+              <% if @party.user_id == current_user.id %>
+                <p class="card-header-title is-size-4"> Your party's invitation code: <%= @party.code %> </p>
+              <% elsif current_user.has_role?(:admin) %>
+                <p class="card-header-title is-size-4"> This party's invitation code: <%= @party.code %> </p>
+              <% elsif current_user.attendees.pluck(:party_id).include?(@party.id) && Attendee.where(user_id: current_user.id, party_id: @party.id).first.status == "accepted" %>
+                <p class="card-header-title is-size-4"> Your invitation code: <%= @party.code %> </p>
+              <% end %>
+            </header>
+          </div>
+          <br><br>
+        <% end %>
+      <% end %>
+
+
       <div class="card">
         <header class="card-header">
           <p class="card-header-title is-size-3">

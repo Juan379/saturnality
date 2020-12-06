@@ -15,12 +15,14 @@ class PartiesController < ApplicationController
     party = Party.find(params[:id])
     limit = party.capacity
     cost = party.cost
+    code = rand.to_s[2..11] 
 
     candidates = party.interesteds.order(offer: :desc)[0..limit]
     unless candidates.empty?
       offer_sum = candidates.pluck(:offer).sum
       if offer_sum >= cost
         party.update_attribute(:search, false)
+        party.update_attribute(:code, code)
         candidates.each do |candidate|
           Attendee.create(user_id: candidate.user_id, party_id: party.id)
           candidate.delete
