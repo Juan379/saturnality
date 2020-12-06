@@ -196,16 +196,16 @@
           <div class="card">
             <header class="card-header ">
               <% if @party.user_id == current_user.id %>
-                <% if !@party.attendees.empty? %>
-                  <p class="card-header-title is-size-4">Users invited to your party:</p>
+                <% if !@party.attendees.select { |x| x.status == "accepted" }.empty? %>
+                  <p class="card-header-title is-size-4">Users attending your party:</p>
                 <% else %>
-                  <p class="card-header-title is-size-4">No users where invited to your party.</p>
+                  <p class="card-header-title is-size-4">No users have accepted their invitations yet.</p>
                 <% end %>
               <% else %>
-                <% if !@party.attendees.empty? %>
-                  <p class="card-header-title is-size-4">Users invited to this party:</p>
+                <% if !@party.attendees.select { |x| x.status == "accepted" }.empty? %>
+                  <p class="card-header-title is-size-4">Users attending this party:</p>
                 <% else %>
-                  <p class="card-header-title is-size-4">No users where invited to this party.</p>
+                  <p class="card-header-title is-size-4">No users have accepted their invitations yet.</p>
                 <% end %>
               <% end %>
             </header>
@@ -213,8 +213,10 @@
               <% @party.user_id == current_user.id %>
                 <% if !@party.attendees.empty? %>
                   <% @party.attendees.each do |attendee| %>
-                    <a class="content is-size-5"  <%= link_to  User.find(attendee.user_id).name , user_path(User.find(attendee.user_id).id) %> </a>
-                    <br/>
+                    <% if attendee.status == "accepted" %>
+                      <a class="content is-size-5"  <%= link_to  User.find(attendee.user_id).name , user_path(User.find(attendee.user_id).id) %> </a>
+                      <br/>
+                    <% end %>
                   <% end %>
                 <% end %>
               <% end %>
