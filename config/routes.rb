@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/about_parties'
   get 'static_pages/about_services'
+  get 'static_pages/about_us'
 
   resources :comunas
   match '/users', to: 'users#index', via: 'get'
