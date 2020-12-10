@@ -176,22 +176,35 @@
   </script>
 
 
-
 <% else %>
+
 
   <section class="hero is-large">
     <br/><br/>
-      <div class="container has-text-centered" data-aos="fade-right">
-        <h1 class="subtitle">Welcome to Saturnality</h1>
-        <h2 class="title is-size-1"><%= current_user.name %> </h2> <br>
-        <a class="button is-block is-fullwidth is-black is-medium is-rounded" <%= link_to "Search parties", parties_path %> </a>
+    <div class="container has-text-centered" data-aos="fade-right">
+      <h1 class="subtitle">Welcome to Saturnality</h1>
+      <h2 class="title is-size-1"><%= current_user.name %> </h2> <br>
+    </div><br/><br/><br/>
+
+
+    <div class="columns is-multiline is-mobile is-centered" >
+      <div class="column is-one-fifth " data-aos="fade-left">
+        <a class="button is-block is-fullwidth is-black is-medium is-rounded" <%= link_to "Search Parties", parties_path %> </a>
       </div>
+      <div class="column is-one-fifth  " data-aos="fade-left">
+        <a class="button is-block is-fullwidth is-black is-medium is-rounded" <%= link_to "Create Party", new_party_path %> </a>
+      </div>
+    </div>
+
+
+
     <br/><br/><br/>
     <br/><br/><br/>
     <br/><br/><br/>
     <br/><br/><br/>
-    <br/><br/><br/>
+
   </section>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../js/showcase.js"></script>
   <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -202,8 +215,6 @@
           duration: 800,
       });
   </script>
-
-
 <% end %>
 
 
