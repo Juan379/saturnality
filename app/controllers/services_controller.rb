@@ -11,12 +11,7 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     @valid_ids = @service.comunas.pluck(:id)
     valid = Party.where('search = true AND user_id = (?) AND comuna_id IN (?)', current_user.id, @valid_ids)
-    @valid_parties = valid.select { |x|  }
-    
-    
     @valid_parties = valid.select { |x| x.contracts.select { |y| y.service_id == 1 }.count == 0  }
-
-    # Party.find(12).contracts.select { |x| x.service_id == 1 }.count == 0
   end
 
   def new
