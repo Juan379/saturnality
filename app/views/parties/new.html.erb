@@ -12,7 +12,7 @@
   <div class="column has-text-left is-3 is-offset-1">
     <%= form_with(model: @party, local: true) do |f| %>
       <div class="Edit is-centered">
-        <h3 class="logo has-text-green is-size-4">New party</h3> <br/>
+        <h3 class="logo has-text-green is-size-4"><strong>New Party</strong></h3> <br/>
         <form>
           <div class="field is-size-5">
             <%= f.label :title %> <br/>
@@ -46,12 +46,12 @@
           </div> <br/>
           <div class="field is-size-5">
             <%= fields_for(@all_comunas) do |c| %>
-              <div>
-                <%= c.label "Comuna" %><br />
+              <div class="select ">
+                <%= c.label "Comuna" %>
                 <%= collection_select(:comuna, :id, Comuna.all, :id, :name, {include_blank: true}) %>
               </div>
             <% end %>
-          </div> <br/>
+          </div> <br><br>
           <button class="button is-block is-fullwidth is-black is-medium is-rounded" type="submit">
             Create Party!
           </button>

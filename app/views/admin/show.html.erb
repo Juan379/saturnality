@@ -20,11 +20,11 @@
         <div class="card-content">
             <div class="content">
               <%= form_for service do |f| %>
-                <div>
+                <div class="select">
                 <%= f.select :status, ['accept', 'rejected']%>
-                </div> <br>
-                <div>
-                    <%= f.submit "Update status" %>
+                </div> 
+                <div class="control"><br> 
+                  <button class="button is-black ">Update status</button>
                 </div>
             <% end %>
             </div>

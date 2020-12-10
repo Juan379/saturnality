@@ -3,7 +3,7 @@
   <div class="column has-text-left is-3 is-offset-1">
     <%= form_for @service do |f| %> <br/>
       <div class="Edit is-centered">
-        <h3 class="logo has-text-green is-size-4">New Service Application Form</h3> <br/>
+        <h3 class="logo has-text-green is-size-4"><strong>New Service Application Form</strong></h3> <br/>
         <form>
           <div class="field is-size-5">
             <%= f.label :name %> <br/>
@@ -31,7 +31,7 @@
           </div> 
           <div class="field is-size-5">
             <%= fields_for(@coverages) do |c| %>
-              <div>
+              <div class="select is-multiple">
                 <%= c.label "Comunas it covers" %><br />
                 <%= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {multiple: true}) %>
               </div>

@@ -72,9 +72,12 @@
             <% if !user_is_interested(current_user, @party)   %>
             Like what you see? <br>
             Submit how much you would be willing to pay to attend this awesome party!
-              <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/><br/>
+              <%= form_with model: [ @party, @party.interesteds.build ], local: true do |form| %> <br/>
                 <%= form.number_field :offer %>
-                <%= form.submit "Submit offer" %>
+                <div class="control"> <br>
+                  <button class="button is-black">Submit offer</button>
+                </div>
+
               <% end %>
             <% else  %>
               <% @party.interesteds.each do |interested| %>
@@ -168,7 +171,7 @@
             <% if !@party.services.empty? %>
               <% @party.services.each do |service| %>
                 <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a>
-                <a class="button is-small is-light" <%= link_to "Unhire", contract_path(party_id: @party, service_id: service), method: :delete, data: { confirm: "Do you really want to unhire this service?"} %> </a>
+                <a class="button is-small is-light" <%= link_to " unhire", contract_path(party_id: @party, service_id: service), method: :delete, data: { confirm: "Do you really want to unhire this service?"} %> </a>
               <% end %>
             <% end %>
           </div>
@@ -262,9 +265,11 @@
                   </p>
                 </div>
                 <div class="field">
-                  <p class="control">
-                    <button class="button"><%= form.submit %></button>
-                  </p>
+
+                <div class="control"> <br>
+                  <button class="button is-black">Comment</button>
+                </div>
+
                 </div>
               <% end %>
             </div>
@@ -285,7 +290,7 @@
                       <%= comment.body %> <br>
                       <% if current_user %>
                         <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
-                          <small><a><%= link_to 'Delete review', [comment.party, comment],
+                          <small><a><%= link_to 'Delete comment', [comment.party, comment],
                                                 method: :delete,
                                                 data: { confirm: 'Are you sure?' } %></a>
                         <% end %>

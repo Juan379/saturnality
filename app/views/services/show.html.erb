@@ -88,12 +88,16 @@
       <%= form_with model: [ @service, @service.contracts.build ], local: true do |form| %>
         <% if @valid_parties.count > 0 %>
           <%= fields_for(@all_parties) do |ap| %>
-            <div>
-              <%= ap.label :party, "Choose your party" %> <br/>
+            <div class="select is-multiple">
+              <%= ap.label :party, "Choose your party (or parties)" %> <br/>
               <%= collection_select(:parties, :id, @valid_parties, :id, :title, {}, {multiple: true}) %>
             </div>
           <% end %>
-          <button class="button"><%= form.submit "Hire service" %></button>
+          
+          <div class="control"> <br>
+            <button class="button is-black">Hire service</button>
+          </div>
+
         <% else %>
           You have no parties that haven't already hired this service that match the comunas of this service.
         <% end %>
@@ -115,9 +119,9 @@
               </p>
             </div>
             <div class="field">
-              <p class="control">
-                <button class="button"><%= form.submit %></button>
-              </p>
+              <div class="control"> 
+                <button class="button is-black">Submit review</button>
+              </div>
             </div>
           <% end %>
         </div>
