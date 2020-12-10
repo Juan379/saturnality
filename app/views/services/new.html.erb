@@ -33,7 +33,7 @@
             <%= fields_for(@coverages) do |c| %>
               <div>
                 <%= c.label "Comunas it covers" %><br />
-                <%= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {:multiple => true}) %>
+                <%= collection_select(:comunas, :id, @all_comunas, :id, :name, {}, {multiple: true}) %>
               </div>
             <% end %>
           </div> <br/>

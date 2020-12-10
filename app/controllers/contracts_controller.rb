@@ -12,4 +12,13 @@ class ContractsController < ApplicationController
   def contract_params
     params.require(:servicereview).permit(:body)
   end
+
+  def destroy
+    party = Party.find(params[:party_id])
+    @contract = Contract.where(party_id: params[:party_id], service_id: params[:service_id]).first
+    @contract.destroy
+    redirect_to party_path(party)
+  end
 end
+
+

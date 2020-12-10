@@ -50,5 +50,7 @@ Rails.application.routes.draw do
     post :reject_invitation, on: :member
   end
 
+  resources :contracts 
+
   resources :interesteds
 end

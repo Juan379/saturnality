@@ -167,7 +167,8 @@
           <div class="card-content ">
             <% if !@party.services.empty? %>
               <% @party.services.each do |service| %>
-                <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a><br/>
+                <a class="content is-size-5" <%= link_to service.name, service_path(service) %></a>
+                <a class="button is-small is-light" <%= link_to "Unhire", contract_path(party_id: @party, service_id: service), method: :delete, data: { confirm: "Do you really want to unhire this service?"} %> </a>
               <% end %>
             <% end %>
           </div>

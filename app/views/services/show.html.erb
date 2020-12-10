@@ -90,12 +90,12 @@
           <%= fields_for(@all_parties) do |ap| %>
             <div>
               <%= ap.label :party, "Choose your party" %> <br/>
-              <%= collection_select(:parties, :id, @valid_parties, :id, :title, {include_blank: true}, {multiple: true}) %>
+              <%= collection_select(:parties, :id, @valid_parties, :id, :title, {}, {multiple: true}) %>
             </div>
           <% end %>
           <button class="button"><%= form.submit "Hire service" %></button>
         <% else %>
-          You have no parties that match the comunas of this service.
+          You have no parties that haven't already hired this service that match the comunas of this service.
         <% end %>
       <% end %>
     </div>
