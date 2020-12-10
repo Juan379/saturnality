@@ -7,7 +7,9 @@
   </div>
 </section>
 
-
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
 <div class="columns is-multiline is-mobile">
   <% @services.each do |service| %>
     <div class="column is-one-quarter ">
@@ -22,7 +24,7 @@
                 <%= f.select :status, ['accept', 'rejected']%>
                 </div> <br>
                 <div>
-                    <%= f.submit "Update service status" %>
+                    <%= f.submit "Update status" %>
                 </div>
             <% end %>
             </div>
@@ -31,6 +33,9 @@
     </div>
   <% end %>
 </div>
+    </div>
+    </div>
+</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>

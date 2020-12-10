@@ -29,7 +29,7 @@
                   <%= f.label :Ended %>
                   <%= f.check_box :ended%>
                 </div>
-                <div>
+                <div> <br >
                   <%= f.submit %>
                 </div>
               <% else %>
@@ -38,12 +38,6 @@
             <% end %>
             </div>
         </div>
-        <footer class="card-footer">
-          <% if !party.ended %>
-            <a class="card-footer-item" <%= link_to "Edit", edit_party_path(party) %> </a>
-            <a class="card-footer-item"  <%= link_to "Delete", party, method: :delete, data: { confirm: "Do you really want to delete this Party?"} %></a>
-          <% end %>
-        </footer>
       </div>
     </div>
   <% end %>

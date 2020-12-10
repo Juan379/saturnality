@@ -3,7 +3,10 @@
     <h2 class="title is-size-1">Parties you want to attend</h2>
   </div>
 </section>
-
+<br>
+<section class="hero">
+  <div class="hero-body">
+<div class="container">
 <div class="columns is-multiline is-mobile">
   <% @shown = false %>
   <% @parties.each do |party| %>
@@ -16,7 +19,7 @@
               <a class="card-header-title is-size-3" <%= link_to "#{party.title}", party %></a>
             </header>
             <div class="card-content">
-              <div class="content" > Your current offer is: $<%= interested.offer %></div>
+              <div class="content" > <strong>Current offer:</strong> $<%= interested.offer %></div>
             </div>
             <footer class="card-footer">
               <a class="card-footer-item" <%= link_to "Edit", edit_interested_path(interested) %> </a>
@@ -37,6 +40,10 @@
   </section>
 <% end %>
 
+
+</div>
+  </div>
+</section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/showcase.js"></script>
 <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -47,5 +54,3 @@
         duration: 800,
     });
 </script>
-
-</html>

@@ -19,9 +19,9 @@
           </header>
           <div class="card-content">
             <div class="content">
-              Address: <%= attendee.party.address %>, <%= attendee.party.comuna.name %> <br>
-              People going: <%= attendee.party.attendees.count %><br>
-              Your invite status: <%= Attendee.where(user_id: current_user.id, party_id: attendee.party.id).first.status %>
+              <strong>Address:</strong> <%= attendee.party.address %>, <%= attendee.party.comuna.name %> <br>
+              <strong>People going:</strong> <%= attendee.party.attendees.count %><br>
+              <strong>Invite status:</strong> <%= Attendee.where(user_id: current_user.id, party_id: attendee.party.id).first.status %>
             </div>
             <div class="media">
               <div class="media-left">
