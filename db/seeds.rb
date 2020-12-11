@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
 c1 = Comuna.create(name: "Lo Barnechea")
 c2 = Comuna.create(name: "Las Condes")
 c3 = Comuna.create(name: "El Bosque")
