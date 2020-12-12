@@ -20,5 +20,3 @@ class ContractsController < ApplicationController
     redirect_to party_path(party)
   end
 end
-
-

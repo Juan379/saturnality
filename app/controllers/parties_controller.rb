@@ -4,18 +4,18 @@ class PartiesController < ApplicationController
   helper PartiesHelper
 
   def index
-    if !current_user.has_role?(:admin)
-      @parties = Party.where(search: true, ended: false)
-    else 
-      @parties = Party.all
-    end
+    @parties = if !current_user.has_role?(:admin)
+                 Party.where(search: true, ended: false)
+               else
+                 Party.all
+               end
   end
 
   def close_and_notify
     party = Party.find(params[:id])
     limit = party.capacity
     cost = party.cost
-    code = rand.to_s[2..11] 
+    code = rand.to_s[2..11]
 
     candidates = party.interesteds.order(offer: :desc)[0..limit]
     unless candidates.empty?
