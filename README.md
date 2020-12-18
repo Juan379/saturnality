@@ -6,7 +6,7 @@ A party app made with Ruby on Rails.
 
 ## Getting Started
 
-No prerequisites are needed, you can check out the app [here!](https://saturnality.herokuapp.com/).
+No prerequisites are needed, you can check out the app demo [here!](https://saturnality.herokuapp.com/)
 
 ## Built With
 
