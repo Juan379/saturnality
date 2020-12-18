@@ -22,4 +22,4 @@ No prerequisites are needed, you can check out the app [here!](https://saturnali
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
