@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
 
-A party app made with Ruby on Rails.
+A partying app made with Ruby on Rails.
 
 ## Getting Started
 
