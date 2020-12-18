@@ -4,6 +4,10 @@
 
 A partying app made with Ruby on Rails.
 
+<p align="center">
+  <img width="80%" src="https://github.com/Juan379/saturnality/master/saturnality.png?raw=true">
+</p>
+
 ## Getting Started
 
 No prerequisites are needed, you can check out the app demo [here](https://saturnality.herokuapp.com/)!
