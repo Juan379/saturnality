@@ -5,7 +5,7 @@
 A partying app made with Ruby on Rails.
 
 <p align="center">
-  <img width="80%" src="https://github.com/Juan379/saturnality/blob/master/saturnality.png?raw=true">
+  <img width="80%" src="https://github.com/Juan379/saturnality/saturnality.png?raw=true">
 </p>
 
 ## Getting Started
