@@ -1,3 +1,25 @@
-# README :rocket:
+# Saturnality
 
-La **dirección** de la aplicación es: https://saturnality.herokuapp.com/
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
+
+A party app made with Ruby on Rails.
+
+## Getting Started
+
+No prerequisites are needed, you can check out the app [here!](https://saturnality.herokuapp.com/).
+
+## Built With
+
+* [Ruby](https://www.ruby-lang.org/es/) - Programing language
+* [Ruby on Rails](https://rubyonrails.org/) - Ruby Framework
+* [Postgresql](https://www.postgresql.org/) - SQL database engine
+
+## Authors
+
+* **@Juan379** 
+* **@victoriapsb**
+* **@MINGOD24**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
