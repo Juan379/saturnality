@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
 
-A partying app made with Ruby on Rails hosted on Heroku.
+A partying app made with Ruby on Rails, hosted on Heroku.
 
 <p align="center">
   <img width="80%" src=https://github.com/Juan379/saturnality/blob/master/saturnality.PNG>
