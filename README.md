@@ -14,7 +14,7 @@ No prerequisites are needed, you can check out the app demo [here](https://satur
 
 ## Built With
 
-* [Ruby](https://www.ruby-lang.org/en/) - Programing language
+* [Ruby](https://www.ruby-lang.org/en/) - Programming language
 * [Ruby on Rails](https://rubyonrails.org/) - Ruby Framework
 * [Postgresql](https://www.postgresql.org/) - SQL database engine
 
