@@ -3,7 +3,7 @@
 [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://rocky-badlands-03545.herokuapp.com/)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
 
-A partying app made with Ruby on Rails, hosted on Heroku.
+An app to host and find parties made with Ruby on Rails, hosted on Heroku.
 
 <p align="center">
   <img width="80%" src=https://github.com/Juan379/saturnality/blob/master/saturnality.PNG>
