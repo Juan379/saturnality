@@ -6,7 +6,7 @@
 An app to host and find parties made with Ruby on Rails, hosted on Heroku.
 
 <p align="center">
-  <img width="80%" src=https://github.com/Juan379/saturnality/blob/master/saturnality.PNG>
+  <img width="80%" src=https://github.com/juansjimenez/saturnality/blob/master/saturnality.PNG>
 </p>
 
 ## Getting Started
