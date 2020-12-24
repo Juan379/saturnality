@@ -21,7 +21,7 @@ No prerequisites are needed, you can check out the app demo [here](https://satur
 
 ## Authors
 
-* **@Juan379** 
+* **@juansjimenez** 
 * **@victoriapsb**
 * **@MINGOD24**
 
